@@ -21,7 +21,7 @@ const Footer = () => {
           </ul>
 
           {/* Manual SVG Icons to avoid Lucide Export Errors */}
-          <div className="flex gap-3 mt-8">
+          <a href="https://www.instagram.com/indoorsglobal/" className="flex gap-3 mt-8">
             <SocialIcon label="Instagram">
               <rect width="20" height="20" x="2" y="2" rx="5" ry="5" />
               <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z" />
@@ -39,7 +39,7 @@ const Footer = () => {
               <circle cx="12" cy="12" r="10" />
               <path d="M8 12c.2 2.5 1.8 3.5 3 3.5 1.6 0 2.8-1.1 2.8-2.6 0-1.7-1.3-3-3.2-3-2.1 0-3.6 1.4-3.6 3.4 0 1.2.5 2.2 1.4 2.6.2.1.3.1.4-.2l.2-.7c0-.2 0-.3-.1-.5-.4-.5-.6-1.2-.6-2 0-2 1.6-3.8 3.8-3.8 2.1 0 3.6 1.4 3.6 3.4 0 2.2-1.2 4.1-3 4.1-.6 0-1.2-.3-1.4-.7l-.4 1.5c-.2.7-.8 1.8-1.2 2.5" />
             </SocialIcon> */}
-          </div>
+          </a>
         </div>
 
         {/* Find Product */}
