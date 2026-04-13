@@ -2,7 +2,7 @@
 
 import React, { useState } from "react";
 import Link from "next/link";
-import { ChevronDown, Menu, X } from "lucide-react";
+import { ChevronDown, Menu, X, MapPin } from "lucide-react"; // Added MapPin
 import logo from "@/public/navbar/logo.png";
 import Image from "next/image";
 
@@ -10,9 +10,7 @@ const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
 
-  // Aapki specific list ke hisaab se categories
   const categories = [
-    // { name: "SELF - CARE KIT", href: "/categories/self-care-kit" },
     { name: "TOILETRY KIT", href: "/categories/toiletry-kit" },
     { name: "CHILDREN KIT", href: "/categories/children-kit" },
     { name: "HAND TOWEL SET", href: "/categories/towel-kit" },
@@ -74,7 +72,6 @@ const Navbar = () => {
                 )}
               </Link>
 
-              {/* Desktop Dropdown */}
               {link.hasDropdown && (
                 <div
                   className={`absolute left-0 mt-0 w-64 bg-white border border-gray-100 shadow-xl transition-all duration-300 ${
@@ -165,9 +162,24 @@ const Navbar = () => {
               )}
             </div>
           ))}
+
+          {/* Store Address Section (Mobile Only) */}
+          <div className="mt-6 p-4 bg-gray-50 rounded-lg border border-gray-100">
+            <div className="flex items-start gap-3">
+              <MapPin size={20} className="text-[#a3a393] mt-1 shrink-0" />
+              <div>
+                <h4 className="text-xs uppercase tracking-widest font-bold text-gray-900 mb-1">Our Store</h4>
+                <p className="text-sm text-gray-600 leading-relaxed font-sans">
+                  V1st Floor Shop No. 1 & 2 Royal Arcade Building Near Khamardih Thana, Shankar Nagar Raipur
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <Link href={"/contact"} className="flex flex-col "  onClick={() => setIsOpen(!isOpen)}>
           <button className="mt-4 bg-[#a3a393] text-white py-4 text-xs uppercase tracking-widest">
             Shop Patterns
-          </button>
+          </button></Link>
         </div>
       </div>
     </nav>
