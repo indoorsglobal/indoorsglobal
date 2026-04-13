@@ -1,6 +1,6 @@
 "use client"; // Important for Next.js App Router
 import React, { useState } from 'react';
-import vision from "@/public/about/ourvision.jpg"
+import vision from "@/public/about/ourvision.png"
 import Image from 'next/image';
 
 const AccordionSection = () => {
