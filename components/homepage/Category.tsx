@@ -7,7 +7,7 @@ import { ChevronLeft, ChevronRight } from "lucide-react";
 
 import bamboo_essentials1 from "@/public/products/Bamboo Essentials/bamboo-essentials1.jpeg"
 import cane_baskets1 from "@/public/products/Cane Baskets/cane-baskets1.jpeg"
-import rice_husk1 from "@/public/products/Rice Husk/rice-husk1.jpeg"
+import rice_husk1 from "@/public/products/Rice Husk/rice-husk11.jpeg"
 import kits1 from "@/public/Indoor Global Kit/Toiletry kit1.jpg"
 
 const categories = [
