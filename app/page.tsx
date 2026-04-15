@@ -5,6 +5,7 @@ import CTA from "@/components/homepage/CTA";
 import Features from "@/components/homepage/Features";
 import Hero from "@/components/homepage/Hero";
 import React from "react";
+import TestimonialSection from "../components/homepage/Testimonials";
 
 export default function page() {
   return (
@@ -13,6 +14,7 @@ export default function page() {
       <Category />
       <About />
       <Features />
+      <TestimonialSection/>
       <Blog />
       <CTA />
     </div>
