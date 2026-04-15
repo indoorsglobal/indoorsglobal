@@ -11,6 +11,12 @@ import kits15 from "@/public/Indoor Global Kit/Hand Towel Set2.jpg"
 import kits16 from "@/public/Indoor Global Kit/Hand Towel Set3.jpg"
 import kits17 from "@/public/Indoor Global Kit/Hand Towel Set4.jpg"
 import kits18 from "@/public/Indoor Global Kit/Hand Towel Set5.jpg"
+// import kits19 from "@/public/Indoor Global Kit/Hand Towel Set6.jpg"
+import kits20 from "@/public/Indoor Global Kit/Hand Towel Set7.jpg"
+import kits21 from "@/public/Indoor Global Kit/Hand Towel Set8.jpg"
+import kits22 from "@/public/Indoor Global Kit/Hand Towel Set9.jpg"
+import kits23 from "@/public/Indoor Global Kit/Hand Towel Set10.jpg"
+import kits24 from "@/public/Indoor Global Kit/Hand Towel Set11.jpg"
 
 const productsData = [
   { 
@@ -47,7 +53,50 @@ const productsData = [
     description: "Tropical Refresh. A light teal, bamboo-blend towel that brings a cooling, coastal breeze to your daily self-care ritual.", 
     img: kits18, 
     category: "Towel Kit" 
+  },
+  // { 
+  //   id: 50, 
+  //   name: "Hand Towel Set 6", 
+  //   description: "Tropical Refresh. A light teal, bamboo-blend towel that brings a cooling, coastal breeze to your daily self-care ritual.", 
+  //   img: kits19, 
+  //   category: "Towel Kit" 
+  // },
+  { 
+    id: 51, 
+    name: "Hand Towel Set 7", 
+    description: "Tropical Refresh. A light teal, bamboo-blend towel that brings a cooling, coastal breeze to your daily self-care ritual.", 
+    img: kits20, 
+    category: "Towel Kit" 
+  },
+  { 
+    id: 52, 
+    name: "Hand Towel Set 8", 
+    description: "Tropical Refresh. A light teal, bamboo-blend towel that brings a cooling, coastal breeze to your daily self-care ritual.", 
+    img: kits21, 
+    category: "Towel Kit" 
+  },
+  { 
+    id: 53, 
+    name: "Hand Towel Set 9", 
+    description: "Tropical Refresh. A light teal, bamboo-blend towel that brings a cooling, coastal breeze to your daily self-care ritual.", 
+    img: kits22, 
+    category: "Towel Kit" 
+  },
+  { 
+    id: 54, 
+    name: "Hand Towel Set 10", 
+    description: "Tropical Refresh. A light teal, bamboo-blend towel that brings a cooling, coastal breeze to your daily self-care ritual.", 
+    img: kits23, 
+    category: "Towel Kit" 
+  },
+  { 
+    id: 55, 
+    name: "Hand Towel Set 11", 
+    description: "Tropical Refresh. A light teal, bamboo-blend towel that brings a cooling, coastal breeze to your daily self-care ritual.", 
+    img: kits24, 
+    category: "Towel Kit" 
   }
+  
 ];
 
 export default function TowelDetail() {
