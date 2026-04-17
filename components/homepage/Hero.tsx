@@ -49,12 +49,11 @@ export default function HeroSlider() {
   const scrollNext = useCallback(() => emblaApi && emblaApi.scrollNext(), [emblaApi]);
 
   return (
-    // Outer padding to create space around the image (as seen in screenshot)
-    <div className="w-full bg-white p-4 md:p-6 lg:p-8">
+    <div className="w-full bg-white p-3 md:p-6 lg:p-8">
       
-      {/* Main Hero Card with large rounding */}
+      {/* Main Hero Card */}
       <section 
-        className="relative h-[70vh] md:h-[85vh] w-full overflow-hidden rounded-[2.5rem] md:rounded-[4rem] shadow-sm" 
+        className="relative h-[80vh] md:h-[85vh] w-full overflow-hidden rounded-[2rem] md:rounded-[4rem] shadow-sm" 
         ref={emblaRef}
       >
         <div className="flex h-full">
@@ -65,61 +64,57 @@ export default function HeroSlider() {
                 src={slide.image}
                 alt={slide.title}
                 fill
-                className="object-cover brightness-[0.9]"
+                className="object-cover brightness-[0.85] md:brightness-[0.9]"
                 priority
               />
               
-              {/* Content Overlay - Restored text content and button placement */}
-              <div className="absolute inset-0 flex items-center md:items-end pb-20 md:pb-32 bg-black/5">
-                <div className="container mx-auto px-8 md:px-20 grid grid-cols-1 md:grid-cols-2 gap-10 items-end">
-                  
-                  {/* Left Side: Subtitle, Title, and Description */}
-                  <div className="text-white">
-                    <p className="text-[10px] md:text-xs uppercase tracking-[0.4em] mb-4 font-semibold opacity-90">
+              {/* Content Overlay */}
+              <div className="absolute inset-0 flex items-center md:items-end pb-24 md:pb-32 bg-black/10">
+                <div className="container mx-auto px-6 md:px-20">
+                  <div className="max-w-3xl text-white">
+                    <p className="text-[9px] md:text-xs uppercase tracking-[0.3em] md:tracking-[0.4em] mb-3 md:mb-4 font-semibold opacity-90">
                       {slide.subtitle}
                     </p>
-                    <h1 className="text-5xl md:text-7xl font-serif leading-[1.1] mb-6">
+                    <h1 className="text-3xl sm:text-4xl md:text-7xl font-serif leading-[1.2] md:leading-[1.1] mb-4 md:mb-6">
                       {slide.title}
                     </h1>
-                    <p className="text-sm md:text-lg max-w-md opacity-90 leading-relaxed font-light hidden md:block">
+                    <p className="text-sm md:text-lg max-w-md opacity-90 leading-relaxed font-light mb-6 md:mb-8 line-clamp-3 md:line-clamp-none">
                       {slide.description}
                     </p>
-                      {/* Right Side: Button Placement (as per screenshot) */}
-                  <div className="flex justify-start mt-4">
-                    <button className="flex items-center gap-4 bg-[#2D3E33] hover:bg-[#1a261f] text-white px-8 py-4 text-xs uppercase tracking-[0.2em] transition-all duration-300 rounded-sm group shadow-xl">
-                      {slide.buttonText}
-                      <ArrowRight size={18} className="group-hover:translate-x-1 transition-transform" />
-                    </button>
+                    
+                    <div className="flex justify-start">
+                      <button className="flex items-center gap-3 md:gap-4 bg-[#2D3E33] hover:bg-[#1a261f] text-white px-6 py-3 md:px-8 md:py-4 text-[10px] md:text-xs uppercase tracking-[0.2em] transition-all duration-300 rounded-sm group shadow-xl">
+                        {slide.buttonText}
+                        <ArrowRight size={16} className="group-hover:translate-x-1 transition-transform" />
+                      </button>
+                    </div>
                   </div>
-                  </div>
-
-                
                 </div>
               </div>
             </div>
           ))}
         </div>
 
-        {/* Screenshot Style Navigation - Bottom Left */}
-        <div className="absolute bottom-10 left-10 md:left-20 flex items-center gap-10 z-20 text-white">
-          <button onClick={scrollPrev} className="hover:opacity-60 transition-opacity">
-            <MoveLeft size={30} strokeWidth={1} />
+        {/* Navigation - Hidden on very small screens, or scaled down */}
+        <div className="absolute bottom-8 left-6 md:bottom-10 md:left-20 flex items-center gap-6 md:gap-10 z-20 text-white">
+          <button onClick={scrollPrev} className="hover:opacity-60 transition-opacity p-2">
+            <MoveLeft className="w-6 h-6 md:w-8 md:h-8" strokeWidth={1} />
           </button>
-          <button onClick={scrollNext} className="hover:opacity-60 transition-opacity">
-            <MoveRight size={30} strokeWidth={1} />
+          <button onClick={scrollNext} className="hover:opacity-60 transition-opacity p-2">
+            <MoveRight className="w-6 h-6 md:w-8 md:h-8" strokeWidth={1} />
           </button>
         </div>
 
-        {/* Screenshot Style Pagination - Bottom Center */}
-        <div className="absolute bottom-12 left-1/2 -translate-x-1/2 flex gap-3 z-20">
+        {/* Pagination Dots */}
+        <div className="absolute bottom-10 md:bottom-12 left-1/2 -translate-x-1/2 flex gap-2.5 md:gap-3 z-20">
           {SLIDES.map((_, index) => (
             <button
               key={index}
               onClick={() => emblaApi?.scrollTo(index)}
               className={`transition-all duration-300 rounded-full border border-white/50 ${
                 selectedIndex === index 
-                  ? "w-2.5 h-2.5 bg-white scale-125" 
-                  : "w-2 h-2 bg-transparent opacity-50"
+                  ? "w-2 md:w-2.5 h-2 md:h-2.5 bg-white scale-110" 
+                  : "w-1.5 md:w-2 h-1.5 md:h-2 bg-transparent opacity-50"
               }`}
             />
           ))}
