@@ -43,21 +43,23 @@ const Footer = () => {
         </div>
 
         {/* Find Product */}
-        <div>
-          <h3 className="text-xl font-medium mb-6 text-black tracking-tight">
-            Quick Links
-          </h3>
-          <ul className="space-y-3 text-[15px]">
-            {["Home", "About", "Products", "Blog"].map((item) => (
-              <li
-                key={item}
-                className="hover:translate-x-1 transition-transform cursor-pointer hover:text-black"
-              >
-                <Link href={item.toLowerCase()}>{item}</Link>
-              </li>
-            ))}
-          </ul>
-        </div>
+    <div>
+  <h3 className="text-xl font-medium mb-6 text-black tracking-tight">
+    Quick Links
+  </h3>
+  <ul className="space-y-3 text-[15px]">
+    {["Home", "About", "Products", "Workshop"].map((item) => (
+      <li
+        key={item}
+        className="hover:translate-x-1 transition-transform cursor-pointer hover:text-black"
+      >
+        <Link href={item === "Workshop" ? "/blog" : `/${item.toLowerCase()}`}>
+          {item}
+        </Link>
+      </li>
+    ))}
+  </ul>
+</div>
 
         {/* Your Account */}
         <div>
