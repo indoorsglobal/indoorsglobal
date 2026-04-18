@@ -9,22 +9,20 @@ const AccordionSection = () => {
 
 const accordionData = [
     {
-      title: "Global Design Vision",
-      content: "Our vision is to become the ultimate destination for global interior inspiration. We aim to transform every home into a curated masterpiece by sourcing unique, high-quality pieces that tell a story of craftsmanship and worldly elegance."
+      title: "Sustainable Elegance",
+      content: "We believe that luxury shouldn't come at the Earth's expense. Our collection features meticulously crafted pieces made from renewable materials like rice husk and bamboo fibers, blending high-end aesthetics with environmental responsibility."
     },
     {
-      title: "Our Commitment to Quality",
-      content: "We don't just sell products; we deliver enduring quality. Our mission is to ensure that every item in the Indoors Global collection meets rigorous standards of durability, sustainability, and aesthetic excellence, ensuring your investment lasts a lifetime."
+      title: "Curation with Purpose",
+      content: "Every item in the Indoors Global catalog is hand-selected for its story and craftsmanship. From minimalist kitchenware to artisanal decor, we source products that bring a sense of worldly sophistication and timeless quality to your living space."
     },
     {
-      title: "Personalized Client Support",
-      content: "Building your dream home is a journey, and we are here to guide you. From expert styling advice to seamless post-purchase support, our team is dedicated to providing a premium experience that prioritizes your comfort and satisfaction."
+      title: "A Global Lifestyle Experience",
+      content: "Beyond retail, we are your partners in interior transformation. We provide seamless international shipping and personalized support to ensure that bringing eco-chic design into your home is a sophisticated, stress-free journey."
     }
   ];
 
   const toggleAccordion = (index: number) => {
-    // If you click the one that's already open, it closes. 
-    // Otherwise, it opens the new one and closes the previous one.
     setOpenIndex(openIndex === index ? null : index);
   };
 
@@ -35,12 +33,12 @@ const accordionData = [
         {/* Left Side: Text and Accordion */}
         <div className="space-y-8">
           <div className="space-y-4">
-            <h2 className="text-5xl text-[#8d6e6e] font-serif font-medium">
-              Inspiration, Innovation,<br /> And Opportunities.
+            <h2 className="text-5xl text-[#8d6e6e] font-serif font-medium leading-tight">
+              A Conscious Approach <br /> to Modern Living.
             </h2>
             <p className="text-gray-500 text-sm max-w-md leading-relaxed">
-              Discover how Indoors Global redefines interior spaces through 
-              world-class curation and an unwavering focus on modern lifestyle.
+              Indoors Global redefines the boundaries of interior design by 
+              merging eco-friendly innovation with premium global aesthetics.
             </p>
           </div>
 
@@ -52,14 +50,14 @@ const accordionData = [
                 <div key={index} className="border-b border-gray-100">
                   <button
                     onClick={() => toggleAccordion(index)}
-                    className="w-full flex items-center py-4 px-2 text-left transition-all hover:bg-white"
+                    className="w-full flex items-center py-4 px-2 text-left transition-all hover:bg-slate-50/50"
                   >
                     <span className={`mr-3 transition-transform duration-300 ${isOpen ? 'rotate-0' : '-rotate-90'}`}>
-                      <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor">
+                      <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor" className={isOpen ? 'text-[#a68b8b]' : 'text-gray-400'}>
                         <path d="M0 7.33l2.829-2.83 9.171 9.171 9.171-9.171 2.829 2.83-12 12z"/>
                       </svg>
                     </span>
-                    <span className={`text-lg font-medium ${isOpen ? 'text-[#4CAF50]' : 'text-slate-700'}`}>
+                    <span className={`text-lg font-medium transition-colors ${isOpen ? 'text-[#8d6e6e]' : 'text-slate-700'}`}>
                       {item.title}
                     </span>
                   </button>
@@ -76,7 +74,7 @@ const accordionData = [
           </div>
         </div>
 
-        {/* Right Side: Image Placeholder */}
+        {/* Right Side: Image */}
         <div className="relative rounded-lg overflow-hidden bg-sky-100 aspect-square lg:aspect-[4/3] flex items-center justify-center">
            <Image
             src={vision}
@@ -84,6 +82,8 @@ const accordionData = [
             className="w-full h-full object-cover"
           />
         </div>
+
+      
 
       </div>
     </section>
