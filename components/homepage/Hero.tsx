@@ -27,7 +27,7 @@ const SLIDES = [
   },
 ];
 
-export default function HeroSlider() {
+export default function Hero() {
   const [emblaRef, emblaApi] = useEmblaCarousel({ loop: true }, [
     Autoplay({ delay: 5000, stopOnInteraction: false })
   ]);
@@ -83,7 +83,7 @@ export default function HeroSlider() {
                     </p>
                     
                     <div className="flex justify-start">
-                      <button className="flex items-center gap-3 md:gap-4 bg-[#2D3E33] hover:bg-[#1a261f] text-white px-6 py-3 md:px-8 md:py-4 text-[10px] md:text-xs uppercase tracking-[0.2em] transition-all duration-300 rounded-sm group shadow-xl">
+                      <button className="flex items-center gap-3 md:gap-4 bg-[#009341] hover:bg-[#1a261f] text-white px-6 py-3 md:px-8 md:py-4 text-[10px] md:text-xs uppercase tracking-[0.2em] transition-all duration-300 rounded-sm group shadow-xl">
                         {slide.buttonText}
                         <ArrowRight size={16} className="group-hover:translate-x-1 transition-transform" />
                       </button>

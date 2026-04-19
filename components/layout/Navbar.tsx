@@ -38,7 +38,7 @@ const Navbar = () => {
         </Link>
 
         {/* Desktop Categories Row */}
-        <div className="hidden lg:flex items-center gap-6 text-[13px] text-green-600">
+        <div className="hidden lg:flex items-center gap-6 text-[13px] text-[#009341]">
           {categories.map((cat) => (
             <Link
               key={cat.name}
@@ -54,7 +54,7 @@ const Navbar = () => {
         <div className="flex items-center gap-4">
           <Link
             href={"/contact"}
-            className="hidden sm:block bg-[#a3a393] hover:bg-[#7cb140] text-white px-5 py-2.5 text-[10px] uppercase tracking-widest transition-all duration-300"
+            className="hidden sm:block bg-[#009341] hover:bg-[#7cb140] text-white px-5 py-2.5 text-[10px] uppercase tracking-widest transition-all duration-300"
           >
              Send a Message
           </Link>
@@ -101,7 +101,7 @@ const Navbar = () => {
           </div>
 
           <Link href={"/contact"} className="mt-4" onClick={() => setIsOpen(false)}>
-            <button className="w-full bg-[#a3a393] text-white py-4 text-xs uppercase tracking-widest">
+            <button className="w-full bg-[#009341] hover:bg-[#7cb140] text-white py-4 text-xs uppercase tracking-widest">
               Send a Message
             </button>
           </Link>

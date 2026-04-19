@@ -101,7 +101,7 @@ const Blog = () => {
             </h3>
             <a 
               href={post.link} 
-              className="text-sm font-sans font-bold uppercase tracking-widest text-black border-b border-black pb-1 hover:text-gray-500 hover:border-gray-500 transition-all"
+              className="text-sm font-sans font-bold uppercase tracking-widest  border-b border-[#009341] hover:border-[#7cb140] pb-1 text-[#009341] hover:text-[#7cb140] transition-all"
             >
               Read more
             </a>

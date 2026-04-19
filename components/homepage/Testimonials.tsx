@@ -70,12 +70,12 @@ export default function TestimonialSection() {
   const googleReviewUrl = "https://www.google.com/search?q=Indoors+Global+Raipur+reviews#lrd=0x3a28dde9d049a57f:0x5b744bc1715f6da3,1,,,,";
 
   return (
-    <section className="bg-white py-12 md:py-20 px-4 md:px-6 overflow-hidden">
-      <div className="max-w-7xl mx-auto">
+    <section className="bg-[#00934150] py-12 md:py-20 px-4 md:px-6 overflow-hidden">
+      <div className="max-w-7xl mx-auto ">
         {/* Header */}
         <div className="text-center mb-16">
           <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
-            Read reviews, <br className="hidden md:block" /> shop with confidence.
+            Read Reviews, <br className="hidden md:block" /> Shop With Confidence.
           </h2>
           {/* <div className="flex items-center justify-center gap-2">
              <div className="flex text-yellow-500">

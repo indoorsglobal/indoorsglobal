@@ -41,7 +41,7 @@ const Features = () => {
             <h2 className="text-4xl md:text-5xl text-white leading-tight mb-8">
               Bamboo Essentials 
             </h2>
-            <Link href={"/products"} className="bg-[#a3a895] text-white px-8 py-3 uppercase tracking-widest text-xs font-sans font-bold hover:bg-[#7cb140] transition-colors">
+            <Link href={"/products"} className="bg-[#009341] text-white px-8 py-3 uppercase tracking-widest text-xs font-sans font-bold hover:bg-[#7cb140] transition-colors">
               Shop Now
             </Link>
           </div>
@@ -67,7 +67,7 @@ const Features = () => {
               <h3 className="text-3xl text-white mb-6">
                 Rice Husk
               </h3>
-              <Link href={"/products"} className="bg-[#a3a895] text-white px-8 py-3 uppercase tracking-widest text-xs font-sans font-bold hover:bg-[#7cb140] transition-colors">
+              <Link href={"/products"} className="bg-[#009341] text-white px-8 py-3 uppercase tracking-widest text-xs font-sans font-bold hover:bg-[#7cb140] transition-colors">
               Shop Now
             </Link>
             </div>
@@ -91,7 +91,7 @@ const Features = () => {
               <h3 className="text-3xl text-white mb-6">
                 Cane Baskets
               </h3>
-               <Link href={"/products"} className="bg-[#a3a895] text-white px-8 py-3 uppercase tracking-widest text-xs font-sans font-bold hover:bg-[#7cb140] transition-colors">
+               <Link href={"/products"} className="bg-[#009341] text-white px-8 py-3 uppercase tracking-widest text-xs font-sans font-bold hover:bg-[#7cb140] transition-colors">
               Shop Now
             </Link>
             </div>

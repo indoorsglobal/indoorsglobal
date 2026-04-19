@@ -25,10 +25,10 @@ const CTA = () => {
 
         {/* Input/Button Group */}
      <div className="flex justify-center items-center gap-4">
-       <Link href={"/contact"} className="bg-white px-8 py-3 transition-all">
+       <Link href={"/contact"} className="bg-[#5D4037] hover:bg-[#8e8e7e] text-white px-8 py-3 transition-all">
             Shop Now
           </Link>
-           <Link href={"/about"} className="bg-[#a3a393] hover:bg-[#7cb140] text-white px-8 py-3 transition-all">
+           <Link href={"/about"} className="bg-[#009341] hover:bg-[#7cb140] text-white px-8 py-3 transition-all">
             About Us
           </Link>
      </div>

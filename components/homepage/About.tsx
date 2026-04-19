@@ -47,7 +47,7 @@ const About = () => {
             </Link>
             <Link
               href={"/about"}
-              className="bg-[#a89d83] hover:bg-[#7cb140] text-white px-8 py-3 text-sm tracking-widest uppercase font-sans  transition-colors"
+              className="bg-[#009341] hover:bg-[#7cb140] text-white px-8 py-3 text-sm tracking-widest uppercase font-sans  transition-colors"
             >
               About Us
             </Link>

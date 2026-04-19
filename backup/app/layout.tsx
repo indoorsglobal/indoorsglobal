@@ -1,0 +1,44 @@
+import type { Metadata } from "next";
+import { Geist, Geist_Mono } from "next/font/google";
+import "./globals.css";
+import Navbar from "@/components/layout/Navbar";
+import Footer from "@/components/layout/Footer";
+import Preloader from "@/components/layout/Preloader";
+import WhatsAppButton from "@/components/layout/WhatsAppButton";
+import Navbar1 from "@/components/layout/Navbar1";
+import Navbar2 from "@/components/layout/Navbar2";
+
+const geistSans = Geist({
+  variable: "--font-geist-sans",
+  subsets: ["latin"],
+});
+
+const geistMono = Geist_Mono({
+  variable: "--font-geist-mono",
+  subsets: ["latin"],
+});
+
+export const metadata: Metadata = {
+  title: "Indoors Global",
+  description: "Indoors Global",
+};
+
+export default function RootLayout({
+  children,
+}: Readonly<{
+  children: React.ReactNode;
+}>) {
+  return (
+    <html lang="en" className={` h-full antialiased`}>
+      <body className="min-h-full flex flex-col">
+        <Navbar1/>
+        {/* <Navbar2/> */}
+        {/* <Navbar /> */}
+        <Preloader/>
+        {children}
+        <WhatsAppButton/>
+        <Footer />
+      </body>
+    </html>
+  );
+}

@@ -178,7 +178,7 @@ export default function ProductDetail() {
           </div>
 
           <div className="flex flex-wrap gap-4">
-            <Link href={"/contact"} className="flex-1 bg-[#a3a393] text-white px-8 py-4 rounded hover:bg-[#8e8e7f] transition-all flex items-center justify-center gap-2 font-medium text-center">
+            <Link href={"/contact"} className="flex-1 bg-[#009341] hover:bg-[#7cb140] text-white px-8 py-4 rounded  transition-all flex items-center justify-center gap-2 font-medium text-center">
               Contact for Inquiry
             </Link>
             <button className="p-4 border border-gray-200 rounded hover:bg-gray-50 transition-colors">
