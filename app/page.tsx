@@ -6,6 +6,7 @@ import Features from "@/components/homepage/Features";
 import Hero from "@/components/homepage/Hero";
 import React from "react";
 import TestimonialSection from "../components/homepage/Testimonials";
+import PortraitSlider from "@/components/homepage/Videos";
 
 export default function page() {
   return (
@@ -14,6 +15,7 @@ export default function page() {
       <Category />
       <About />
       <Features />
+      <PortraitSlider/>
       <TestimonialSection/>
       <Blog />
       <CTA />
