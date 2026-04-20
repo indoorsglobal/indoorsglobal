@@ -13,10 +13,15 @@ const PortraitSlider = () => {
   const [selectedVideo, setSelectedVideo] = useState<any>(null);
 
   const cdnVideos = [
-    { id: 1, url: "https://res.cloudinary.com/demo/video/upload/q_auto,vc_h265/docs/landscape.mp4", title: "Summer Collection" },
-    { id: 2, url: "https://media.w3.org/2010/05/sintel/trailer.mp4", title: "New Arrivals" },
-    { id: 3, url: "https://www.w3schools.com/html/mov_bbb.mp4", title: "Flash Sale" },
-    { id: 4, url: "https://res.cloudinary.com/demo/video/upload/q_auto,vc_h265/docs/landscape.mp4", title: "Limited Edition" },
+    { id: 1, url: "https://res.cloudinary.com/dohvllowg/video/upload/q_auto/f_auto/v1776664225/Indoors_global_raipur_uhtjnn.mp4", title: "Raipur Store" },
+    { id: 2, url: "https://res.cloudinary.com/dohvllowg/video/upload/q_auto/f_auto/v1776664236/Indoors_global_1_aaqhmn.mp4", title: "Global Interior" },
+    { id: 3, url: "https://res.cloudinary.com/dohvllowg/video/upload/q_auto/f_auto/v1776664252/Indoors_global_video_1_zwl0bx.mp4", title: "Showcase One" },
+    { id: 4, url: "https://res.cloudinary.com/dohvllowg/video/upload/q_auto/f_auto/v1776664257/Indoors_global_hpijmt.mp4", title: "Highlight Reel" },
+    { id: 5, url: "https://res.cloudinary.com/dohvllowg/video/upload/q_auto/f_auto/v1776664263/FINAL_REEL_INDOORS_GLOBAL_sfltqi.mp4", title: "Indoors Global" },
+    { id: 6, url: "https://res.cloudinary.com/dohvllowg/video/upload/q_auto/f_auto/v1776664288/Indoors_global_video_hgp9uu.mp4", title: "Modern Design" },
+    { id: 7, url: "https://res.cloudinary.com/dohvllowg/video/upload/q_auto/f_auto/v1776664289/Indoors_Global_Raipur_-07.10.24_xezd9o.mp4", title: "Raipur Update" },
+    { id: 8, url: "https://res.cloudinary.com/dohvllowg/video/upload/q_auto/f_auto/v1776664292/Bamboo_Flask-indoors_global_raipur-14.10.24_hdewmt.mp4", title: "Bamboo Collection" },
+    { id: 9, url: "https://res.cloudinary.com/dohvllowg/video/upload/q_auto/f_auto/v1776664330/InShot_20250912_135744159_hcnaws.mp4", title: "New Trends" },
   ];
 
   const settings = {
@@ -33,12 +38,32 @@ const PortraitSlider = () => {
   };
 
   return (
-    <div className="bg-neutral-950 py-16 px-10 min-h-screen">
+    <div className="py-16 px-10 bg-transparent">
+      {/* --- HEADLINE SECTION --- */}
+      <div className="max-w-6xl mx-auto text-center mb-12">
+        <h2 className="text-5xl mb-6 font-medium max-lg:text-3xl tracking-tight font-serif">
+          Conscious Craft. Timeless Style.
+        </h2>
+        <p className="text-gray-500 text-lg max-w-2xl mx-auto font-sans">
+          Handpicked sustainable goods for the modern home.
+        </p>
+      </div>
+
       <div className="max-w-6xl mx-auto relative">
         
         {/* Navigation Buttons */}
-        <button onClick={() => sliderRef.current?.slickPrev()} className="absolute left-[-60px] top-1/2 -translate-y-1/2 z-10 text-white/50 hover:text-white transition-all"><svg className="w-10 h-10" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M15 19l-7-7 7-7"/></svg></button>
-        <button onClick={() => sliderRef.current?.slickNext()} className="absolute right-[-60px] top-1/2 -translate-y-1/2 z-10 text-white/50 hover:text-white transition-all"><svg className="w-10 h-10" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 5l7 7-7 7"/></svg></button>
+        <button 
+          onClick={() => sliderRef.current?.slickPrev()} 
+          className="absolute left-[-60px] top-1/2 -translate-y-1/2 z-10 text-gray-400 hover:text-black transition-all hidden md:block"
+        >
+          <svg className="w-10 h-10" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M15 19l-7-7 7-7"/></svg>
+        </button>
+        <button 
+          onClick={() => sliderRef.current?.slickNext()} 
+          className="absolute right-[-60px] top-1/2 -translate-y-1/2 z-10 text-gray-400 hover:text-black transition-all hidden md:block"
+        >
+          <svg className="w-10 h-10" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 5l7 7-7 7"/></svg>
+        </button>
 
         <Slider ref={sliderRef} {...settings}>
           {cdnVideos.map((video) => (
@@ -47,8 +72,13 @@ const PortraitSlider = () => {
                 className="relative aspect-[9/16] bg-neutral-900 rounded-3xl overflow-hidden cursor-pointer group border border-white/10"
                 onClick={() => setSelectedVideo(video)}
               >
-                {/* Thumbnail/Static Video Preview */}
-                <video className="w-full h-full object-cover opacity-60 group-hover:opacity-100 transition-opacity" muted playsInline preload="metadata">
+                {/* Thumbnail Preview */}
+                <video 
+                  className="w-full h-full object-cover opacity-80 group-hover:opacity-100 transition-opacity" 
+                  muted 
+                  playsInline 
+                  preload="metadata"
+                >
                   <source src={video.url} type="video/mp4" />
                 </video>
 
@@ -58,44 +88,37 @@ const PortraitSlider = () => {
                     <svg className="w-6 h-6 fill-current" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
                   </div>
                 </div>
-
-                <div className="absolute bottom-6 left-6 text-white">
-                  <p className="font-bold text-lg">{video.title}</p>
-                </div>
               </div>
             </div>
           ))}
         </Slider>
       </div>
 
-      {/* --- BIG ZOOM PLAY OVERLAY --- */}
+      {/* --- MODAL OVERLAY --- */}
       <AnimatePresence>
         {selectedVideo && (
           <motion.div 
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            className="fixed inset-0 z-50 flex items-center justify-center bg-black/90 p-4 md:p-10"
-            onClick={() => setSelectedVideo(null)} // Close when clicking background
+            className="fixed inset-0 z-50 flex items-center justify-center bg-black/95 p-4"
+            onClick={() => setSelectedVideo(null)}
           >
-            {/* Close Button */}
             <button className="absolute top-8 right-8 text-white z-[60] bg-white/10 p-2 rounded-full hover:bg-white/20">
                <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M6 18L18 6M6 6l12 12"/></svg>
             </button>
 
-            {/* The "Bada Hoke Play" Video Container */}
             <motion.div 
-              initial={{ scale: 0.5, y: 50 }}
-              animate={{ scale: 1, y: 0 }}
-              exit={{ scale: 0.5, y: 50 }}
-              transition={{ type: "spring", damping: 25, stiffness: 300 }}
-              className="relative aspect-[9/16] h-[85vh] bg-black rounded-3xl overflow-hidden shadow-2xl border border-white/20"
-              onClick={(e) => e.stopPropagation()} // Prevents closing when clicking the video itself
+              initial={{ scale: 0.8, opacity: 0 }}
+              animate={{ scale: 1, opacity: 1 }}
+              exit={{ scale: 0.8, opacity: 0 }}
+              className="relative aspect-[9/16] h-[90vh] bg-black rounded-2xl overflow-hidden shadow-2xl"
+              onClick={(e) => e.stopPropagation()}
             >
               <video 
                 autoPlay 
                 controls 
-                className="w-full h-full object-cover"
+                className="w-full h-full object-contain"
                 src={selectedVideo.url}
               />
             </motion.div>
