@@ -15,7 +15,7 @@ export default function page() {
       <Category />
       <About />
       <Features />
-      {/* <PortraitSlider/> */}
+       <PortraitSlider/> 
       <TestimonialSection/>
       <Blog />
       <CTA />
