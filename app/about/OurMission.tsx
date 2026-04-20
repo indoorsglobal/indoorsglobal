@@ -52,7 +52,7 @@ export default function OurMission() {
 
           {/* Action Link */}
           <div className="mt-12">
-            <a href={"/contact"} className="bg-[#5D4037] hover:bg-[#8e8e7e] text-white px-10 py-3 text-sm tracking-widest uppercase font-sans hover:bg-[#967676] transition-colors">
+            <a href={"/contact"} className="bg-[#009341] hover:bg-[#1a261f] text-white px-10 py-3 text-sm tracking-widest uppercase font-sans hover:bg-[#967676] transition-colors">
               Shop
             </a>
           </div>
