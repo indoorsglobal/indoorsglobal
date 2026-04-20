@@ -37,8 +37,7 @@ const accordionData = [
               A Conscious Approach <br /> to Modern Living.
             </h2>
             <p className="text-gray-500 text-sm max-w-md leading-relaxed">
-              Indoors Global redefines the boundaries of interior design by 
-              merging eco-friendly innovation with premium global aesthetics.
+              Indoors Global redefines the boundaries of conscious living by merging eco-friendly innovation with premium global aesthetics.
             </p>
           </div>
 
