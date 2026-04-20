@@ -44,9 +44,9 @@ const PortraitSlider = () => {
         <h2 className="text-5xl mb-6 font-medium max-lg:text-3xl tracking-tight font-serif">
           Conscious Craft. Timeless Style.
         </h2>
-        <p className="text-gray-500 text-lg max-w-2xl mx-auto font-sans">
+        {/* <p className="text-gray-500 text-lg max-w-2xl mx-auto font-sans">
           Handpicked sustainable goods for the modern home.
-        </p>
+        </p> */}
       </div>
 
       <div className="max-w-6xl mx-auto relative">
