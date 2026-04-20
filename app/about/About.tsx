@@ -33,7 +33,7 @@ const accordionData = [
         {/* Left Side: Text and Accordion */}
         <div className="space-y-8">
           <div className="space-y-4">
-            <h2 className="text-5xl text-[#8d6e6e] font-serif font-medium leading-tight">
+            <h2 className="text-5xl font-serif font-medium leading-tight">
               A Conscious Approach <br /> to Modern Living.
             </h2>
             <p className="text-gray-500 text-sm max-w-md leading-relaxed">
