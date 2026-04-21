@@ -50,7 +50,7 @@ const VideoCard = ({
 
         {/* ── VIDEO — z-10, sits on top of logo ── */}
         <video
-          className="absolute inset-0 w-full h-full object-cover z-10 transition-opacity"
+          className="absolute inset-0 w-full h-full object-cover z-10 opacity-100 transition-opacity"
           muted
           playsInline
           preload="metadata"
