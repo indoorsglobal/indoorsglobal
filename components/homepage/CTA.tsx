@@ -17,18 +17,17 @@ const CTA = () => {
       {/* 3. The Content (Must be relative to sit on top) */}
       <div className="relative max-w-3xl mx-auto text-center z-10">
         <h2 className="text-4xl md:text-5xl text-gray-900 mb-4 tracking-tight font-bold">
-         Refine Your Living Space.
-        </h2>
+Ready to Live Sustainably?        </h2>
         <p className="text-gray-700 mb-10 text-lg leading-relaxed">
-         Discover curated pieces that blend global sophistication with the comfort of home. Limited collections arriving monthly.
+      Make the switch to a plastic-free lifestyle today. From rice husk mugs to bamboo linens, discover essentials that are as kind to the planet as they are to your home.
         </p>
 
         {/* Input/Button Group */}
      <div className="flex justify-center items-center gap-4">
-       <Link href={"/contact"} className="bg-[#5D4037] hover:bg-[#8e8e7e] text-white px-8 py-3 transition-all">
+       <Link href={"/contact"} className="bg-white px-8 py-3 transition-all">
             Shop Now
           </Link>
-           <Link href={"/about"} className="bg-[#009341] hover:bg-[#7cb140] text-white px-8 py-3 transition-all">
+           <Link href={"/about"} className="bg-[#a3a393] hover:bg-[#7cb140] text-white px-8 py-3 transition-all">
             About Us
           </Link>
      </div>
