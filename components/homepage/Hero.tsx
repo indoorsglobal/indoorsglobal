@@ -5,21 +5,21 @@ import useEmblaCarousel from "embla-carousel-react";
 import Autoplay from "embla-carousel-autoplay";
 import { MoveLeft, MoveRight, ArrowRight } from "lucide-react";
 import Image from "next/image";
-import hero1 from "@/public/homepage/hero21.jpg";
-import hero2 from "@/public/homepage/hero22.jpg";
+import hero1 from "@/public/homepage/hero42.png";
+import hero2 from "@/public/homepage/hero41.png";
 
 const SLIDES = [
   {
     id: 1,
     subtitle: "Top Trending Products",
-    title: "Best Modern Wood Collection",
+    title: "Best Modern Bamboo Collection",
     description: "Discover the perfect blend of contemporary design and timeless craftsmanship for your living space.",
     image: hero1,
     buttonText: "SHOP NOW",
   },
   {
     id: 2,
-    subtitle: "Best Wooden Products",
+    subtitle: "Best Bamboo Products",
     title: "Conscious Living, Beautifully Crafted",
     description: "From bamboo hydration to artisanal dinnerware, bring home ethically sourced pieces designed for a modern, eco-conscious home.",
     image: hero2,
@@ -27,7 +27,7 @@ const SLIDES = [
   },
 ];
 
-export default function Hero() {
+export default function Hero1() {
   const [emblaRef, emblaApi] = useEmblaCarousel({ loop: true }, [
     Autoplay({ delay: 5000, stopOnInteraction: false })
   ]);
@@ -69,13 +69,13 @@ export default function Hero() {
               />
               
               {/* Content Overlay */}
-              <div className="absolute inset-0 flex items-center md:items-end pb-24 md:pb-32 bg-black/10">
+              <div className="absolute inset-0 flex  items-center md:items-center pb-24 md:pb-32 bg-black/10">
                 <div className="container mx-auto px-6 md:px-20">
-                  <div className="max-w-3xl text-white">
+                  <div className="max-w-3xl  text-white">
                     <p className="text-[9px] md:text-xs uppercase tracking-[0.3em] md:tracking-[0.4em] mb-3 md:mb-4 font-semibold opacity-90">
                       {slide.subtitle}
                     </p>
-                    <h1 className="text-3xl sm:text-4xl md:text-7xl font-serif leading-[1.2] md:leading-[1.1] mb-4 md:mb-6">
+                    <h1 className="text-3xl sm:text-4xl md:text-7xl xl:text-[90px] font-serif leading-[1.2] md:leading-[1.1] mb-4 md:mb-6">
                       {slide.title}
                     </h1>
                     <p className="text-sm md:text-lg max-w-md opacity-90 leading-relaxed font-light mb-6 md:mb-8 line-clamp-3 md:line-clamp-none">
