@@ -5,6 +5,8 @@ import Link from "next/link";
 import { Menu, X, MapPin } from "lucide-react";
 import logo from "@/public/navbar/logo.png";
 import Image from "next/image";
+import { GrWorkshop } from "react-icons/gr";
+import { FaWhatsapp } from "react-icons/fa";
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -19,22 +21,23 @@ const Navbar = () => {
   ];
 
   return (
-    <nav className="fixed top-0 left-0 w-full z-50 bg-white border-b border-gray-200 ">
-      <div className="max-w-[1440px] mx-auto flex items-center justify-between px-6 md:px-8 py-1">
+    <nav className="fixed top-0 left-0 w-full z-50 bg-white border-b border-gray-200">
+      <div className="max-w-[1440px] mx-auto flex items-center justify-between px-4 md:px-8 py-2">
+        
         {/* Logo Section */}
-        <Link href={"/"} className="flex items-center gap-2 flex-col">
-          <div className="w-10 h-10 md:w-20 md:h-20 relative">
+        <Link href={"/"} className="flex items-center flex-col gap-2 shrink-0">
+          <div className="w-12 h-12 md:w-16 md:h-16 relative">
             <Image
               src={logo}
               alt="Indoors Global Logo"
               fill
               className="object-contain"
+              priority
             />
           </div>
-          <p className="text-xs text-gray-500">simply, purely, green</p>
-          {/* <span className="text-xl md:text-2xl font-medium tracking-tight text-gray-800">
-            Indoors Global
-          </span> */}
+          <p className="text-[10px] md:text-xs text-gray-500 font-light mt-[-4px]">
+            simply, purely, green
+          </p>
         </Link>
 
         {/* Desktop Categories Row */}
@@ -51,57 +54,86 @@ const Navbar = () => {
         </div>
 
         {/* CTA & Mobile Toggle */}
-        <div className="flex items-center gap-4">
+        <div className="flex items-center gap-2 md:gap-4">
           <Link
-            href={"/contact"}
-            className="hidden sm:block bg-[#009341] hover:bg-[#7cb140] text-white px-5 py-2.5 text-[10px] uppercase tracking-widest transition-all duration-300"
+            href={"/blog"}
+            className="hidden sm:flex hover:bg-gray-50 border border-transparent hover:border-gray-200 rounded-md px-3 md:px-5 py-2 text-[13px] uppercase tracking-wider transition-all items-center gap-2"
           >
-             Send a Message
+            <GrWorkshop size={18} /> 
+            <span className="hidden xl:inline">Workshop</span>
+          </Link>
+          
+          <Link
+            href={"https://wa.me/6268223779?text=Hello!%20I%27m%20interested%20in%20your%20sustainable%20products."}
+            className="text-[#009341] max-lg:hidden text-[24px] md:text-[28px] hover:scale-110 transition-transform p-2"
+            aria-label="Contact on WhatsApp"
+          >
+            <FaWhatsapp />
           </Link>
 
+          {/* Hamburger Menu */}
           <button
-            className="lg:hidden p-2 text-gray-700"
+            className="lg:hidden p-2 text-gray-700 hover:bg-gray-100 rounded-md transition-colors"
             onClick={() => setIsOpen(!isOpen)}
+            aria-label="Toggle Menu"
           >
-            {isOpen ? <X size={24} /> : <Menu size={24} />}
+            {isOpen ? <X size={28} /> : <Menu size={28} />}
           </button>
         </div>
       </div>
 
       {/* Mobile Menu Overlay */}
       <div
-        className={`lg:hidden bg-white border-b border-gray-100 overflow-hidden transition-all duration-500 ease-in-out ${
-          isOpen ? "max-h-[1000px] opacity-100" : "max-h-0 opacity-0"
+        className={`lg:hidden absolute top-full left-0 w-full bg-white border-b border-gray-200 shadow-xl transition-all duration-300 ease-in-out overflow-y-auto ${
+          isOpen ? "max-h-screen opacity-100 visible" : "max-h-0 opacity-0 invisible"
         }`}
+        style={{ height: 'calc(100vh - 100%)' }}
       >
-        <div className="flex flex-col p-6 gap-2 text-gray-700">
-          <p className="text-[10px] uppercase tracking-widest text-gray-400 mb-2">Categories</p>
-          {categories.map((cat) => (
-            <Link
-              key={cat.name}
-              href={cat.href}
-              onClick={() => setIsOpen(false)}
-              className="text-lg font-medium border-b border-gray-50 pb-2 flex justify-between items-center uppercase"
-            >
-              {cat.name}
-            </Link>
-          ))}
+        <div className="flex flex-col p-6 gap-1">
+          <p className="text-[10px] uppercase tracking-[0.2em] text-gray-400 mb-4 font-bold">
+            Product Categories
+          </p>
+          
+          <div className="grid grid-cols-1 gap-1">
+            {categories.map((cat) => (
+              <Link
+                key={cat.name}
+                href={cat.href}
+                onClick={() => setIsOpen(false)}
+                className="text-base font-semibold py-4 border-b border-gray-50 flex justify-between items-center uppercase text-gray-800 hover:text-[#009341] transition-colors"
+              >
+                {cat.name}
+              </Link>
+            ))}
+          </div>
+
+          {/* Workshop Link for Mobile (since it's hidden in header) */}
+          <Link 
+            href="/blog" 
+            onClick={() => setIsOpen(false)}
+            className="sm:hidden flex items-center gap-3 py-4 text-gray-800 font-semibold border-b border-gray-50 uppercase"
+          >
+            <GrWorkshop size={20} /> Workshop
+          </Link>
 
           {/* Store Address Section */}
-          <div className="mt-6 p-4 bg-gray-50 rounded-lg border border-gray-100">
-            <div className="flex items-start gap-3">
-              <MapPin size={20} className="text-[#a3a393] mt-1 shrink-0" />
+          <div className="mt-8 p-5 bg-gray-50 rounded-xl border border-gray-100">
+            <div className="flex items-start gap-4">
+              <MapPin size={24} className="text-[#009341] shrink-0" />
               <div>
-                <h4 className="text-xs uppercase tracking-widest font-bold text-gray-900 mb-1">Our Store</h4>
-                <p className="text-sm text-gray-600 leading-relaxed font-sans">
-                  V1st Floor Shop No. 1 & 2 Royal Arcade Building Near Khamardih Thana, Shankar Nagar Raipur
+                <h4 className="text-[11px] uppercase tracking-widest font-black text-gray-900 mb-2">
+                  Visit Our Store
+                </h4>
+                <p className="text-sm text-gray-600 leading-relaxed">
+                  1st Floor, Shop No. 1 & 2, Royal Arcade Building,<br />
+                  Near Khamardih Thana, Shankar Nagar, Raipur
                 </p>
               </div>
             </div>
           </div>
 
-          <Link href={"/contact"} className="mt-4" onClick={() => setIsOpen(false)}>
-            <button className="w-full bg-[#009341] hover:bg-[#7cb140] text-white py-4 text-xs uppercase tracking-widest">
+          <Link href={"/contact"} className="mt-6 mb-10" onClick={() => setIsOpen(false)}>
+            <button className="w-full bg-[#009341] text-white py-4 rounded-lg font-bold text-sm uppercase tracking-widest shadow-lg active:scale-[0.98] transition-transform">
               Send a Message
             </button>
           </Link>
