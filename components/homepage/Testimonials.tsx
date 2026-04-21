@@ -9,7 +9,7 @@ const testimonials = [
     id: 1,
     name: "Sumeet Balwani",
     time: "1 week ago",
-    text: "INDOORE GLOBLE is a trusted shop for eco-friendly products, offering quality items that are safe for the environment and daily use. Customers appreciate the good service, reasonable prices, and sustainable product range. A perfect place for those who want environmentally friendly and responsible shopping options.",
+    text: "INDOORS GLOBAL is a trusted shop for eco-friendly products, offering quality items that are safe for the environment and daily use. Customers appreciate the good service, reasonable prices, and sustainable product range. A perfect place for those who want environmentally friendly and responsible shopping options.",
     rating: 5,
     image: "https://i.pravatar.cc/150?u=karan",
   },
@@ -74,7 +74,7 @@ export default function TestimonialSection() {
       <div className="max-w-7xl mx-auto ">
         {/* Header */}
         <div className="text-center mb-16">
-          <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
+          <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
             Read Reviews, <br className="hidden md:block" /> Shop With Confidence.
           </h2>
           {/* <div className="flex items-center justify-center gap-2">
