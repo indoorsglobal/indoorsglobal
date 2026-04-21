@@ -26,8 +26,8 @@ const VideoCard = ({
         className="relative aspect-[9/16] rounded-3xl overflow-hidden cursor-pointer group border border-white/10"
         onClick={() => onSelect(video)}
       >
-        {/* ── LOGO PRELOADER — z-0, sits behind video ── */}
-        <div className="absolute inset-0 flex items-center justify-center z-0 bg-neutral-100">
+        {/* ── LOGO PRELOADER — only shown while video is loading ── */}
+        <div className={`absolute inset-0 flex items-center justify-center z-0 bg-neutral-100 ${isLoading ? "block" : "hidden"}`}>
           <div className="flex flex-col items-center gap-2">
             <Image
               src={logo}
@@ -50,7 +50,7 @@ const VideoCard = ({
 
         {/* ── VIDEO — z-10, sits on top of logo ── */}
         <video
-          className="absolute inset-0 w-full h-full object-cover z-10 opacity-80 group-hover:opacity-100 transition-opacity"
+          className="absolute inset-0 w-full h-full object-cover z-10 transition-opacity"
           muted
           playsInline
           preload="metadata"
@@ -59,22 +59,14 @@ const VideoCard = ({
           <source src={video.url} type="video/mp4" />
         </video>
 
-        {/* ── PLAY BUTTON (shown after load) ── */}
-        <AnimatePresence>
-          {!isLoading && (
-            <motion.div
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              className="absolute inset-0 flex items-center justify-center z-20"
-            >
-              <div className="bg-white text-black p-4 rounded-full scale-90 group-hover:scale-100 transition-transform shadow-xl">
-                <svg className="w-6 h-6 fill-current" viewBox="0 0 24 24">
-                  <path d="M8 5v14l11-7z" />
-                </svg>
-              </div>
-            </motion.div>
-          )}
-        </AnimatePresence>
+        {/* ── PLAY BUTTON — hamesha visible ── */}
+        <div className="absolute inset-0 flex items-center justify-center z-20 pointer-events-none">
+          <div className="bg-white/90 text-black p-4 rounded-full scale-90 group-hover:scale-110 transition-transform shadow-xl">
+            <svg className="w-6 h-6 fill-current" viewBox="0 0 24 24">
+              <path d="M8 5v14l11-7z" />
+            </svg>
+          </div>
+        </div>
       </div>
     </div>
   );
