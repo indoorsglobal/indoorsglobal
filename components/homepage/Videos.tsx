@@ -5,12 +5,10 @@ import Slider from "react-slick";
 import { motion, AnimatePresence } from "framer-motion";
 import logo from "@/public/navbar/logo.png";
 
-// Slick Carousel Styles
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import Image from "next/image";
 
-// ─── Per-card component so each has its own loading state ───────────────────
 const VideoCard = ({
   video,
   onSelect,
@@ -21,13 +19,17 @@ const VideoCard = ({
   const [isLoading, setIsLoading] = useState(true);
 
   return (
-    <div className="px-3 outline-none">
+    // ✅ FIX 7: tighter horizontal padding on mobile
+    <div className="px-1.5 sm:px-3 outline-none">
       <div
-        className="relative aspect-[9/16] rounded-3xl overflow-hidden cursor-pointer group border border-white/10"
+        className="relative aspect-[9/16] rounded-2xl sm:rounded-3xl overflow-hidden cursor-pointer group border border-white/10"
         onClick={() => onSelect(video)}
       >
-        {/* ── LOGO PRELOADER — only shown while video is loading ── */}
-        <div className={`absolute inset-0 flex items-center justify-center z-0 bg-neutral-100 ${isLoading ? "block" : "hidden"}`}>
+        <div
+          className={`absolute inset-0 flex items-center justify-center z-0 bg-neutral-100 ${
+            isLoading ? "block" : "hidden"
+          }`}
+        >
           <div className="flex flex-col items-center gap-2">
             <Image
               src={logo}
@@ -36,7 +38,6 @@ const VideoCard = ({
               alt="Loading…"
               className="rounded-lg animate-pulse drop-shadow-lg"
             />
-            {/* loading bar */}
             <div className="w-16 h-0.5 bg-black/20 rounded-full overflow-hidden">
               <motion.div
                 className="h-full bg-black/50 rounded-full"
@@ -48,9 +49,8 @@ const VideoCard = ({
           </div>
         </div>
 
-        {/* ── VIDEO — z-10, sits on top of logo ── */}
         <video
-          className="absolute inset-0 w-full h-full object-cover z-10 opacity-100 transition-opacity"
+          className="absolute inset-0 w-full h-full object-cover z-10"
           muted
           playsInline
           preload="metadata"
@@ -59,10 +59,9 @@ const VideoCard = ({
           <source src={video.url} type="video/mp4" />
         </video>
 
-        {/* ── PLAY BUTTON — hamesha visible ── */}
         <div className="absolute inset-0 flex items-center justify-center z-20 pointer-events-none">
-          <div className="bg-white/90 text-black p-4 rounded-full scale-90 group-hover:scale-110 transition-transform shadow-xl">
-            <svg className="w-6 h-6 fill-current" viewBox="0 0 24 24">
+          <div className="bg-white/90 text-black p-3 sm:p-4 rounded-full scale-90 group-hover:scale-110 transition-transform shadow-xl">
+            <svg className="w-5 h-5 sm:w-6 sm:h-6 fill-current" viewBox="0 0 24 24">
               <path d="M8 5v14l11-7z" />
             </svg>
           </div>
@@ -72,7 +71,6 @@ const VideoCard = ({
   );
 };
 
-// ─── Main Slider ─────────────────────────────────────────────────────────────
 const PortraitSlider = () => {
   const sliderRef = useRef<Slider>(null);
   const [selectedVideo, setSelectedVideo] = useState<any>(null);
@@ -132,27 +130,31 @@ const PortraitSlider = () => {
     slidesToShow: 4.5,
     slidesToScroll: 1,
     arrows: false,
+    swipeToSlide: true, // ✅ FIX: smoother touch swipe
     responsive: [
       { breakpoint: 1280, settings: { slidesToShow: 3.5 } },
       { breakpoint: 1024, settings: { slidesToShow: 2.5 } },
-      { breakpoint: 640, settings: { slidesToShow: 1.3 } },
+      { breakpoint: 640,  settings: { slidesToShow: 1.5 } }, 
+      { breakpoint: 400,  settings: { slidesToShow: 1.2 } }, 
     ],
   };
 
   return (
-    <div className="py-16 px-10 bg-transparent">
-      {/* ── HEADLINE ── */}
-      <div className="max-w-6xl mx-auto text-center mb-12">
-        <h2 className="text-5xl mb-6 font-medium max-lg:text-3xl tracking-tight font-serif">
+    // ✅ FIX 1: responsive horizontal padding
+    <div className="py-10 sm:py-16 px-4 sm:px-6 lg:px-10 bg-transparent">
+
+      {/* ✅ FIX 2: responsive headline */}
+      <div className="max-w-6xl mx-auto text-center mb-8 sm:mb-12">
+        <h2 className="text-2xl sm:text-3xl lg:text-5xl mb-6 font-medium tracking-tight font-serif">
           Conscious Craft. Timeless Style.
         </h2>
       </div>
 
+      {/* ✅ FIX 3: arrows use translate instead of negative px so they don't clip */}
       <div className="max-w-6xl mx-auto relative">
-        {/* Navigation Buttons */}
         <button
           onClick={() => sliderRef.current?.slickPrev()}
-          className="absolute left-[-60px] top-1/2 -translate-y-1/2 z-10 text-gray-400 hover:text-black transition-all hidden md:block"
+          className="absolute left-0 -translate-x-full top-1/2 -translate-y-1/2 z-10 text-gray-400 hover:text-black transition-all hidden md:block"
         >
           <svg className="w-10 h-10" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M15 19l-7-7 7-7" />
@@ -160,7 +162,7 @@ const PortraitSlider = () => {
         </button>
         <button
           onClick={() => sliderRef.current?.slickNext()}
-          className="absolute right-[-60px] top-1/2 -translate-y-1/2 z-10 text-gray-400 hover:text-black transition-all hidden md:block"
+          className="absolute right-0 translate-x-full top-1/2 -translate-y-1/2 z-10 text-gray-400 hover:text-black transition-all hidden md:block"
         >
           <svg className="w-10 h-10" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 5l7 7-7 7" />
@@ -174,7 +176,7 @@ const PortraitSlider = () => {
         </Slider>
       </div>
 
-      {/* ── MODAL OVERLAY ── */}
+      {/* ✅ FIX 5 & 6: modal fully responsive with close button inside */}
       <AnimatePresence>
         {selectedVideo && (
           <motion.div
@@ -184,25 +186,31 @@ const PortraitSlider = () => {
             className="fixed inset-0 z-50 flex items-center justify-center bg-black/95 p-4"
             onClick={() => setSelectedVideo(null)}
           >
-            <button className="absolute top-8 right-8 text-white z-[60] bg-white/10 p-2 rounded-full hover:bg-white/20">
-              <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M6 18L18 6M6 6l12 12" />
-              </svg>
-            </button>
-
             <motion.div
               initial={{ scale: 0.8, opacity: 0 }}
               animate={{ scale: 1, opacity: 1 }}
               exit={{ scale: 0.8, opacity: 0 }}
-              className="relative aspect-[9/16] h-[90vh] bg-black rounded-2xl overflow-hidden shadow-2xl"
+              className="relative flex flex-col max-h-[90vh] max-w-[95vw] w-auto"
               onClick={(e) => e.stopPropagation()}
             >
-              <video
-                autoPlay
-                controls
-                className="w-full h-full object-contain"
-                src={selectedVideo.url}
-              />
+              {/* ✅ FIX 6: close button inside modal, always reachable */}
+              <button
+                onClick={() => setSelectedVideo(null)}
+                className="self-end mb-2 text-white bg-white/10 p-2 rounded-full hover:bg-white/20 transition"
+              >
+                <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M6 18L18 6M6 6l12 12" />
+                </svg>
+              </button>
+
+              <div className="aspect-[9/16] max-h-[80vh] bg-black rounded-2xl overflow-hidden shadow-2xl">
+                <video
+                  autoPlay
+                  controls
+                  className="w-full h-full object-contain"
+                  src={selectedVideo.url}
+                />
+              </div>
             </motion.div>
           </motion.div>
         )}
