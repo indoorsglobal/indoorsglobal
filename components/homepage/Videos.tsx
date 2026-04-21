@@ -26,9 +26,31 @@ const VideoCard = ({
         className="relative aspect-[9/16] rounded-3xl overflow-hidden cursor-pointer group border border-white/10"
         onClick={() => onSelect(video)}
       >
-        {/* ── VIDEO — always in DOM so thumbnail/first-frame shows ── */}
+        {/* ── LOGO PRELOADER — z-0, sits behind video ── */}
+        <div className="absolute inset-0 flex items-center justify-center z-0 bg-neutral-100">
+          <div className="flex flex-col items-center gap-2">
+            <Image
+              src={logo}
+              width={56}
+              height={56}
+              alt="Loading…"
+              className="rounded-lg animate-pulse drop-shadow-lg"
+            />
+            {/* loading bar */}
+            <div className="w-16 h-0.5 bg-black/20 rounded-full overflow-hidden">
+              <motion.div
+                className="h-full bg-black/50 rounded-full"
+                initial={{ x: "-100%" }}
+                animate={{ x: "100%" }}
+                transition={{ repeat: Infinity, duration: 1, ease: "linear" }}
+              />
+            </div>
+          </div>
+        </div>
+
+        {/* ── VIDEO — z-10, sits on top of logo ── */}
         <video
-          className="w-full h-full object-cover opacity-80 group-hover:opacity-100 transition-opacity"
+          className="absolute inset-0 w-full h-full object-cover z-10 opacity-80 group-hover:opacity-100 transition-opacity"
           muted
           playsInline
           preload="metadata"
@@ -43,46 +65,12 @@ const VideoCard = ({
             <motion.div
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
-              className="absolute inset-0 flex items-center justify-center z-10"
+              className="absolute inset-0 flex items-center justify-center z-20"
             >
               <div className="bg-white text-black p-4 rounded-full scale-90 group-hover:scale-100 transition-transform shadow-xl">
                 <svg className="w-6 h-6 fill-current" viewBox="0 0 24 24">
                   <path d="M8 5v14l11-7z" />
                 </svg>
-              </div>
-            </motion.div>
-          )}
-        </AnimatePresence>
-
-        {/* ── LOGO PRELOADER — small overlay, video still visible behind ── */}
-        <AnimatePresence>
-          {isLoading && (
-            <motion.div
-              key="preloader"
-              initial={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
-              transition={{ duration: 0.5, ease: "easeOut" }}
-              className="absolute inset-0 flex items-center justify-center z-20 pointer-events-none"
-            >
-              {/* subtle dark overlay */}
-              <div className="absolute inset-0 " />
-              <div className="relative flex flex-col items-center gap-2">
-                <Image
-                  src={logo}
-                  width={56}
-                  height={56}
-                  alt="Loading…"
-                  className="rounded-lg animate-pulse drop-shadow-lg"
-                />
-                {/* loading bar */}
-                <div className="w-16 h-0.5 bg-white/20 rounded-full overflow-hidden">
-                  <motion.div
-                    className="h-full bg-black rounded-full"
-                    initial={{ x: "-100%" }}
-                    animate={{ x: "100%" }}
-                    transition={{ repeat: Infinity, duration: 1, ease: "linear" }}
-                  />
-                </div>
               </div>
             </motion.div>
           )}
@@ -146,15 +134,16 @@ const PortraitSlider = () => {
   ];
 
   const settings = {
-    dots: true,
-    infinite: true,
+    dots: false,
+    infinite: false,
     speed: 500,
-    slidesToShow: 3,
+    slidesToShow: 4.5,
     slidesToScroll: 1,
     arrows: false,
     responsive: [
-      { breakpoint: 1024, settings: { slidesToShow: 2 } },
-      { breakpoint: 640, settings: { slidesToShow: 1 } },
+      { breakpoint: 1280, settings: { slidesToShow: 3.5 } },
+      { breakpoint: 1024, settings: { slidesToShow: 2.5 } },
+      { breakpoint: 640, settings: { slidesToShow: 1.3 } },
     ],
   };
 
