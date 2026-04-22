@@ -14,6 +14,7 @@ import bamboo_essentials6 from "@/public/products/Bamboo Essentials/bamboo-essen
 import bamboo_essentials7 from "@/public/products/Bamboo Essentials/bamboo-essentials7.jpeg"
 import bamboo_essentials8 from "@/public/products/Bamboo Essentials/bamboo-essentials8.jpeg"
 import bamboo_essentials9 from "@/public/products/Bamboo Essentials/bamboo-essentials9.jpeg"
+import bamboo_essentials10 from "@/public/products/Bamboo Essentials/bamboo-essentials10.jpeg"
 
 import cane_baskets1 from "@/public/products/Cane Baskets/cane-baskets1.jpeg"
 import cane_baskets2 from "@/public/products/Cane Baskets/cane-baskets2.jpeg"
@@ -82,6 +83,7 @@ const productsData = [
   { id: 7, name: "Bamboo Cutlery Kit", img: bamboo_essentials7, category: "Bamboo Essentials", size: "", colors: "" },
   { id: 8, name: "Rice Husk Bottle", img: bamboo_essentials8, category: "Bamboo Essentials", size: "", colors: "" },
   { id: 9, name: "Bamboo Non-Terry Towel", img: bamboo_essentials9, category: "Bamboo Essentials", size: "28 x 60cm", colors: "Pink, Green, Blue" },
+  { id: 10, name: "Bamboo Tongue Cleaner", img: bamboo_essentials10, category: "Bamboo Essentials", size: "", colors: "" },
 
   // Cane Baskets
   { id: 10, name: "Boat Bag", img: cane_baskets1, category: "Cane Baskets", size: "44 X 22 X 30cm", colors: "" },
@@ -178,7 +180,7 @@ export default function ProductDetail() {
           </div>
 
           <div className="flex flex-wrap gap-4">
-            <Link href={"/contact"} className="flex-1 bg-[#009341] hover:bg-[#7cb140] text-white px-8 py-4 rounded  transition-all flex items-center justify-center gap-2 font-medium text-center">
+            <Link href={"/contact"} className="flex-1 bg-[#009341] hover:bg-[#7baf40] text-white px-8 py-4 rounded transition-all flex items-center justify-center gap-2 font-medium text-center">
               Contact for Inquiry
             </Link>
             <button className="p-4 border border-gray-200 rounded hover:bg-gray-50 transition-colors">
