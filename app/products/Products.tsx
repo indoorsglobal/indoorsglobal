@@ -15,6 +15,7 @@ import bamboo_essentials6 from "@/public/products/Bamboo Essentials/bamboo-essen
 import bamboo_essentials7 from "@/public/products/Bamboo Essentials/bamboo-essentials7.jpeg"
 import bamboo_essentials8 from "@/public/products/Bamboo Essentials/bamboo-essentials8.jpeg"
 import bamboo_essentials9 from "@/public/products/Bamboo Essentials/bamboo-essentials9.jpeg"
+import bamboo_essentials10 from "@/public/products/Bamboo Essentials/bamboo-essentials10.jpeg"
 
 // --- CANE BASKETS IMPORTS ---
 import cane_baskets1 from "@/public/products/Cane Baskets/cane-baskets1.jpeg"
@@ -73,6 +74,7 @@ const productsData = [
   { id: 7, name: "Bamboo Cutlery Kit", img: bamboo_essentials7, category: "Bamboo Essentials" },
   { id: 8, name: "Rice Husk Bottle", img: bamboo_essentials8, category: "Bamboo Essentials" },
   { id: 9, name: "Bamboo Non-Terry Towel", img: bamboo_essentials9, category: "Bamboo Essentials" },
+ { id: 10, name: "Bamboo Tongue Cleaner", img: bamboo_essentials10, category: "Bamboo Essentials" },
 
   // --- Cane Baskets ---
   { id: 10, name: "Boat Bag", img: cane_baskets1, category: "Cane Baskets" },
@@ -147,14 +149,14 @@ export default function Products() {
         <div className="flex items-center gap-2">
           <button 
             onClick={() => setViewMode('grid')}
-            className={`p-2 rounded transition-colors ${viewMode === 'grid' ? "bg-[#009341] hover:bg-[#7cb140] text-white" : "border border-gray-200 text-gray-400 hover:bg-gray-50"}`}
+            className={`p-2 rounded transition-colors ${viewMode === 'grid' ? "bg-[#a3a393] text-white" : "border border-gray-200 text-gray-400 hover:bg-gray-50"}`}
           >
             <LayoutGrid size={18} />
           </button>
           
           <button 
             onClick={() => setViewMode('list')}
-            className={`p-2 rounded transition-colors ${viewMode === 'list' ? "bg-[#009341] hover:bg-[#7cb140] text-white" : "border border-gray-200 text-gray-400 hover:bg-gray-50"}`}
+            className={`p-2 rounded transition-colors ${viewMode === 'list' ? "bg-[#a3a393] text-white" : "border border-gray-200 text-gray-400 hover:bg-gray-50"}`}
           >
             <List size={18} />
           </button>
@@ -170,7 +172,7 @@ export default function Products() {
               key={cat}
               onClick={() => setActiveCategory(cat)}
               className={`px-5 py-2 text-sm border rounded-full transition-colors ${
-                activeCategory === cat ? "bg-[#009341] hover:bg-[#7cb140] text-white border-[#a3a393]" : "bg-white hover:border-[#a3a393]"
+                activeCategory === cat ? "bg-[#a3a393] text-white border-[#a3a393]" : "bg-white hover:border-[#a3a393]"
               }`}
             >
               {cat}
