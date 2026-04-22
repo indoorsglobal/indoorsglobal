@@ -25,9 +25,9 @@ Ready to Live Sustainably?        </h2>
         {/* Input/Button Group */}
      <div className="flex justify-center items-center gap-4">
        <Link href={"/contact"} className="bg-white px-8 py-3 transition-all">
-            Shop Now
+            SEE MORE
           </Link>
-           <Link href={"/about"} className="bg-[#a3a393] hover:bg-[#7cb140] text-white px-8 py-3 transition-all">
+           <Link href={"/about"} className="bg-[#009341] hover:bg-[#7baf40] text-white px-8 py-3 transition-all">
             About Us
           </Link>
      </div>
