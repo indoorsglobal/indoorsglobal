@@ -9,16 +9,16 @@ const AccordionSection = () => {
 
 const accordionData = [
     {
-      title: "Sustainable Elegance",
-      content: "We believe that luxury shouldn't come at the Earth's expense. Our collection features meticulously crafted pieces made from renewable materials like rice husk and bamboo fibers, blending high-end aesthetics with environmental responsibility."
+      title: "Real Impact",
+      content: "We solve the gap between sustainable intention and real action. Our products are genuinely usable in daily life—not just trendy—ensuring you don’t have to choose between convenience and responsibility."
     },
     {
-      title: "Curation with Purpose",
-      content: "Every item in the Indoors Global catalog is hand-selected for its story and craftsmanship. From minimalist kitchenware to artisanal decor, we source products that bring a sense of worldly sophistication and timeless quality to your living space."
+      title: "Active Participation",
+      content: "We make the customer an active participant in conscious living. We aren’t just pushing products; we are changing mindsets by selling values that fit into a normal Indian household."
     },
     {
-      title: "A Global Lifestyle Experience",
-      content: "Beyond retail, we are your partners in interior transformation. We provide seamless international shipping and personalized support to ensure that bringing eco-chic design into your home is a sophisticated, stress-free journey."
+      title: "Modern Wisdom",
+      content: "Low-waste living isn’t new; our culture already knew how to reuse, refill, and repair. We modernize that wisdom without erasing it, focusing on function first, then aesthetics."
     }
   ];
 
@@ -37,7 +37,8 @@ const accordionData = [
               A Conscious Approach <br /> to Modern Living.
             </h2>
             <p className="text-gray-500 text-sm max-w-md leading-relaxed">
-              Indoors Global redefines the boundaries of conscious living by merging eco-friendly innovation with premium global aesthetics.
+              Founded in 2024 by Ashmeet Kaur Tuteja, Indoors Global replaces 
+              everyday plastic with mindful alternatives that actually work.
             </p>
           </div>
 
@@ -77,7 +78,7 @@ const accordionData = [
         <div className="relative rounded-lg overflow-hidden bg-sky-100 aspect-square lg:aspect-[4/3] flex items-center justify-center">
            <Image
             src={vision}
-            alt="Innovation" 
+            alt="Our Vision" 
             className="w-full h-full object-cover"
           />
         </div>
