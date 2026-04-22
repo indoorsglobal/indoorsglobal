@@ -16,12 +16,17 @@ const Footer = () => {
               <div className="w-30 h-30 max-lg:w-20 max-lg:h-20 mb-2">
                 <Image src={logo} alt="" />
               </div>
-            Indoors Global bridges world-class craftsmanship with your home, curating premium global design trends to transform your space into a sanctuary.
+              Indoors Global bridges world-class craftsmanship with your home,
+              curating premium global design trends to transform your space into
+              a sanctuary.
             </li>
           </ul>
 
           {/* Manual SVG Icons to avoid Lucide Export Errors */}
-          <a href="https://www.instagram.com/indoorsglobal/" className="flex gap-3 mt-8">
+          <a
+            href="https://www.instagram.com/indoorsglobal/"
+            className="flex gap-3 mt-8"
+          >
             <SocialIcon label="Instagram">
               <rect width="20" height="20" x="2" y="2" rx="5" ry="5" />
               <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z" />
@@ -43,23 +48,27 @@ const Footer = () => {
         </div>
 
         {/* Find Product */}
-    <div>
-  <h3 className="text-xl font-medium mb-6 text-black tracking-tight">
-    Quick Links
-  </h3>
-  <ul className="space-y-3 text-[15px]">
-    {["Home", "About", "Products", "Workshop"].map((item) => (
-      <li
-        key={item}
-        className="hover:translate-x-1 transition-transform cursor-pointer hover:text-black"
-      >
-        <Link href={item === "Workshop" ? "/blog" : `/${item.toLowerCase()}`}>
-          {item}
-        </Link>
-      </li>
-    ))}
-  </ul>
-</div>
+        <div>
+          <h3 className="text-xl font-medium mb-6 text-black tracking-tight">
+            Quick Links
+          </h3>
+          <ul className="space-y-3 text-[15px]">
+            {["Home", "About", "Products", "Workshop"].map((item) => (
+              <li
+                key={item}
+                className="hover:translate-x-1 transition-transform cursor-pointer hover:text-black"
+              >
+                <Link
+                  href={
+                    item === "Workshop" ? "/blog" : `/${item.toLowerCase()}`
+                  }
+                >
+                  {item}
+                </Link>
+              </li>
+            ))}
+          </ul>
+        </div>
 
         {/* Your Account */}
         <div>
@@ -68,10 +77,11 @@ const Footer = () => {
           </h3>
           <ul className="space-y-3 text-[15px]">
             {[
-              "Rice Husk",
-              "Bamboo Essentials",
-              "Cane Baskets",
-              "Eco-Friendly Kits",
+              "Home & Living",
+              "Personal Lifestyle",
+              "Storage & Utility",
+              "Eco Bundle",
+              "Gifting",
             ].map((item) => (
               <li
                 key={item}
@@ -79,7 +89,7 @@ const Footer = () => {
               >
                 <Link
                   // href={`categories/${item.toLowerCase().replace(" ", "-")}`}
-                    href={`/products`}
+                  href={`/products`}
                 >
                   {item}
                 </Link>
@@ -93,7 +103,7 @@ const Footer = () => {
           <h3 className="text-xl font-medium mb-6 text-black tracking-tight">
             Address
           </h3>
-          <ul className="space-y-3 text-[15px]">
+          <ul className="space-y-1 text-[15px]">
             <li>
               1st Floor Shop No. 1 & 2 Royal Arcade Building Near Khamardih
               Thana, Shankar Nagar Raipur{" "}
@@ -102,6 +112,12 @@ const Footer = () => {
             <li className="pt-2">
               Call us:{" "}
               <span className="font-sans text-gray-500">+91 6268223779</span>
+            </li>
+            <li className="pt-2">
+              Email :{" "}
+              <span className="font-sans text-gray-500">
+                Indoorsglobal123@gmail.com
+              </span>
             </li>
             {/* <li>
               Email us:{" "}
