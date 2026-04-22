@@ -1,24 +1,37 @@
 "use client";
 
-import React, { useState, useRef, useEffect } from "react";
+import React, { useState, useRef, useEffect, FormEvent } from "react";
 import NextLink from "next/link";
 import { useRouter } from "next/navigation";
 import { Menu, X, MapPin, ChevronDown, Search } from "lucide-react";
 import logo from "@/public/navbar/logo.png";
 import Image from "next/image";
-import { GrWorkshop } from "react-icons/gr";
 import { FaWhatsapp } from "react-icons/fa";
 import AnimatedButton from "../ui/AnimatedButton";
 
+// 1. Define the Category Structure
+interface SubCategory {
+  name: string;
+  href: string;
+}
+
+interface Category {
+  name: string;
+  href: string;
+  subcategories?: SubCategory[];
+}
+
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
-  const [activeDropdown, setActiveDropdown] = useState(null);
+  const [activeDropdown, setActiveDropdown] = useState<string | null>(null);
   const [searchOpen, setSearchOpen] = useState(false);
   const [searchQuery, setSearchQuery] = useState("");
-  const searchInputRef = useRef(null);
+  
+  // 2. Fix: Define the ref type as HTMLInputElement
+  const searchInputRef = useRef<HTMLInputElement>(null);
   const router = useRouter();
 
-  const categories = [
+  const categories: Category[] = [
     { name: "Home & Living", href: "/categories/home-living" },
     { name: "Personal Lifestyle", href: "/categories/personal-lifestyle" },
     { name: "Storage & Utility", href: "/categories/storage-utility" },
@@ -40,7 +53,6 @@ const Navbar = () => {
       subcategories: [
         { name: "Corporate", href: "/categories/gifting-corporate" },
         { name: "Bulk & Custom", href: "/gifting/gifting-bulk-&-custom" },
-        // { name: "Custom", href: "/gifting/gifting-custom" },
       ],
     },
   ];
@@ -54,7 +66,7 @@ const Navbar = () => {
 
   // Close search on Escape key
   useEffect(() => {
-    const handleKey = (e) => {
+    const handleKey = (e: KeyboardEvent) => {
       if (e.key === "Escape") {
         setSearchOpen(false);
         setSearchQuery("");
@@ -64,7 +76,8 @@ const Navbar = () => {
     return () => document.removeEventListener("keydown", handleKey);
   }, []);
 
-  const handleSearchSubmit = (e) => {
+  // 3. Fix: Add type to the event parameter
+  const handleSearchSubmit = (e: FormEvent) => {
     e.preventDefault();
     const q = searchQuery.trim();
     if (!q) return;
@@ -122,14 +135,7 @@ const Navbar = () => {
 
           {/* Right Actions */}
           <div className="flex items-center gap-2 md:gap-4">
-            {/* <NextLink
-              href={"/blog"}
-              className="hidden sm:flex hover:bg-gray-50 text-[#009341] border border-transparent hover:border-gray-200 rounded-md px-3 md:px-5 py-2 text-[13px] uppercase tracking-wider transition-all items-center gap-2"
-            >
-              <GrWorkshop size={18} />
-              <span className="hidden xl:inline">Workshop</span>
-            </NextLink> */}
-<AnimatedButton/>
+            <AnimatedButton/>
             <NextLink
               href={"https://wa.me/6268223779"}
               className="text-[#009341] max-lg:hidden text-[24px] hover:scale-110 transition-transform p-2"
@@ -137,7 +143,6 @@ const Navbar = () => {
               <FaWhatsapp />
             </NextLink>
 
-            {/* Search Icon Button */}
             <button
               onClick={() => setSearchOpen(true)}
               className="p-2 text-[#009341] hover:bg-gray-50 rounded-md transition-colors"
