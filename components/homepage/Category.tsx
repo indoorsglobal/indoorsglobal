@@ -1,119 +1,107 @@
-"use client"; // Client component is necessary for click events and refs
+"use client";
 import React, { useRef } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { ChevronLeft, ChevronRight } from "lucide-react";
+import { ChevronLeft, ChevronRight } from "lucide-react"; // Install lucide-react or use SVG
 
-
-import bamboo_essentials1 from "@/public/products/Bamboo Essentials/bamboo-essentials1.jpeg"
-import cane_baskets1 from "@/public/products/Cane Baskets/cane-baskets1.jpeg"
-import rice_husk1 from "@/public/products/Rice Husk/rice-husk11.jpeg"
-import kits1 from "@/public/Indoor Global Kit/Toiletry kit1.jpg"
+// Imports unchanged
+import bamboo_essentials1 from "@/public/products/Rice Husk/rice-husk13.jpeg";
+import cane_baskets1 from "@/public/products/Bamboo Essentials/bamboo-essentials1.jpeg";
+import rice_husk1 from "@/public/products/Cane Baskets/cane-baskets1.jpeg";
+import kits1 from "@/public/Indoor Global Kit/Toiletry kit1.jpg";
+import kits2 from "@/public/products/Rice Husk/rice-husk12.jpeg";
 
 const categories = [
-  { 
-    name: "Bamboo Essentials", 
-    slug: "products",
-    image: bamboo_essentials1, 
-    description: "Eco-friendly essentials for a sustainable morning routine." 
-  },
-  { 
-    name: "Cane Baskets", 
-    slug: "products",
-    image: cane_baskets1, 
-    description: "Gentle and safe bamboo products for your little ones." 
-  },
-  { 
-    name: "Rice Husk", 
-    slug: "products",
-    image: rice_husk1, 
-    description: "Professional and sustainable gifting solutions." 
-  },
-   { 
-    name: "Eco-Friendly Kits", 
-    slug: "products",
-    image: kits1, 
-    description: "Elegant, durable, and plastic-free dining experience." 
-  },
+  { name: "Home & Living", slug: "categories/home-living", image: bamboo_essentials1, description: "Sustainable products to enhance your home." },
+  { name: "Personal Lifestyle", slug: "categories/personal-lifestyle", image: cane_baskets1, description: "Eco-conscious daily essentials." },
+  { name: "Storage & Utility", slug: "categories/storage-utility", image: rice_husk1, description: "Smart natural storage solutions." },
+  { name: "Eco Bundle", slug: "categories/dinner-set", image: kits1, description: "Curated eco-friendly combos." },
+  { name: "Gifting", slug: "gifting/gifting-bulk-&-custom", image: kits2, description: "Thoughtful sustainable gifts." },
 ];
 
 const Category = () => {
-  const scrollRef = useRef<HTMLDivElement>(null);
+  const scrollRef = useRef(null);
 
-  const scroll = (direction: "left" | "right") => {
+  const scroll = (direction) => {
     if (scrollRef.current) {
       const { scrollLeft, clientWidth } = scrollRef.current;
-      // Scrolls by half the container width for a smooth feel
-      const scrollTo =
-        direction === "left"
-          ? scrollLeft - clientWidth / 2
-          : scrollLeft + clientWidth / 2;
+      // Ek baar mein kitna scroll karna hai (card width + gap)
+      const scrollAmount = clientWidth * 0.8; 
+      const scrollTo = direction === "left" ? scrollLeft - scrollAmount : scrollLeft + scrollAmount;
 
       scrollRef.current.scrollTo({ left: scrollTo, behavior: "smooth" });
     }
   };
 
   return (
-    <section className="max-w-7xl mx-auto px-6 py-16 font-serif">
-      {/* Header Section */}
-      <div className="flex justify-between items-center mb-10">
-        <h2 className="text-3xl text-gray-800 font-medium max-sm:text-2xl">
-          Shop By Category
-        </h2>
+    <section className="max-w-7xl mx-auto px-4 md:px-6 py-12 font-serif relative">
+      {/* Header with Navigation Buttons */}
+      <div className="flex justify-between items-end mb-8">
+        <div>
+          <h2 className="text-3xl text-gray-800 font-medium max-sm:text-2xl">
+            Shop By Category
+          </h2>
+          <p className="text-gray-500 text-sm mt-1">Explore our sustainable collections</p>
+        </div>
 
-        {/* <div className="flex gap-3">
-             <Link
-            href={"/contact"}
-            className="hidden sm:block bg-[#a3a393] hover:bg-[#7cb140] text-white px-6 md:px-8 py-3 md:py-4 text-[10px] md:text-xs uppercase tracking-widest transition-all duration-300"
+        {/* Buttons: Hidden on mobile since touch swipe is natural */}
+        <div className="hidden md:flex gap-3">
+          <button 
+            onClick={() => scroll("left")}
+            className="p-3 rounded-full border border-gray-200 hover:bg-gray-50 transition-colors shadow-sm"
+            aria-label="Scroll Left"
           >
-            Shop Patterns
-          </Link>
-        </div> */}
+            <ChevronLeft size={20} />
+          </button>
+          <button 
+            onClick={() => scroll("right")}
+            className="p-3 rounded-full border border-gray-200 hover:bg-gray-50 transition-colors shadow-sm"
+            aria-label="Scroll Right"
+          >
+            <ChevronRight size={20} />
+          </button>
+        </div>
       </div>
 
-      {/* Main Slider Container */}
-      <div className="border border-gray-100 rounded-2xl p-6 md:p-10 bg-white shadow-sm">
-        <div
-          ref={scrollRef}
-          className="flex gap-8 overflow-x-auto scroll-smooth snap-x snap-mandatory no-scrollbar"
-          style={{ 
-            scrollbarWidth: "none", 
-            msOverflowStyle: "none",
-          }}
-        >
-          {categories.map((category, index) => (
-            <Link 
-              href={`/${category.slug}`}
-              key={index}
-              className="flex-shrink-0 w-[260px] group cursor-pointer snap-start"
-            >
-              {/* Image Container */}
-              <div className="relative w-full aspect-square mb-4 overflow-hidden rounded-xl bg-gray-50">
-                <Image
-                  src={category.image}
-                  alt={category.name}
-                  fill
-                  placeholder="blur"
-                  sizes="260px"
-                  className=" group-hover:scale-110 transition-transform duration-700 ease-in-out"
-                />
-              </div>
+      {/* Slider Container */}
+      <div
+        ref={scrollRef}
+        className="flex gap-5 overflow-x-auto scroll-smooth snap-x snap-mandatory no-scrollbar pb-6"
+        style={{ scrollbarWidth: "none", msOverflowStyle: "none" }}
+      >
+        {categories.map((category, index) => (
+          <Link
+            href={`/${category.slug}`}
+            key={index}
+            // basis-[75%] mobile par agla card 25% dikhayega
+            // md:basis-[23%] desktop par 4 cards ke baad 5th thoda dikhega
+            className="flex-shrink-0 basis-[75%] md:basis-[23%] group cursor-pointer snap-start"
+          >
+            <div className="relative w-full aspect-square mb-4 overflow-hidden rounded-2xl bg-gray-100">
+              <Image
+                src={category.image}
+                alt={category.name}
+                fill
+                sizes="(max-width: 768px) 75vw, 25vw"
+                className="object-cover group-hover:scale-105 transition-transform duration-500"
+              />
+            </div>
 
-              {/* Text Content */}
-              <h3 className="text-lg text-gray-900 mb-1 font-semibold group-hover:text-green-800 transition-colors">
+            <div className="space-y-1">
+              <h3 className="text-lg font-semibold text-gray-900 group-hover:text-green-700 transition-colors">
                 {category.name}
               </h3>
-              
-              <p className="text-sm text-gray-500 mb-4 line-clamp-2 leading-relaxed">
+              <p className="text-sm text-gray-500 line-clamp-1">
                 {category.description}
               </p>
-
-              <span className="text-[13px] font-medium text-gray-400 underline underline-offset-4 group-hover:text-black transition-colors">
-                View More
-              </span>
-            </Link>
-          ))}
-        </div>
+              <div className="pt-2">
+                <span className="text-xs font-bold text-gray-600 uppercase border-b border-gray-900 pb-0.5">
+                  Shop Now
+                </span>
+              </div>
+            </div>
+          </Link>
+        ))}
       </div>
     </section>
   );
