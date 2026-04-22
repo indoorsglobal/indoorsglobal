@@ -260,7 +260,7 @@ const Navbar = () => {
             </form>
             <div className="border-t border-gray-100 px-5 py-3 flex flex-wrap gap-2">
               <span className="text-xs text-gray-400 mr-1 mt-0.5">Popular:</span>
-              {["Bamboo", "Rice Husk", "Jute Bag", "Eco Bundle", "Corporate Gift"].map((tag) => (
+              {["Bamboo", "Rice Husk", "Cane Basket", ].map((tag) => (
                 <button
                   key={tag}
                   onClick={() => {
