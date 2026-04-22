@@ -2,7 +2,7 @@
 import React, { useRef } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { ChevronLeft, ChevronRight } from "lucide-react"; // Install lucide-react or use SVG
+import { ChevronLeft, ChevronRight } from "lucide-react";
 
 // Imports unchanged
 import bamboo_essentials1 from "@/public/products/Rice Husk/rice-husk13.jpeg";
@@ -20,12 +20,13 @@ const categories = [
 ];
 
 const Category = () => {
-  const scrollRef = useRef(null);
+  // 1. Added HTMLDivElement type to the ref
+  const scrollRef = useRef<HTMLDivElement>(null);
 
-  const scroll = (direction) => {
+  // 2. Defined direction as a literal union type ("left" or "right")
+  const scroll = (direction: "left" | "right") => {
     if (scrollRef.current) {
       const { scrollLeft, clientWidth } = scrollRef.current;
-      // Ek baar mein kitna scroll karna hai (card width + gap)
       const scrollAmount = clientWidth * 0.8; 
       const scrollTo = direction === "left" ? scrollLeft - scrollAmount : scrollLeft + scrollAmount;
 
@@ -35,7 +36,6 @@ const Category = () => {
 
   return (
     <section className="max-w-7xl mx-auto px-4 md:px-6 py-12 font-serif relative">
-      {/* Header with Navigation Buttons */}
       <div className="flex justify-between items-end mb-8">
         <div>
           <h2 className="text-3xl text-gray-800 font-medium max-sm:text-2xl">
@@ -44,7 +44,6 @@ const Category = () => {
           <p className="text-gray-500 text-sm mt-1">Explore our sustainable collections</p>
         </div>
 
-        {/* Buttons: Hidden on mobile since touch swipe is natural */}
         <div className="hidden md:flex gap-3">
           <button 
             onClick={() => scroll("left")}
@@ -63,7 +62,6 @@ const Category = () => {
         </div>
       </div>
 
-      {/* Slider Container */}
       <div
         ref={scrollRef}
         className="flex gap-5 overflow-x-auto scroll-smooth snap-x snap-mandatory no-scrollbar pb-6"
@@ -73,8 +71,6 @@ const Category = () => {
           <Link
             href={`/${category.slug}`}
             key={index}
-            // basis-[75%] mobile par agla card 25% dikhayega
-            // md:basis-[23%] desktop par 4 cards ke baad 5th thoda dikhega
             className="flex-shrink-0 basis-[75%] md:basis-[23%] group cursor-pointer snap-start"
           >
             <div className="relative w-full aspect-square mb-4 overflow-hidden rounded-2xl bg-gray-100">
