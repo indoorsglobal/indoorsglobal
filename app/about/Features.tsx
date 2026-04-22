@@ -2,24 +2,24 @@ import { ShieldCheck, Sparkles, Globe, History } from 'lucide-react';
 
 const features = [
   {
-    title: "EXCEPTIONAL CRAFT",
+    title: "PRACTICAL ECOLOGY",
     icon: <Sparkles className="w-16 h-16 text-[#4CAF50]" strokeWidth={1.5} />,
-    description: "Every piece is a masterclass in detail. We collaborate with skilled artisans who blend traditional techniques with modern design to create furniture that stands as art."
+    description: "Eco-friendly shouldn’t be complicated or elite. If it can’t fit into a normal Indian household, it doesn’t belong in our store. Function first, then aesthetics."
   },
   {
-    title: "GLOBAL SOURCING",
+    title: "RADICAL HONESTY",
     icon: <Globe className="w-16 h-16 text-[#4CAF50]" strokeWidth={1.5} />,
-    description: "We travel the world to bring you unique silhouettes and rare textures. Our collection reflects a global aesthetic, curated specifically for the sophisticated modern home."
+    description: "No green-washing. No shortcuts. We value transparency in sourcing and pricing. If something isn’t perfect, we say it. Trust is more important than trends."
   },
   {
-    title: "SUSTAINABLE LUXURY",
+    title: "COLLECTIVE IMPACT",
     icon: <ShieldCheck className="w-16 h-16 text-[#4CAF50]" strokeWidth={1.5} />,
-    description: "Conscious living without compromise. We prioritize ethically sourced materials and eco-friendly processes to ensure your home beauty doesn't come at the cost of the planet."
+    description: "Sustainability is collective, not individual heroism. We grow with schools, local vendors, families, and artisans to replace single-use plastic at scale."
   },
   {
-    title: "TIMELESS ENDURANCE",
+    title: "EDUCATION DRIVEN",
     icon: <History className="w-16 h-16 text-[#4CAF50]" strokeWidth={1.5} />,
-    description: "Design that transcends trends. Our products are engineered for longevity, using premium materials that age gracefully and remain relevant in your home for decades."
+    description: "We don't just sell products; we change mindsets. Through workshops and kids' programs, we teach why mindful alternatives matter to end the disposable culture."
   }
 ];
 
