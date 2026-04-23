@@ -10,17 +10,18 @@ export default function Contact() {
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 mb-16">
         
         {/* --- LEFT: MAP --- */}
-      <div className="w-full h-[400px] lg:h-full min-h-[400px] rounded-sm overflow-hidden border border-gray-200">
-  <iframe 
-    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d201.53962674157825!2d81.66948628172968!3d21.251789832264052!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3a28dd420684e44f%3A0x93fae3bf4c1fd7a5!2sRoyal%20Arcade%2C%20near%20Khamadih%2C%20Gayatri%20Nagar%2C%20Shankar%20Nagar%2C%20Thana%2C%20Raipur%2C%20Chhattisgarh%20492004!5e1!3m2!1sen!2sin!4v1776048815420!5m2!1sen!2sin" 
-    width="600" 
-    height="450" 
-    style={{ border: 0 }} // Note: Style must be an object in React
-    allowFullScreen={true} 
-    loading="lazy" 
-    referrerPolicy="no-referrer-when-downgrade"
-  ></iframe>
-</div>
+     <div className="w-full h-[400px] lg:h-full min-h-[400px] rounded-sm overflow-hidden border border-gray-200">
+      <iframe
+        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3718.4961713859757!2d81.66698847344175!3d21.251818580083455!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3a28dde9d049a57f%3A0x5b744bc1715f6da3!2sINDOORS%20GLOBAL!5e0!3m2!1sen!2sin!4v1776924207670!5m2!1sen!2sin "
+        width="100%"
+        height="100%"
+        style={{ border: 0 }}
+        allowFullScreen={true}
+        loading="lazy"
+        referrerPolicy="no-referrer-when-downgrade"
+        title="Google Maps Location"
+      ></iframe>
+    </div>
         {/* --- RIGHT: INQUIRY FORM --- */}
         <div className="bg-[#f9f9f9] p-8 rounded-sm shadow-sm">
           <h2 className="text-3xl font-serif mb-2 text-[#222]">Get In Touch With Us</h2>
