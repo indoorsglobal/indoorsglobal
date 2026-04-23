@@ -4,13 +4,43 @@ import { useState } from 'react';
 import { MapPin, Phone, Mail, Clock } from 'lucide-react';
 
 export default function Contact() {
+  const [result, setResult] = useState("");
+  const [isSubmitting, setIsSubmitting] = useState(false);
+
+  const onSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+    setIsSubmitting(true);
+    setResult("Sending....");
+    
+    const formData = new FormData(event.currentTarget);
+
+    // Add your Web3Forms Access Key
+    formData.append("access_key", "f82e1761-59cb-4a2a-92c1-3301a25f52a9");
+
+    const response = await fetch("https://api.web3forms.com/submit", {
+      method: "POST",
+      body: formData
+    });
+
+    const data = await response.json();
+
+    if (data.success) {
+      setResult("Form Submitted Successfully!");
+      (event.target as HTMLFormElement).reset();
+    } else {
+      console.log("Error", data);
+      setResult(data.message);
+    }
+    setIsSubmitting(false);
+  };
+
   return (
     <div className="max-w-7xl mx-auto px-4 py-16 font-sans text-[#444]">
       
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 mb-16">
         
         {/* --- LEFT: MAP --- */}
-     <div className="w-full h-[400px] lg:h-full min-h-[400px] rounded-sm overflow-hidden border border-gray-200">
+        <div className="w-full h-[400px] lg:h-full min-h-[400px] rounded-sm overflow-hidden border border-gray-200">
       <iframe
         src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3718.4961713859757!2d81.66698847344175!3d21.251818580083455!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3a28dde9d049a57f%3A0x5b744bc1715f6da3!2sINDOORS%20GLOBAL!5e0!3m2!1sen!2sin!4v1776924207670!5m2!1sen!2sin "
         width="100%"
@@ -22,16 +52,22 @@ export default function Contact() {
         title="Google Maps Location"
       ></iframe>
     </div>
+
         {/* --- RIGHT: INQUIRY FORM --- */}
         <div className="bg-[#f9f9f9] p-8 rounded-sm shadow-sm">
           <h2 className="text-3xl font-serif mb-2 text-[#222]">Get In Touch With Us</h2>
           <p className="text-sm text-gray-500 mb-8">If you wish to directly reach us, please fill out the form below -</p>
 
-          <form className="space-y-5">
+          <form onSubmit={onSubmit} className="space-y-5">
+            {/* Honeypot Spam Protection (Optional but recommended) */}
+            <input type="checkbox" name="botcheck" className="hidden" style={{ display: "none" }} />
+
             <div className="grid grid-cols-3 items-center">
               <label className="text-sm font-medium text-gray-700">Full Name</label>
               <input 
                 type="text" 
+                name="name"
+                required
                 placeholder="Enter Full Name"
                 className="col-span-2 border border-gray-300 rounded p-2 text-sm focus:outline-none focus:border-[#a3a393] bg-white" 
               />
@@ -41,6 +77,8 @@ export default function Contact() {
               <label className="text-sm font-medium text-gray-700">Email address</label>
               <input 
                 type="email" 
+                name="email"
+                required
                 placeholder="your@email.com"
                 className="col-span-2 border border-gray-300 rounded p-2 text-sm focus:outline-none focus:border-[#a3a393] bg-white" 
               />
@@ -48,7 +86,11 @@ export default function Contact() {
 
             <div className="grid grid-cols-3 items-center">
               <label className="text-sm font-medium text-gray-700">Inquiry Type</label>
-              <select className="col-span-2 border border-gray-300 rounded p-2 text-sm focus:outline-none focus:border-[#a3a393] bg-white">
+              <select 
+                name="inquiry_type" 
+                required
+                className="col-span-2 border border-gray-300 rounded p-2 text-sm focus:outline-none focus:border-[#a3a393] bg-white"
+              >
                 <option value="" disabled selected>Select Category</option>
                 <option value="Rice Husk">Rice Husk</option>
                 <option value="Bamboo Essentials">Bamboo Essentials</option>
@@ -60,6 +102,8 @@ export default function Contact() {
             <div className="grid grid-cols-3 items-start">
               <label className="text-sm font-medium mt-2 text-gray-700">Message</label>
               <textarea 
+                name="message"
+                required
                 rows={6}
                 placeholder="How can we help?"
                 className="col-span-2 border border-gray-300 rounded p-3 text-sm focus:outline-none focus:border-[#a3a393] bg-white"
@@ -68,17 +112,25 @@ export default function Contact() {
 
             <div className="grid grid-cols-3">
               <div className="col-start-2 col-span-2 flex items-start gap-2">
-                <input type="checkbox" className="mt-1 accent-[#a3a393]" id="privacy" />
+                <input type="checkbox" required className="mt-1 accent-[#a3a393]" id="privacy" />
                 <label htmlFor="privacy" className="text-xs text-gray-500 leading-tight">
                   I agree to the terms and conditions and the privacy policy
                 </label>
               </div>
             </div>
 
-            <div className="flex justify-end mt-4">
-              <button className="bg-[#c2c2b4] text-white px-10 py-3 rounded text-sm font-bold uppercase hover:bg-[#a3a393] transition-colors shadow-sm">
-                Send
+            <div className="flex flex-col items-end mt-4">
+              <button 
+                disabled={isSubmitting}
+                className="bg-[#009341] hover:bg-[#7baf40] disabled:bg-gray-400 text-white px-10 py-3 rounded text-sm font-bold uppercase transition-colors shadow-sm"
+              >
+                {isSubmitting ? "Sending..." : "Send"}
               </button>
+              {result && (
+                <p className={`mt-2 text-xs font-medium ${result.includes("Success") ? "text-green-600" : "text-red-600"}`}>
+                  {result}
+                </p>
+              )}
             </div>
           </form>
         </div>
@@ -91,7 +143,6 @@ export default function Contact() {
             <MapPin size={20} />
           </div>
           <div className="text-sm">
-            {/* <p className="text-gray-600 font-medium">Shankar Nagar Raipur</p> */}
             <p className="text-gray-600">1st Floor Shop No. 1 & 2 Royal Arcade Building Near Khamardih Thana, Shankar Nagar Raipur</p>
           </div>
         </div>
