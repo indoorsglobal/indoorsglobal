@@ -84,13 +84,13 @@ const productsData = [
   { id: 31, name: "Deco planter", img: rice_husk13, category: "Home & Living", size: '7", 9"', colors: "Red & Offwhite" },
 
   // Bastar Artefacts (Part of Home & Living)
-  { id: 50, name: "Bastar Artefact - Dhokra Art 1", img: kits19, category: "Home & Living", size: "", colors: "Antique Gold" },
-  { id: 51, name: "Bastar Artefact - Dhokra Art 2", img: kits20, category: "Home & Living", size: "", colors: "Antique Gold" },
-  { id: 52, name: "Bastar Artefact - Tribal Figurine", img: kits21, category: "Home & Living", size: "", colors: "Antique Gold" },
-  { id: 53, name: "Bastar Artefact - Decorative Piece", img: kits22, category: "Home & Living", size: "", colors: "Antique Gold" },
-  { id: 54, name: "Bastar Artefact - Ethnic Decor", img: kits23, category: "Home & Living", size: "", colors: "Antique Gold" },
-  { id: 55, name: "Bastar Artefact - Traditional Wall Art", img: kits24, category: "Home & Living", size: "", colors: "Antique Gold" },
-  { id: 56, name: "Bastar Artefact - Iron Craft", img: kits25, category: "Home & Living", size: "", colors: "Antique Gold" },
+  { id: 50, name: "Bastar Artefact", img: kits19, category: "Home & Living", size: "", colors: "Antique Gold" },
+  { id: 51, name: "Bastar Artefact", img: kits20, category: "Home & Living", size: "", colors: "Antique Gold" },
+  { id: 52, name: "Bastar Artefact", img: kits21, category: "Home & Living", size: "", colors: "Antique Gold" },
+  { id: 53, name: "Bastar Artefact", img: kits22, category: "Home & Living", size: "", colors: "Antique Gold" },
+  { id: 54, name: "Bastar Artefact", img: kits23, category: "Home & Living", size: "", colors: "Antique Gold" },
+  { id: 55, name: "Bastar Artefact", img: kits24, category: "Home & Living", size: "", colors: "Antique Gold" },
+  { id: 56, name: "Bastar Artefact", img: kits25, category: "Home & Living", size: "", colors: "Antique Gold" },
 
   // --- BAMBOO ESSENTIALS ---
   { id: 1, name: "Bamboo Bottle 450ml", img: bamboo_essentials1, category: "Bamboo Essentials", size: "450ml", colors: "" },
