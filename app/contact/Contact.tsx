@@ -173,7 +173,7 @@ export default function Contact() {
           </div>
           <div className="text-sm">
             <p className="text-gray-400">Open time :</p>
-            <p className="font-medium text-gray-700">Open 24 Hours</p>
+            <p className="font-medium text-gray-700">Mon-Sat 10AM to 8PM</p>
           </div>
         </div>
       </div>
