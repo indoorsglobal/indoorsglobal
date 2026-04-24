@@ -47,10 +47,16 @@ import kits15 from "@/public/Indoor Global Kit/Hand Towel Set2.jpg"
 import kits16 from "@/public/Indoor Global Kit/Hand Towel Set3.jpg"
 import kits17 from "@/public/Indoor Global Kit/Hand Towel Set4.jpg"
 import kits18 from "@/public/Indoor Global Kit/Hand Towel Set5.jpg"
+import kits19 from "@/public/Indoor Global Kit/bastar-artefacts1.jpeg"
+import kits20 from "@/public/Indoor Global Kit/bastar-artefacts2.jpeg"
+import kits21 from "@/public/Indoor Global Kit/bastar-artefacts3.jpeg"
+import kits22 from "@/public/Indoor Global Kit/bastar-artefacts4.jpeg"
+import kits23 from "@/public/Indoor Global Kit/bastar-artefacts5.jpeg"
+import kits24 from "@/public/Indoor Global Kit/bastar-artefacts6.jpeg"
+import kits25 from "@/public/Indoor Global Kit/bastar-artefacts7.jpeg"
 
 export const productsData = [
   // --- HOME AND LIVING ---
-  // Note: Bastar Artefacts and Lamps are mentioned in the image but missing from your imports.
   { id: 21, name: "Canister", img: rice_husk3, category: "home-living" },
   { id: 24, name: "Canister (Tall)", img: rice_husk6, category: "home-living" },
   { id: 22, name: "Soup Bowl", img: rice_husk4, category: "home-living" },
@@ -61,6 +67,15 @@ export const productsData = [
   { id: 29, name: "Retro Cup", img: rice_husk11, category: "home-living" },
   { id: 30, name: "Fusion Cup", img: rice_husk12, category: "home-living" },
   { id: 31, name: "Deco planter", img: rice_husk13, category: "home-living" },
+  
+  // Bastar Artifacts added to Home & Living
+  { id: 50, name: "Bastar Artefact - Dhokra Art 1", img: kits19, category: "home-living" },
+  { id: 51, name: "Bastar Artefact - Dhokra Art 2", img: kits20, category: "home-living" },
+  { id: 52, name: "Bastar Artefact - Tribal Figurine", img: kits21, category: "home-living" },
+  { id: 53, name: "Bastar Artefact - Decorative Piece", img: kits22, category: "home-living" },
+  { id: 54, name: "Bastar Artefact - Ethnic Decor", img: kits23, category: "home-living" },
+  { id: 55, name: "Bastar Artefact - Traditional Wall Art", img: kits24, category: "home-living" },
+  { id: 56, name: "Bastar Artefact - Iron Craft", img: kits25, category: "home-living" },
 
   // --- PERSONAL LIFESTYLE ---
   { id: 1, name: "Bamboo Bottle 450ml", img: bamboo_essentials1, category: "personal-lifestyle" },
@@ -72,8 +87,8 @@ export const productsData = [
   { id: 7, name: "Bamboo Cutlery Kit", img: bamboo_essentials7, category: "personal-lifestyle" },
   { id: 8, name: "Rice Husk Bottle", img: bamboo_essentials8, category: "personal-lifestyle" },
   { id: 9, name: "Bamboo Non-Terry Towel", img: bamboo_essentials9, category: "personal-lifestyle" },
-  { id: 19, name: "Riged guard Loofah", img: rice_husk1, category: "personal-lifestyle" }, // Corrected from home-living
-  { id: 20, name: "Bamboo Ear Swabs", img: rice_husk2, category: "personal-lifestyle" },   // Corrected from home-living
+  { id: 19, name: "Riged guard Loofah", img: rice_husk1, category: "personal-lifestyle" },
+  { id: 20, name: "Bamboo Ear Swabs", img: rice_husk2, category: "personal-lifestyle" },
   { id: 36, name: "Hand Towel Set1", img: kits5, category: "personal-lifestyle" },
   { id: 32, name: "Toiletry kit1", img: kits1, category: "personal-lifestyle" },
 
@@ -95,32 +110,14 @@ export const productsData = [
   { id: 42, name: "Ricehusk Dinner Set2", img: kits11, category: "eco-bundle" },
   { id: 39, name: "Plantable Stationery kit1", img: kits8, category: "eco-bundle" },
   { id: 44, name: "Children's kit3", img: kits13, category: "eco-bundle" },
-  { 
-    id: 101, 
-    name: "Corporate Kit1", 
-    img: kits7, 
-    category: "gifting-corporate" 
-  },
-  { 
-    id: 102, 
-    name: "Bamboo Bottle 450ml", 
-    img: bamboo_essentials1, 
-    category: "gifting-corporate" 
-  },
-//   { 
-//     id: 103, 
-//     name: "Bastar Artefacts", 
-//     img: rice_husk13, // Placeholder image
-//     category: "gifting-corporate" 
-//   },
-  { 
-    id: 104, 
-    name: "Plantable Stationery Kit1", 
-    img: kits8, 
-    category: "gifting-corporate" 
-  },
+
+  // --- CORPORATE GIFTING ---
+  { id: 101, name: "Corporate Kit1", img: kits7, category: "gifting-corporate" },
+  { id: 102, name: "Bamboo Bottle 450ml", img: bamboo_essentials1, category: "gifting-corporate" },
+  { id: 103, name: "Bastar Artefacts Collection", img: kits19, category: "gifting-corporate" },
+  { id: 104, name: "Plantable Stationery Kit1", img: kits8, category: "gifting-corporate" },
+
   // --- BULK & CUSTOM ---
-  // Ideal for Corporate Gifting, Events, and Wholesale
   { 
     id: 201, 
     name: "Customized Corporate Kit", 
@@ -128,47 +125,11 @@ export const productsData = [
     category: "gifting-bulk-&-custom",
     description: "Bulk orders with custom branding available."
   },
-  { 
-    id: 202, 
-    name: "Bulk Bamboo Bottles (Engraved)", 
-    img: bamboo_essentials1, 
-    category: "gifting-bulk-&-custom" 
-  },
-  { 
-    id: 203, 
-    name: "Custom Stationery Bundles", 
-    img: kits8, 
-    category: "gifting-bulk-&-custom" 
-  },
-  { 
-    id: 204, 
-    name: "Wholesale Cane Hamper Bags", 
-    img: cane_baskets6, 
-    category: "gifting-bulk-&-custom" 
-  },
-  { 
-    id: 205, 
-    name: "Event Gifting: Toiletry Kit", 
-    img: kits1, 
-    category: "gifting-bulk-&-custom" 
-  },
-  { 
-    id: 206, 
-    name: "Eco-Friendly Dinner Sets (Bulk)", 
-    img: kits12, 
-    category: "gifting-bulk-&-custom" 
-  },
-  { 
-    id: 207, 
-    name: "Plantable Seed Pens/Pencils", 
-    img: kits9, 
-    category: "gifting-bulk-&-custom" 
-  },
-  { 
-    id: 208, 
-    name: "Custom Hand Towel Sets", 
-    img: kits5, 
-    category: "gifting-bulk-&-custom" 
-  }
+  { id: 202, name: "Bulk Bamboo Bottles (Engraved)", img: bamboo_essentials1, category: "gifting-bulk-&-custom" },
+  { id: 203, name: "Custom Stationery Bundles", img: kits8, category: "gifting-bulk-&-custom" },
+  { id: 204, name: "Wholesale Cane Hamper Bags", img: cane_baskets6, category: "gifting-bulk-&-custom" },
+  { id: 205, name: "Event Gifting: Toiletry Kit", img: kits1, category: "gifting-bulk-&-custom" },
+  { id: 206, name: "Eco-Friendly Dinner Sets (Bulk)", img: kits12, category: "gifting-bulk-&-custom" },
+  { id: 207, name: "Plantable Seed Pens/Pencils", img: kits9, category: "gifting-bulk-&-custom" },
+  { id: 208, name: "Custom Hand Towel Sets", img: kits5, category: "gifting-bulk-&-custom" }
 ];
-
