@@ -69,13 +69,13 @@ export const productsData = [
   { id: 31, name: "Deco planter", img: rice_husk13, category: "home-living" },
   
   // Bastar Artifacts added to Home & Living
-  { id: 50, name: "Bastar Artefact - Dhokra Art 1", img: kits19, category: "home-living" },
-  { id: 51, name: "Bastar Artefact - Dhokra Art 2", img: kits20, category: "home-living" },
-  { id: 52, name: "Bastar Artefact - Tribal Figurine", img: kits21, category: "home-living" },
-  { id: 53, name: "Bastar Artefact - Decorative Piece", img: kits22, category: "home-living" },
-  { id: 54, name: "Bastar Artefact - Ethnic Decor", img: kits23, category: "home-living" },
-  { id: 55, name: "Bastar Artefact - Traditional Wall Art", img: kits24, category: "home-living" },
-  { id: 56, name: "Bastar Artefact - Iron Craft", img: kits25, category: "home-living" },
+  { id: 50, name: "Bastar Artefact 1", img: kits19, category: "home-living" },
+  { id: 51, name: "Bastar Artefact 2", img: kits20, category: "home-living" },
+  { id: 52, name: "Bastar Artefact 3", img: kits21, category: "home-living" },
+  { id: 53, name: "Bastar Artefact 4", img: kits22, category: "home-living" },
+  { id: 54, name: "Bastar Artefact 5", img: kits23, category: "home-living" },
+  { id: 55, name: "Bastar Artefact 6", img: kits24, category: "home-living" },
+  { id: 56, name: "Bastar Artefact 7", img: kits25, category: "home-living" },
 
   // --- PERSONAL LIFESTYLE ---
   { id: 1, name: "Bamboo Bottle 450ml", img: bamboo_essentials1, category: "personal-lifestyle" },
