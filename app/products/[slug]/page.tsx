@@ -5,6 +5,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { ArrowLeft, Heart } from 'lucide-react';
 
+// --- ALL IMPORTS ---
 import bamboo_essentials1 from "@/public/products/Bamboo Essentials/bamboo-essentials1.jpeg"
 import bamboo_essentials2 from "@/public/products/Bamboo Essentials/bamboo-essentials2.jpeg"
 import bamboo_essentials3 from "@/public/products/Bamboo Essentials/bamboo-essentials3.jpeg"
@@ -58,22 +59,40 @@ import kits16 from "@/public/Indoor Global Kit/Hand Towel Set3.jpg"
 import kits17 from "@/public/Indoor Global Kit/Hand Towel Set4.jpg"
 import kits18 from "@/public/Indoor Global Kit/Hand Towel Set5.jpg"
 
-const productsData = [
-  // Rice Husk Tableware
-  { id: 19, name: "Riged guard Loofah", img: rice_husk1, category: "Rice Husk", size: "", colors: "" },
-  { id: 20, name: "Bamboo Ear Swabs", img: rice_husk2, category: "Rice Husk", size: "", colors: "" },
-  { id: 21, name: "Canister", img: rice_husk3, category: "Rice Husk", size: "700ml", colors: "Offwhite & Tortilla (Natural)" },
-  { id: 22, name: "Soup Bowl", img: rice_husk4, category: "Rice Husk", size: "250ml", colors: "Pink, Green, Offwhite, Blue" },
-  { id: 23, name: "Classic Mug", img: rice_husk5, category: "Rice Husk", size: "300ml", colors: "Tortilla, Offwhite, Green, Blue, Pink" },
-  { id: 24, name: "Canister (Tall)", img: rice_husk6, category: "Rice Husk", size: "", colors: "" },
-  { id: 25, name: "Snack plate", img: rice_husk7, category: "Rice Husk", size: '6", 8"', colors: "Pink, Green, Offwhite, Blue" },
-  { id: 26, name: "Chai Cup", img: rice_husk8, category: "Rice Husk", size: "100ml", colors: "Tortilla, Offwhite, Green, Blue, Pink" },
-  { id: 27, name: "Dinner Set", img: rice_husk9, category: "Rice Husk", size: "", colors: "" },
-  { id: 29, name: "Retro Cup", img: rice_husk11, category: "Rice Husk", size: "250ml", colors: "Tortilla, Offwhite, Green, Blue, Pink" },
-  { id: 30, name: "Fusion Cup", img: rice_husk12, category: "Rice Husk", size: "150ml", colors: "Green" },
-  { id: 31, name: "Deco planter", img: rice_husk13, category: "Rice Husk", size: '7", 9"', colors: "Red & Offwhite" },
+// Bastar Artefacts Imports
+import kits19 from "@/public/Indoor Global Kit/bastar-artefacts1.jpeg"
+import kits20 from "@/public/Indoor Global Kit/bastar-artefacts2.jpeg"
+import kits21 from "@/public/Indoor Global Kit/bastar-artefacts3.jpeg"
+import kits22 from "@/public/Indoor Global Kit/bastar-artefacts4.jpeg"
+import kits23 from "@/public/Indoor Global Kit/bastar-artefacts5.jpeg"
+import kits24 from "@/public/Indoor Global Kit/bastar-artefacts6.jpeg"
+import kits25 from "@/public/Indoor Global Kit/bastar-artefacts7.jpeg"
 
-  // Bamboo Essentials
+const productsData = [
+  // --- HOME & LIVING (Rice Husk & Bastar) ---
+  { id: 19, name: "Riged guard Loofah", img: rice_husk1, category: "Home & Living", size: "", colors: "" },
+  { id: 20, name: "Bamboo Ear Swabs", img: rice_husk2, category: "Home & Living", size: "", colors: "" },
+  { id: 21, name: "Canister", img: rice_husk3, category: "Home & Living", size: "700ml", colors: "Offwhite & Tortilla (Natural)" },
+  { id: 22, name: "Soup Bowl", img: rice_husk4, category: "Home & Living", size: "250ml", colors: "Pink, Green, Offwhite, Blue" },
+  { id: 23, name: "Classic Mug", img: rice_husk5, category: "Home & Living", size: "300ml", colors: "Tortilla, Offwhite, Green, Blue, Pink" },
+  { id: 24, name: "Canister (Tall)", img: rice_husk6, category: "Home & Living", size: "", colors: "" },
+  { id: 25, name: "Snack plate", img: rice_husk7, category: "Home & Living", size: '6", 8"', colors: "Pink, Green, Offwhite, Blue" },
+  { id: 26, name: "Chai Cup", img: rice_husk8, category: "Home & Living", size: "100ml", colors: "Tortilla, Offwhite, Green, Blue, Pink" },
+  { id: 27, name: "Dinner Set", img: rice_husk9, category: "Home & Living", size: "", colors: "" },
+  { id: 29, name: "Retro Cup", img: rice_husk11, category: "Home & Living", size: "250ml", colors: "Tortilla, Offwhite, Green, Blue, Pink" },
+  { id: 30, name: "Fusion Cup", img: rice_husk12, category: "Home & Living", size: "150ml", colors: "Green" },
+  { id: 31, name: "Deco planter", img: rice_husk13, category: "Home & Living", size: '7", 9"', colors: "Red & Offwhite" },
+
+  // Bastar Artefacts (Part of Home & Living)
+  { id: 50, name: "Bastar Artefact - Dhokra Art 1", img: kits19, category: "Home & Living", size: "Handcrafted", colors: "Antique Bronze" },
+  { id: 51, name: "Bastar Artefact - Dhokra Art 2", img: kits20, category: "Home & Living", size: "Handcrafted", colors: "Antique Bronze" },
+  { id: 52, name: "Bastar Artefact - Tribal Figurine", img: kits21, category: "Home & Living", size: "Handcrafted", colors: "Antique Bronze" },
+  { id: 53, name: "Bastar Artefact - Decorative Piece", img: kits22, category: "Home & Living", size: "Handcrafted", colors: "Metallic" },
+  { id: 54, name: "Bastar Artefact - Ethnic Decor", img: kits23, category: "Home & Living", size: "Handcrafted", colors: "Metallic" },
+  { id: 55, name: "Bastar Artefact - Traditional Wall Art", img: kits24, category: "Home & Living", size: "Various", colors: "Iron Black" },
+  { id: 56, name: "Bastar Artefact - Iron Craft", img: kits25, category: "Home & Living", size: "Various", colors: "Iron Black" },
+
+  // --- BAMBOO ESSENTIALS ---
   { id: 1, name: "Bamboo Bottle 450ml", img: bamboo_essentials1, category: "Bamboo Essentials", size: "450ml", colors: "" },
   { id: 2, name: "Pocket Comb", img: bamboo_essentials2, category: "Bamboo Essentials", size: "", colors: "" },
   { id: 3, name: "Lice Comb", img: bamboo_essentials3, category: "Bamboo Essentials", size: "", colors: "" },
@@ -85,8 +104,8 @@ const productsData = [
   { id: 9, name: "Bamboo Non-Terry Towel", img: bamboo_essentials9, category: "Bamboo Essentials", size: "28 x 60cm", colors: "Pink, Green, Blue" },
   { id: 10, name: "Bamboo Tongue Cleaner", img: bamboo_essentials10, category: "Bamboo Essentials", size: "", colors: "" },
 
-  // Cane Baskets
-  { id: 10, name: "Boat Bag", img: cane_baskets1, category: "Cane Baskets", size: "44 X 22 X 30cm", colors: "" },
+  // --- CANE BASKETS ---
+  { id: 100, name: "Boat Bag", img: cane_baskets1, category: "Cane Baskets", size: "44 X 22 X 30cm", colors: "" },
   { id: 11, name: "Storage Lid Box", img: cane_baskets2, category: "Cane Baskets", size: "", colors: "" },
   { id: 12, name: "Beach Bag", img: cane_baskets3, category: "Cane Baskets", size: "28 X 7 X 18cm", colors: "" },
   { id: 13, name: "Shelf Basket", img: cane_baskets4, category: "Cane Baskets", size: "38X28X17cm", colors: "" },
@@ -96,7 +115,7 @@ const productsData = [
   { id: 17, name: "Designer Jaali Bag", img: cane_baskets8, category: "Cane Baskets", size: "", colors: "" },
   { id: 18, name: "Designer Boat Bag", img: cane_baskets9, category: "Cane Baskets", size: "", colors: "" },
 
-  // Eco Kits
+  // --- ECO KITS ---
   { id: 32, name: "Toiletry kit1", img: kits1, category: "Eco Kits", size: "", colors: "" },
   { id: 33, name: "Toiletry kit3", img: kits2, category: "Eco Kits", size: "", colors: "" },
   { id: 34, name: "Toiletry kit4", img: kits3, category: "Eco Kits", size: "", colors: "" },
@@ -165,7 +184,6 @@ export default function ProductDetail() {
               </div>
             )}
 
-            {/* Default message if NEITHER size nor color exists */}
             {!product.size && !product.colors && (
               <p className="text-gray-500 italic text-sm">Standard size and natural finish.</p>
             )}
