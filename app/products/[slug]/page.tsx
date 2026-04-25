@@ -201,9 +201,9 @@ export default function ProductDetail() {
             <Link href={"/contact"} className="flex-1 bg-[#009341] hover:bg-[#7baf40] text-white px-8 py-4 rounded transition-all flex items-center justify-center gap-2 font-medium text-center">
               Contact for Inquiry
             </Link>
-            <button className="p-4 border border-gray-200 rounded hover:bg-gray-50 transition-colors">
+            {/* <button className="p-4 border border-gray-200 rounded hover:bg-gray-50 transition-colors">
               <Heart size={20} className="text-gray-400" />
-            </button>
+            </button> */}
           </div>
 
           <div className="mt-10 pt-6 border-t border-gray-50">
