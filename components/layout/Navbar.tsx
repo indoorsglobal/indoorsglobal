@@ -136,8 +136,8 @@ const Navbar1 = () => {
           {/* Right Actions */}
           <div className="flex items-center gap-2 md:gap-4">
             <AnimatedButton/>
-            <NextLink
-              href={"https://wa.me/6268223779"}
+           <NextLink
+              href={"https://wa.me/6268223779?text=Hello! I'm interested in your sustainable products."}
               className="text-[#009341] max-lg:hidden text-[24px] hover:scale-110 transition-transform p-2"
             >
               <FaWhatsapp />
