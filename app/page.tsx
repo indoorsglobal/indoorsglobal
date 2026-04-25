@@ -17,7 +17,7 @@ export default function page() {
       <Features />
        <PortraitSlider/> 
       <TestimonialSection/>
-      <Blog />
+      {/* <Blog /> */}
       <CTA />
     </div>
   );
