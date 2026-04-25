@@ -195,13 +195,6 @@ export default function ComingSoon() {
         </div>
       )}
 
-      {/* --- Footer --- */}
-      <footer className="bg-white border-t border-[#e9edc9] py-12 mt-20">
-        <div className="max-w-7xl mx-auto px-6 flex flex-col md:flex-row justify-between items-center gap-6">
-          <p className="text-[#a98467] text-xs italic">A project by Indoors Global Sustainable Development Cell</p>
-          <p className="text-[10px] text-gray-400 uppercase tracking-[0.2em]">© 2026 ZENWORKSHOPS. Coming Soon.</p>
-        </div>
-      </footer>
     </div>
   );
 }
