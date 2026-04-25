@@ -4,7 +4,7 @@ import React, { useState, useRef, useEffect, FormEvent } from "react";
 import NextLink from "next/link";
 import { useRouter } from "next/navigation";
 import { Menu, X, MapPin, ChevronDown, Search } from "lucide-react";
-import logo from "@/public/navbar/logo.png";
+import logo from "@/public/navbar/logo2.png";
 import Image from "next/image";
 import { FaWhatsapp } from "react-icons/fa";
 import AnimatedButton from "../ui/AnimatedButton";
