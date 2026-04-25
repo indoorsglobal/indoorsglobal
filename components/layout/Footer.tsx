@@ -1,6 +1,6 @@
 import React from "react";
 import Link from "next/link";
-import logo from "@/public/navbar/logo.png";
+import logo from "@/public/navbar/logo2.png";
 import Image from "next/image";
 const Footer = () => {
   return (
