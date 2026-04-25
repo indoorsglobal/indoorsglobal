@@ -158,10 +158,10 @@ export default function ComingSoon() {
                 </div>
               </SidebarWrapper>
 
-              <div className="bg-[#009341] p-8 text-center text-[#f8f9f1] rounded-xl">
-                <p className="italic font-serif text-lg mb-4">"The best time to plant a tree was 20 years ago. The second best time is now."</p>
-                <div className="text-[10px] tracking-[0.2em] font-bold uppercase">— Chinese Proverb</div>
-              </div>
+             <div className="bg-[#009341] p-8 text-center text-[#f8f9f1]">
+                <p className="italic font-serif text-lg mb-4">The Sustainable products bend stronger than the oak that resists.</p>
+                <div className="text-[10px] tracking-[0.2em] font-bold uppercase">— indoors Global</div>
+            </div>
             </div>
           </aside>
         </div>
