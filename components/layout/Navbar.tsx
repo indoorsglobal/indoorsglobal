@@ -96,7 +96,7 @@ const Navbar = () => {
             <div className="w-12 h-12 md:w-16 md:h-16 relative">
               <Image src={logo} alt="Logo" fill className="object-contain" priority />
             </div>
-            <p className="text-[10px] md:text-xs text-gray-500 font-light mt-[-4px]">simply, purely, green</p>
+            {/* <p className="text-[10px] md:text-xs text-gray-500 font-light mt-[-4px]">simply, purely, green</p> */}
           </NextLink>
 
           {/* Desktop Navigation */}
