@@ -16,9 +16,9 @@ const Footer = () => {
               <div className="w-30 h-30 max-lg:w-20 max-lg:h-20 mb-2">
                 <Image src={logo} alt="" />
               </div>
-              Indoors Global bridges world-class craftsmanship with your home,
-              curating premium global design trends to transform your space into
-              a sanctuary.
+              Indoors Global was created to bridge the gap between sustainable
+              intention and everyday action. We believe people shouldn’t have to
+              choose between convenience and responsibility.
             </li>
           </ul>
 
@@ -53,7 +53,7 @@ const Footer = () => {
             Quick Links
           </h3>
           <ul className="space-y-3 text-[15px]">
-            {["Home", "About", "Products", "Workshop"].map((item) => (
+            {["Home", "About", "Products", "Workshop", "Contact"].map((item) => (
               <li
                 key={item}
                 className="hover:translate-x-1 transition-transform cursor-pointer hover:text-black"
