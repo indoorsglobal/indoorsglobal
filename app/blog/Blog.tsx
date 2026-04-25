@@ -1,205 +1,381 @@
-import React, { ReactNode } from 'react';
+"use client"
+
+import React, { useState, useEffect, ReactNode } from 'react';
 import { 
   Calendar, 
   Search, 
   ChevronsRight, 
-  Leaf 
+  Leaf, 
+  MapPin, 
+  ArrowRight, 
+  MessageCircle, 
+  X, 
+  Star, 
+  ShieldCheck, 
+  Clock, 
+  Globe,
+  Share2,
+  Mail,
+  User,
+  Info,
+  CheckCircle2
 } from 'lucide-react';
+import Link from 'next/link';
 
 /**
- * BAMBOO ZEN PALETTE:
- * Primary (Bamboo Green): #606c38
- * Secondary (Young Leaf): #a98467
- * Background (Soft Paper): #f8f9f1
- * Dark (Deep Forest): #283618
- * Accent (Fresh Sprout): #adc178
+ * BAMBOO WORKSHOP PORTAL
+ * Colors: bg-[#009341] | hover:bg-[#7baf40]
  */
 
-// --- Types ---
-interface Post {
+const slugify = (text: string) => {
+  return text
+    .toLowerCase()
+    .trim()
+    .replace(/[^\w\s-]/g, '')
+    .replace(/[\s_-]+/g, '-')
+    .replace(/^-+|-+$/g, '');
+};
+
+// --- Interfaces ---
+interface Workshop {
   id: number;
   title: string;
   category: string;
   date: string;
-  views: string;
-  comments: string;
+  time: string;
+  location: string;
   image: string;
   excerpt: string;
+  isCompleted: boolean;
+  rating: number;
+  instructor: string;
 }
 
-interface SidebarSectionProps {
+interface SidebarProps {
   title: string;
   children: ReactNode;
 }
 
-interface BlogCardProps {
-  post: Post;
-}
-
 // --- Mock Data ---
-const posts: Post[] = [
+const WORKSHOP_DATA: Workshop[] = [
   {
     id: 1,
-    title: "The Art of Sustainable Architecture",
-    category: "Design",
-    date: "March 12, 2024",
-    views: "1.2k",
-    comments: "8",
-    image: "https://images.unsplash.com/photo-1542601906990-b4d3fb778b09?auto=format&fit=crop&q=80&w=800",
-    excerpt: "Exploring how natural fibers and organic structures are redefining the modern workspace."
+    title: "Vertical Gardening for Urban Spaces",
+    category: "Eco-Living",
+    date: "August 15, 2026",
+    time: "10:00 AM - 4:00 PM",
+    location: "Bangalore, India",
+    image: "https://images.unsplash.com/photo-1585320806297-9794b3e4eeae?auto=format&fit=crop&q=80&w=800",
+    excerpt: "Turn your small balcony into a lush green paradise with our hydro-stacking methods.",
+    isCompleted: false,
+    rating: 4.8,
+    instructor: "Dr. Arun Sharma"
   },
   {
     id: 2,
-    title: "Minimalism in the Modern Garden",
-    category: "Lifestyle",
-    date: "April 05, 2024",
-    views: "940",
-    comments: "15",
-    image: "https://images.unsplash.com/photo-1528459105426-b9548367069b?auto=format&fit=crop&q=80&w=800",
-    excerpt: "Creating a sanctuary within your home doesn't require vast space, only the right intention."
+    title: "Advanced Bamboo Joinery & Structure",
+    category: "Architecture",
+    date: "September 02, 2026",
+    time: "09:00 AM - 5:00 PM",
+    location: "Guwahati, Assam",
+    image: "https://images.unsplash.com/photo-1542601906990-b4d3fb778b09?auto=format&fit=crop&q=80&w=800",
+    excerpt: "Professional level workshop on building earthquake-resistant bamboo gazebos.",
+    isCompleted: false,
+    rating: 4.9,
+    instructor: "Master Tenzing"
   },
   {
     id: 3,
-    title: "Eco-Friendly Tech Solutions",
-    category: "Innovation",
-    date: "May 22, 2024",
-    views: "3.5k",
-    comments: "42",
-    image: "https://images.unsplash.com/photo-1542601906990-b4d3fb778b09?auto=format&fit=crop&q=80&w=800",
-    excerpt: "How the next generation of hardware is moving toward biodegradable components."
+    title: "Permaculture Design Course (PDC)",
+    category: "Sustainability",
+    date: "June 10, 2026",
+    time: "11:00 AM - 2:00 PM",
+    location: "Online (Global)",
+    image: "https://images.unsplash.com/photo-1500673922987-e212871fec22?auto=format&fit=crop&q=80&w=800",
+    excerpt: "A comprehensive guide to designing self-sustaining ecosystems in your backyard.",
+    isCompleted: false,
+    rating: 4.7,
+    instructor: "Sarah Jenkins"
   },
   {
     id: 4,
-    title: "Breath: The Secret to Focus",
-    category: "Wellness",
-    date: "June 01, 2024",
-    views: "820",
-    comments: "11",
-    image: "https://images.unsplash.com/photo-1528459105426-b9548367069b?auto=format&fit=crop&q=80&w=800",
-    excerpt: "Integrating mindfulness into your daily workflow can increase productivity."
+    title: "The Zero Waste Kitchen Journey",
+    category: "Lifestyle",
+    date: "January 20, 2026",
+    time: "Completed",
+    location: "Mumbai, India",
+    image: "https://images.unsplash.com/photo-1585320806297-9794b3e4eeae?auto=format&fit=crop&q=80&w=800",
+    excerpt: "Looking back at our successful session on composting and plastic-free storage.",
+    isCompleted: true,
+    rating: 5.0,
+    instructor: "Chef Megha"
+  },
+  {
+    id: 5,
+    title: "Solar DIY: Powering Your Workshop",
+    category: "Renewable Energy",
+    date: "February 14, 2026",
+    time: "Completed",
+    location: "Pune, India",
+    image: "https://images.unsplash.com/photo-1508514177221-188b1cf16e9d?auto=format&fit=crop&q=80&w=800",
+    excerpt: "Reviewing the technical blueprints for off-grid solar panel installations.",
+    isCompleted: true,
+    rating: 4.6,
+    instructor: "Eng. Rahul"
   }
 ];
 
 // --- Sub-Components ---
-
-const SidebarSection = ({ title, children }: SidebarSectionProps) => (
-  <div className="bg-white p-8 rounded-sm shadow-[0_4px_20px_-10px_rgba(40,54,24,0.1)] border-l-4 border-[#adc178] mb-10">
-    <div className="flex items-center mb-6">
-      <h4 className="font-serif italic font-bold text-[#283618] text-lg">{title}</h4>
-    </div>
+const SidebarWrapper = ({ title, children }: SidebarProps) => (
+  <div className="bg-white p-8 rounded-lg border border-[#e9edc9] mb-10 shadow-sm">
+    <h4 className="font-serif font-bold text-[#283618] text-xl mb-6 flex items-center gap-2">
+      <div className="w-2 h-8 bg-[#009341]"></div> {title}
+    </h4>
     {children}
   </div>
 );
 
-const BlogCard = ({ post }: BlogCardProps) => (
-  <div className="group bg-white rounded-sm overflow-hidden border border-[#e9edc9]/50 hover:border-[#adc178] transition-all duration-500 flex flex-col h-full">
-    <div className="relative overflow-hidden aspect-[16/10]">
-      <img 
-        src={post.image} 
-        alt={post.title}
-        className="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-700"
-      />
-      <div className="absolute bottom-4 left-4 bg-white/90 backdrop-blur-sm text-[#283618] text-[10px] font-bold px-3 py-1.5 uppercase tracking-widest border border-[#adc178]">
-        {post.category}
-      </div>
-    </div>
+export default function WorkshopPortal() {
+  
+  const [workshops, setWorkshops] = useState<Workshop[]>([]);
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [activeWorkshop, setActiveWorkshop] = useState<Workshop | null>(null);
+  const [formData, setFormData] = useState({ name: '', email: '', phone: '', message: '' });
 
-    <div className="p-8 flex flex-col flex-grow">
-      <div className="flex flex-wrap items-center gap-4 text-[#a98467] text-[12px] mb-4 font-medium italic">
-        <span className="flex items-center gap-1.5">
-          <Calendar size={13} /> {post.date}
-        </span>
-      </div>
+  useEffect(() => {
+    // Sort logic: Upcoming workshops first (isCompleted === false)
+    const sorted = [...WORKSHOP_DATA].sort((a, b) => Number(a.isCompleted) - Number(b.isCompleted));
+    setWorkshops(sorted);
+  }, []);
 
-      <h3 className="text-2xl font-serif font-bold text-[#283618] mb-4 group-hover:text-[#606c38] transition-colors leading-snug">
-        {post.title}
-      </h3>
-      
-      <p className="text-[#6c757d] text-sm leading-relaxed mb-8">
-        {post.excerpt}
-      </p>
+  const openEnquiry = (ws: Workshop) => {
+    setActiveWorkshop(ws);
+    setIsModalOpen(true);
+  };
 
-      <div className="mt-auto">
-        <button className="text-[#606c38] font-bold text-sm flex items-center gap-2 group/btn hover:gap-4 transition-all">
-          CONTINUE READING <Leaf size={16} className="text-[#adc178]" />
-        </button>
-      </div>
-    </div>
-  </div>
-);
+  const handleFormSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    alert(`Request sent for ${activeWorkshop?.title}! We will contact you at ${formData.email}.`);
+    setIsModalOpen(false);
+    setFormData({ name: '', email: '', phone: '', message: '' });
+  };
 
-// --- Main Page Component ---
-
-export default function BambooBlog() {
   return (
-    <div className="min-h-screen pt-12 font-sans text-[#283618] bg-[#f8f9f1]">
+    <div className="min-h-screen bg-[#f8f9f1] font-sans text-[#283618] selection:bg-[#7baf40] selection:text-white">
+      
+      {/* --- Navigation --- */}
+      <nav className="bg-white border-b border-[#e9edc9] sticky top-0 z-40">
+        <div className="max-w-7xl mx-auto px-6 lg:px-8 h-20 flex items-center justify-between">
+          <div className="flex items-center gap-2">
+            <div className="bg-[#009341] p-2 rounded-lg">
+              <Leaf className="text-white" size={24} />
+            </div>
+            <span className="text-2xl font-serif font-black tracking-tighter text-[#283618]">
+              ZEN<span className="text-[#009341]">WORKSHOPS</span>
+            </span>
+          </div>
+          <div className="hidden md:flex gap-8 font-bold text-xs uppercase tracking-widest">
+            <a href="#" className="text-[#009341]">Upcoming</a>
+            <a href="#" className="hover:text-[#009341] transition-colors">Past Events</a>
+            <a href="#" className="hover:text-[#009341] transition-colors">Resources</a>
+          </div>
+          <button className="bg-[#009341] hover:bg-[#7baf40] text-white px-6 py-2 rounded-full text-xs font-bold transition-all">
+            REGISTER NOW
+          </button>
+        </div>
+      </nav>
+
       <div className="max-w-7xl mx-auto py-16 px-6 lg:px-8">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12">
+        {/* --- Header Section --- */}
+        <div className="mb-20 text-center max-w-3xl mx-auto">
+          <h2 className="text-[#009341] font-bold text-sm tracking-[0.3em] uppercase mb-4">Skill Development</h2>
+          <h1 className="text-5xl md:text-6xl font-serif font-bold text-[#283618] leading-tight mb-6">
+            Build a Sustainable Future Together
+          </h1>
+          <p className="text-lg text-[#a98467] italic">
+            Check out our upcoming sessions below. For completed workshops, feel free to explore the summaries.
+          </p>
+        </div>
+
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-16">
           
-          {/* Left Column: Blog Grid */}
+          {/* --- Workshop List --- */}
           <main className="lg:col-span-8">
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
-              {posts.map((post) => (
-                <BlogCard key={post.id} post={post} />
+            <div className="space-y-12">
+            {workshops.map((ws) => {
+  // Title ko URL friendly banane ke liye logic
+  const slug = ws.title
+    .toLowerCase()
+    .trim()
+    .replace(/[^\w\s-]/g, '')
+    .replace(/[\s_-]+/g, '-')
+    .replace(/^-+|-+$/g, '');
+
+  return (
+    <div key={ws.id} className="group bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-500 border border-[#e9edc9]/60">
+      <div className="grid grid-cols-1 md:grid-cols-1 h-full">
+        {/* Image Section */}
+        <div className="md:col-span-2 relative overflow-hidden h-64 md:h-full">
+          <img 
+            src={ws.image} 
+            alt={ws.title} 
+            className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-1000" 
+          />
+          <div className={`absolute top-4 left-4 px-3 py-1 text-[10px] font-bold uppercase tracking-widest text-white ${ws.isCompleted ? 'bg-gray-500' : 'bg-[#009341]'}`}>
+            {ws.isCompleted ? 'Finished' : 'Upcoming'}
+          </div>
+        </div>
+
+        {/* Content Section */}
+        <div className="md:col-span-3 p-8 flex flex-col justify-center">
+          <div className="flex items-center gap-3 mb-4">
+            <span className="bg-[#f8f9f1] text-[#009341] px-3 py-1 rounded-full text-[10px] font-bold uppercase border border-[#009341]/20">
+              {ws.category}
+            </span>
+            <div className="flex text-yellow-500">
+              {[...Array(5)].map((_, i) => (
+                <Star key={i} size={12} fill={i < Math.floor(ws.rating) ? "currentColor" : "none"} />
               ))}
             </div>
-            
-            {/* Pagination */}
-            <div className="flex items-center justify-center gap-4 mt-16">
-              <button className="w-10 h-10 border-b-2 border-[#606c38] text-[#283618] font-bold">01</button>
-              <button className="w-10 h-10 text-[#a98467] font-bold hover:text-[#606c38] transition-colors">02</button>
-              <button className="w-10 h-10 text-[#a98467] font-bold hover:text-[#606c38] transition-colors">03</button>
-              <button className="ml-4 p-2 bg-[#606c38] text-white rounded-full">
-                <ChevronsRight size={18} />
+          </div>
+
+          {/* Title: Link only if completed */}
+          <h3 className="text-2xl font-serif font-bold text-[#283618] mb-3 group-hover:text-[#009341] transition-colors leading-tight">
+            {ws.isCompleted ? (
+              <Link href={`/blog/${slug}`}>
+                {ws.title}
+              </Link>
+            ) : (
+              <span className="cursor-default">{ws.title}</span>
+            )}
+          </h3>
+
+          {/* Meta Info */}
+          <div className="grid grid-cols-2 gap-y-2 mb-6">
+            <div className="flex items-center gap-2 text-xs text-[#a98467] font-medium">
+              <Calendar size={14} className="text-[#009341]" /> {ws.date}
+            </div>
+            <div className="flex items-center gap-2 text-xs text-[#a98467] font-medium">
+              <MapPin size={14} className="text-[#009341]" /> {ws.location}
+            </div>
+            <div className="flex items-center gap-2 text-xs text-[#a98467] font-medium">
+              <Clock size={14} className="text-[#009341]" /> {ws.time}
+            </div>
+            <div className="flex items-center gap-2 text-xs text-[#a98467] font-medium">
+              <User size={14} className="text-[#009341]" /> {ws.instructor}
+            </div>
+          </div>
+
+          <p className="text-sm text-[#6c757d] mb-8 leading-relaxed">
+            {ws.excerpt}
+          </p>
+
+          {/* Bottom Action: Dynamic Button/Link */}
+          <div className="mt-auto pt-6 border-t border-[#f8f9f1]">
+            {ws.isCompleted ? (
+              <Link 
+                href={`/blog/${slug}`} 
+                className="flex items-center gap-2 text-[#009341] font-bold text-xs uppercase tracking-widest hover:translate-x-2 transition-transform"
+              >
+                Read Full Summary <ArrowRight size={18} />
+              </Link>
+            ) : (
+              <button 
+                onClick={() => openEnquiry(ws)}
+                className="w-full md:w-auto bg-[#009341] hover:bg-[#7baf40] text-white px-8 py-3 rounded-lg font-bold text-xs uppercase tracking-[0.15em] shadow-lg transition-all active:scale-95 flex items-center justify-center gap-2"
+              >
+                <MessageCircle size={18} /> Enquiry Now
               </button>
+            )}
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+})}
             </div>
           </main>
 
-          {/* Right Column: Sidebar */}
+          {/* --- Sidebar --- */}
           <aside className="lg:col-span-4">
-            
-            {/* Search Widget */}
-            <div className="bg-white p-2 rounded-full border border-[#e9edc9] mb-10 flex items-center px-6 shadow-sm group focus-within:border-[#adc178] transition-all">
-              <input 
-                type="text" 
-                placeholder="Search the journal..." 
-                className="w-full py-3 outline-none text-sm text-[#283618] bg-transparent placeholder-[#a98467]/50 italic" 
-              />
-              <Search size={18} className="text-[#a98467] group-hover:text-[#606c38]" />
-            </div>
-
-            <SidebarSection title="Collections">
-              <ul className="space-y-5">
-                {['Sustainability', 'Home Decor', 'Mindfulness', 'Architecture'].map((cat) => (
-                  <li key={cat} className="flex justify-between items-center text-sm font-semibold text-[#283618] hover:text-[#606c38] cursor-pointer group transition-colors">
-                    <span className="flex items-center gap-3">
-                       <div className="w-1.5 h-1.5 rounded-full bg-[#adc178]"></div> {cat}
-                    </span>
-                    <span className="text-[#a98467] text-[11px] opacity-60">12</span>
-                  </li>
-                ))}
-              </ul>
-            </SidebarSection>
-
-            <SidebarSection title="Tags">
-              <div className="flex flex-wrap gap-3">
-                {['Organic', 'Eco', 'Minimal', 'Zen', 'Timber', 'Growth'].map(tag => (
-                  <span key={tag} className="bg-[#f8f9f1] border border-[#e9edc9] text-[#606c38] px-4 py-1.5 text-[11px] font-bold uppercase tracking-widest hover:bg-[#606c38] hover:text-white cursor-pointer transition-all">
-                    #{tag}
-                  </span>
-                ))}
+            <div className="sticky top-28">
+              <div className="bg-white p-4 rounded-xl border border-[#e9edc9] mb-10 flex items-center shadow-sm focus-within:ring-2 focus-within:ring-[#009341]/20 transition-all">
+                <Search size={20} className="text-[#a98467] ml-2" />
+                <input type="text" placeholder="Search sessions..." className="w-full p-2 outline-none text-sm bg-transparent" />
               </div>
-            </SidebarSection>
 
-            {/* Quote Widget */}
-            <div className="bg-[#a3a393] p-8 text-center text-[#f8f9f1]">
+              <SidebarWrapper title="Workshop Tracks">
+                <div className="space-y-4">
+                  {[
+                    { n: 'Permaculture', c: 14 },
+                    { n: 'Bamboo Tech', c: 8 },
+                    { n: 'Zero Waste', c: 12 },
+                    { n: 'Solar Energy', c: 5 }
+                  ].map((track) => (
+                    <div key={track.n} className="flex justify-between items-center group cursor-pointer hover:bg-[#f8f9f1] p-2 rounded transition-colors">
+                      <span className="text-sm font-medium group-hover:text-[#009341]">{track.n}</span>
+                      <span className="bg-[#e9edc9] text-[#283618] px-2 py-0.5 rounded text-[10px] font-bold">{track.c}</span>
+                    </div>
+                  ))}
+                </div>
+              </SidebarWrapper>
+
+              {/* <SidebarWrapper title="Trust & Safety">
+                <div className="space-y-4">
+                  <div className="flex items-start gap-3">
+                    <CheckCircle2 size={18} className="text-[#009341] mt-0.5" />
+                    <p className="text-xs text-[#6c757d]">Verified International Instructors</p>
+                  </div>
+                  <div className="flex items-start gap-3">
+                    <CheckCircle2 size={18} className="text-[#009341] mt-0.5" />
+                    <p className="text-xs text-[#6c757d]">Government Recognized Certification</p>
+                  </div>
+                </div>
+              </SidebarWrapper> */}
+
+                {/* Quote Widget */}
+            <div className="bg-[#009341] p-8 text-center text-[#f8f9f1]">
                 <p className="italic font-serif text-lg mb-4">The Sustainable products bend stronger than the oak that resists.</p>
                 <div className="text-[10px] tracking-[0.2em] font-bold uppercase">— indoors Global</div>
             </div>
-
+            </div>
           </aside>
         </div>
       </div>
+
+      {/* --- Enquiry Modal --- */}
+      {isModalOpen && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center p-6">
+          <div className="absolute inset-0 bg-[#283618]/70 backdrop-blur-sm" onClick={() => setIsModalOpen(false)}></div>
+          <div className="bg-white w-full max-w-xl rounded-3xl overflow-hidden shadow-2xl relative z-10">
+            <button onClick={() => setIsModalOpen(false)} className="absolute top-6 right-6 text-gray-400 hover:text-gray-900 transition-colors">
+              <X size={24} />
+            </button>
+            <div className="p-10">
+              <div className="flex items-center gap-2 mb-6">
+                <div className="h-1 w-12 bg-[#009341]"></div>
+                <span className="text-[10px] font-black uppercase tracking-[0.3em] text-[#009341]">Direct Enquiry</span>
+              </div>
+              <h2 className="text-2xl font-serif font-bold text-[#283618] mb-2">{activeWorkshop?.title}</h2>
+              <p className="text-sm text-[#a98467] mb-8">Please fill in your details and our coordinator will reach out to you within 24 hours.</p>
+              
+              <form onSubmit={handleFormSubmit} className="space-y-4">
+                <div className="grid grid-cols-2 gap-4">
+                  <input required type="text" placeholder="Full Name" className="w-full border-b border-gray-200 py-3 text-sm outline-none focus:border-[#009341] transition-colors" value={formData.name} onChange={(e) => setFormData({...formData, name: e.target.value})} />
+                  <input required type="email" placeholder="Email Address" className="w-full border-b border-gray-200 py-3 text-sm outline-none focus:border-[#009341] transition-colors" value={formData.email} onChange={(e) => setFormData({...formData, email: e.target.value})} />
+                </div>
+                <input required type="tel" placeholder="Phone Number" className="w-full border-b border-gray-200 py-3 text-sm outline-none focus:border-[#009341] transition-colors" value={formData.phone} onChange={(e) => setFormData({...formData, phone: e.target.value})} />
+                <textarea placeholder="How did you hear about us?" className="w-full bg-gray-50 p-4 text-sm outline-none focus:border-[#009341] h-24 rounded-xl mt-4" value={formData.message} onChange={(e) => setFormData({...formData, message: e.target.value})}></textarea>
+                <button type="submit" className="w-full bg-[#009341] hover:bg-[#7baf40] text-white font-bold py-4 rounded-xl transition-all shadow-xl shadow-[#009341]/20 uppercase text-xs tracking-widest mt-4">
+                  Submit Enquiry Request
+                </button>
+              </form>
+            </div>
+          </div>
+        </div>
+      )}
+
+
     </div>
   );
 }
