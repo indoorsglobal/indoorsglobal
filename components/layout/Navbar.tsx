@@ -21,7 +21,7 @@ interface Category {
   subcategories?: SubCategory[];
 }
 
-const Navbar = () => {
+const Navbar1 = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [activeDropdown, setActiveDropdown] = useState<string | null>(null);
   const [searchOpen, setSearchOpen] = useState(false);
@@ -89,11 +89,11 @@ const Navbar = () => {
   return (
     <>
       <nav className="fixed top-0 left-0 w-full z-50 bg-white border-b border-gray-200">
-        <div className="max-w-[1440px] mx-auto flex items-center justify-between px-4 md:px-8 py-2">
+        <div className="max-w-[1440px] mx-auto flex items-center justify-between px-4 md:px-8">
 
           {/* Logo */}
           <NextLink href={"/"} className="flex items-center flex-col gap-2 shrink-0">
-            <div className="w-12 h-12 md:w-16 md:h-16 relative">
+            <div className="w-12 h-12 md:w-32 md:h-24 relative">
               <Image src={logo} alt="Logo" fill className="object-contain" priority />
             </div>
             {/* <p className="text-[10px] md:text-xs text-gray-500 font-light mt-[-4px]">simply, purely, green</p> */}
@@ -281,4 +281,4 @@ const Navbar = () => {
   );
 };
 
-export default Navbar;
+export default Navbar1;
