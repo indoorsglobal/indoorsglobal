@@ -172,7 +172,7 @@ export default function BulkPage() {
         
         {/* Header Section */}
         <header className="mb-10">
-          <h1 className="text-3xl md:text-5xl font-bold text-[#1a202c]">
+          <h1 className="text-3xl md:text-4xl font-serif font-bold text-[#1a202c]">
             {activeCategory === "All" ? "Our Collection" : activeCategory}
           </h1>
           <p className="text-gray-500 italic mt-3 text-lg">
