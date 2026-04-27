@@ -74,7 +74,7 @@ export default function TestimonialSection() {
       <div className="max-w-7xl mx-auto ">
         {/* Header */}
         <div className="text-center mb-16">
-          <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
+          <h2 className="text-3xl md:text-4xl font-serif font-bold text-white mb-4">
             Read Reviews, <br className="hidden md:block" /> Shop With Confidence.
           </h2>
           {/* <div className="flex items-center justify-center gap-2">
