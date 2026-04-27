@@ -19,6 +19,9 @@ import { WORKSHOP_CONTENT } from "@/data/blogData";
 import Image from "next/image";
 
 // --- Interfaces ---
+// Add this import at the top if it's not there
+import { StaticImageData } from "next/image";
+
 interface Workshop {
   id: number;
   slug: string;
@@ -27,7 +30,8 @@ interface Workshop {
   date: string;
   time: string;
   location: string;
-  image: string;
+  // Update this line to allow both URL strings and imported Image objects
+  image: string | StaticImageData; 
   excerpt: string;
   isCompleted: boolean;
   rating: number;
