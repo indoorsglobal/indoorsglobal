@@ -76,51 +76,54 @@ const PortraitSlider = () => {
   const [selectedVideo, setSelectedVideo] = useState<any>(null);
 
   const cdnVideos = [
-    {
+     {
       id: 1,
-      url: "https://res.cloudinary.com/dohvllowg/video/upload/q_auto/f_auto/v1776664225/Indoors_global_raipur_uhtjnn.mp4",
-      title: "Raipur Store",
+      url: "https://res.cloudinary.com/dohvllowg/video/upload/q_auto/f_auto/v1776664330/InShot_20250912_135744159_hcnaws.mp4",
+      title: "New Trends",
     },
-    {
+       {
       id: 2,
-      url: "https://res.cloudinary.com/dohvllowg/video/upload/q_auto/f_auto/v1776664236/Indoors_global_1_aaqhmn.mp4",
-      title: "Global Interior",
-    },
-    {
-      id: 3,
-      url: "https://res.cloudinary.com/dohvllowg/video/upload/q_auto/f_auto/v1776664252/Indoors_global_video_1_zwl0bx.mp4",
-      title: "Showcase One",
-    },
-    {
-      id: 4,
-      url: "https://res.cloudinary.com/dohvllowg/video/upload/q_auto/f_auto/v1776664257/Indoors_global_hpijmt.mp4",
-      title: "Highlight Reel",
-    },
-    {
-      id: 5,
       url: "https://res.cloudinary.com/dohvllowg/video/upload/q_auto/f_auto/v1776664263/FINAL_REEL_INDOORS_GLOBAL_sfltqi.mp4",
       title: "Indoors Global",
     },
-    {
-      id: 6,
+      {
+      id: 3,
       url: "https://res.cloudinary.com/dohvllowg/video/upload/q_auto/f_auto/v1776664288/Indoors_global_video_hgp9uu.mp4",
       title: "Modern Design",
     },
     {
+      id: 4,
+      url: "https://res.cloudinary.com/dohvllowg/video/upload/q_auto/f_auto/v1776664225/Indoors_global_raipur_uhtjnn.mp4",
+      title: "Raipur Store",
+    },
+    {
+      id: 5,
+      url: "https://res.cloudinary.com/dohvllowg/video/upload/q_auto/f_auto/v1776664236/Indoors_global_1_aaqhmn.mp4",
+      title: "Global Interior",
+    },
+    {
+      id: 6,
+      url: "https://res.cloudinary.com/dohvllowg/video/upload/q_auto/f_auto/v1776664252/Indoors_global_video_1_zwl0bx.mp4",
+      title: "Showcase One",
+    },
+    {
       id: 7,
+      url: "https://res.cloudinary.com/dohvllowg/video/upload/q_auto/f_auto/v1776664257/Indoors_global_hpijmt.mp4",
+      title: "Highlight Reel",
+    },
+ 
+  
+    {
+      id: 8,
       url: "https://res.cloudinary.com/dohvllowg/video/upload/q_auto/f_auto/v1776664289/Indoors_Global_Raipur_-07.10.24_xezd9o.mp4",
       title: "Raipur Update",
     },
     {
-      id: 8,
+      id: 9,
       url: "https://res.cloudinary.com/dohvllowg/video/upload/q_auto/f_auto/v1776664292/Bamboo_Flask-indoors_global_raipur-14.10.24_hdewmt.mp4",
       title: "Bamboo Collection",
     },
-    {
-      id: 9,
-      url: "https://res.cloudinary.com/dohvllowg/video/upload/q_auto/f_auto/v1776664330/InShot_20250912_135744159_hcnaws.mp4",
-      title: "New Trends",
-    },
+   
   ];
 
   const settings = {
