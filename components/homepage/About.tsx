@@ -41,13 +41,13 @@ const About = () => {
           <div className="flex flex-wrap gap-4">
             <Link
               href={"/products"}
-              className="bg-[#5D4037] hover:bg-[#8e8e7e] text-white px-10 py-3 text-sm tracking-widest uppercase font-sans transition-colors"
+              className="bg-[#5D4037] rounded-sm hover:bg-[#8e8e7e] text-white px-10 py-3 text-sm tracking-widest uppercase font-sans transition-colors"
             >
               See More
             </Link>
             <Link
               href={"/about"}
-              className="bg-[#009341] hover:bg-[#7cb140] text-white px-8 py-3 text-sm tracking-widest uppercase font-sans  transition-colors"
+              className="bg-[#009341] rounded-sm hover:bg-[#7cb140] text-white px-8 py-3 text-sm tracking-widest uppercase font-sans  transition-colors"
             >
               About Us
             </Link>
