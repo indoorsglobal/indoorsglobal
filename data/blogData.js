@@ -15,7 +15,7 @@ export const WORKSHOP_CONTENT = [
     location: "Community Garden",
     instructor: "Pre-School Collab",
     rating: 4.8,
-    isCompleted: false,
+    isCompleted: true,
     excerpt:
       "At Indoors Global, we believe the best habits start early — and what better way than learning by doing?",
     intro:
