@@ -112,14 +112,9 @@ const PortraitSlider = () => {
       title: "Highlight Reel",
     },
  
-  
+ 
     {
       id: 8,
-      url: "https://res.cloudinary.com/dohvllowg/video/upload/q_auto/f_auto/v1776664289/Indoors_Global_Raipur_-07.10.24_xezd9o.mp4",
-      title: "Raipur Update",
-    },
-    {
-      id: 9,
       url: "https://res.cloudinary.com/dohvllowg/video/upload/q_auto/f_auto/v1776664292/Bamboo_Flask-indoors_global_raipur-14.10.24_hdewmt.mp4",
       title: "Bamboo Collection",
     },
