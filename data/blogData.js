@@ -36,7 +36,7 @@ export const WORKSHOP_CONTENT = [
         content:
           "At Indoors Global, workshops like these are more than just activities — they are a step towards building a generation that grows up making better, more thoughtful choices every day. Because change doesn’t start big — it starts with awareness, and sometimes, with a handful of soil.",
       },
-       {
+      {
         heading: "",
         content:
           "If you’re a school, community, or group looking to host similar workshops, we’d love to collaborate and create meaningful experiences together.",
@@ -94,8 +94,7 @@ export const WORKSHOP_CONTENT = [
       },
       {
         heading: "Want to Host a Workshop With Us?",
-        content:
-          "We’re always open to collaborating with:",
+        content: "We’re always open to collaborating with:",
         points: [
           "Educators & Mentors",
           "Creative Creators",
@@ -111,6 +110,21 @@ export const WORKSHOP_CONTENT = [
           "Creates a community that learns and grows together",
         ],
       },
+      {
+  content: (
+    <div className="pt-10">
+      Join our Community on WhatsApp{" "}
+      <a 
+        href="https://chat.whatsapp.com/BXUKCKqTGCGIQG3Y2vPgXt?mode=gi_t" 
+        target="_blank" 
+        rel="noopener noreferrer"
+        className="text-green-600 underline font-bold"
+      >
+        Click here to join
+      </a>
+    </div>
+  ),
+},
     ],
     closing:
       "Because change doesn’t start big — it starts with awareness, and sometimes, with a handful of soil. Have an idea? Let’s create something meaningful together. 🌿",
