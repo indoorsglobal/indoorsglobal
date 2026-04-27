@@ -2,138 +2,172 @@
 
 import React from 'react';
 import { useParams, useRouter } from 'next/navigation';
-import { Calendar, MapPin, Clock, User, ArrowLeft, CheckCircle2 } from 'lucide-react';
+import { 
+  Calendar, 
+  MapPin, 
+  User, 
+  ArrowLeft, 
+  CheckCircle2, 
+  Leaf, 
+  Share2 
+} from 'lucide-react';
 import Link from 'next/link';
-
-// Mock Data (In production, move this to a shared constants/data.ts file)
-// app/blog/[slug]/page.tsx mein isko replace karein
-const WORKSHOP_DATA = [
-  { id: 1, title: "Vertical Gardening for Urban Spaces", isCompleted: false, /* ... */ },
-  { id: 2, title: "Advanced Bamboo Joinery & Structure", isCompleted: false, /* ... */ },
-  { id: 3, title: "Permaculture Design Course (PDC)", isCompleted: false, /* ... */ },
-  // YEH DONO ADD KARNA ZAROORI HAI:
-  {
-    id: 4,
-    title: "The Zero Waste Kitchen Journey",
-    category: "Lifestyle",
-    date: "January 20, 2026",
-    time: "Completed",
-    location: "Mumbai, India",
-    image: "https://images.unsplash.com/photo-1528459105426-b9548367069b?auto=format&fit=crop&q=80&w=800",
-    excerpt: "Looking back at our successful session on composting and plastic-free storage.",
-    isCompleted: true,
-    rating: 5.0,
-    instructor: "Chef Megha"
-  },
-  {
-    id: 5,
-    title: "Solar DIY: Powering Your Workshop",
-    category: "Renewable Energy",
-    date: "February 14, 2026",
-    time: "Completed",
-    location: "Pune, India",
-    image: "https://images.unsplash.com/photo-1508514177221-188b1cf16e9d?auto=format&fit=crop&q=80&w=800",
-    excerpt: "Reviewing the technical blueprints for off-grid solar panel installations.",
-    isCompleted: true,
-    rating: 4.6,
-    instructor: "Eng. Rahul"
-  }
-];
-
-const slugify = (text: string) => {
-  return text.toLowerCase().trim().replace(/[^\w\s-]/g, '').replace(/[\s_-]+/g, '-').replace(/^-+|-+$/g, '');
-};
+import { WORKSHOP_CONTENT } from '@/data/blogData';
 
 export default function WorkshopDetail() {
- const params = useParams();
-  const currentSlug = params.slug as string; // Check karein ki URL mein slug aa raha hai
+  const params = useParams();
+  const router = useRouter();
+  const currentSlug = params.slug as string;
 
-  // Debug karne ke liye console log lagayein
-  console.log("Current Slug from URL:", currentSlug);
+  // Since WORKSHOP_CONTENT is now an Array, we find the item by slug
+  const post = WORKSHOP_CONTENT.find(item => item.slug === currentSlug);
 
-  const workshop = WORKSHOP_DATA.find(w => slugify(w.title) === currentSlug);
-  if (!workshop) {
+  // Fallback if the slug doesn't match
+  if (!post) {
     return (
-      <div className="min-h-screen flex flex-col items-center justify-center bg-[#f8f9f1]">
-        <h2 className="text-2xl font-bold mb-4">Workshop Not Found</h2>
-        <Link href="/" className="text-[#009341] underline">Go Back Home</Link>
+      <div className="min-h-screen flex flex-col items-center justify-center bg-[#f8f9f1] text-[#283618] p-6 text-center">
+        <Leaf className="text-[#009341] mb-6 animate-bounce" size={60} />
+        <h2 className="text-3xl font-serif font-bold mb-2">Content Not Found</h2>
+        <p className="text-[#a98467] mb-8">We couldn't find the workshop details for "{currentSlug}".</p>
+        <Link href="/workshops" className="bg-[#009341] text-white px-8 py-3 rounded-full font-bold shadow-lg hover:bg-[#7baf40] transition-all">
+          Return to Portal
+        </Link>
       </div>
     );
   }
 
   return (
-    <div className="min-h-screen bg-[#f8f9f1] text-[#283618] selection:bg-[#7baf40] selection:text-white">
-      <div className="max-w-4xl mx-auto py-12 px-6">
+    <div className="min-h-screen bg-[#f8f9f1] text-[#283618] selection:bg-[#7baf40] selection:text-white pb-20">
+      
+      {/* Top Banner with Navigation */}
+      <div className="max-w-5xl mx-auto py-8 px-6">
         <button 
           onClick={() => router.back()}
-          className="flex items-center gap-2 text-[#009341] font-bold text-xs uppercase tracking-widest mb-8 hover:-translate-x-2 transition-transform"
+          className="flex items-center gap-2 text-[#009341] font-bold text-xs uppercase tracking-[0.2em] mb-10 hover:-translate-x-2 transition-transform"
         >
           <ArrowLeft size={18} /> Back to Workshops
         </button>
 
-        <div className="rounded-3xl overflow-hidden h-[300px] md:h-[450px] mb-10 shadow-2xl">
-          <img src={workshop.image} alt={workshop.title} className="w-full h-full object-cover" />
+        {/* Hero Section */}
+        <div className="relative rounded-[2rem] overflow-hidden h-[350px] md:h-[550px] shadow-2xl mb-12">
+          <img src={post.image} alt={post.title} className="w-full h-full object-cover" />
+          <div className="absolute inset-0 bg-gradient-to-t from-[#283618]/80 via-transparent to-transparent"></div>
+          <div className="absolute bottom-10 left-10 right-10">
+            <span className="bg-[#7baf40] text-white px-4 py-1 rounded-full text-[10px] font-black uppercase tracking-widest mb-4 inline-block">
+              {post.category}
+            </span>
+            <h1 className="text-4xl md:text-6xl font-serif font-bold text-white leading-tight">
+              {post.title}
+            </h1>
+          </div>
         </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-12">
-          <div className="lg:col-span-2">
-            <span className="bg-[#e9edc9] text-[#009341] px-4 py-1 rounded-full text-[10px] font-bold uppercase mb-4 inline-block">
-              {workshop.category}
-            </span>
-            <h1 className="text-4xl md:text-5xl font-serif font-bold mb-6 leading-tight">
-              {workshop.title}
-            </h1>
+        {/* Content Layout */}
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-16">
+          
+          {/* Main Article */}
+          <div className="lg:col-span-8">
+            <h2 className="text-2xl italic font-serif text-[#a98467] mb-8 leading-relaxed">
+              "{post.subtitle}"
+            </h2>
             
-            <div className="prose prose-green max-w-none">
-              <p className="text-lg text-[#a98467] italic leading-relaxed mb-8">
-                {workshop.excerpt}
+            <div className="prose prose-stone max-w-none">
+              <p className="text-lg text-[#6c757d] leading-relaxed mb-12 first-letter:text-5xl first-letter:font-bold first-letter:text-[#009341] first-letter:mr-3 first-letter:float-left">
+                {post.intro}
               </p>
-              <h3 className="text-xl font-bold mb-4 text-[#283618]">Session Overview</h3>
-              <p className="text-[#6c757d] mb-6 leading-relaxed">
-                Join us for an immersive experience in <strong>{workshop.title}</strong>. 
-                Under the guidance of {workshop.instructor}, participants will explore 
-                sustainable techniques and practical applications suitable for modern living.
-              </p>
-              <ul className="space-y-4 mb-8">
-                {["Hands-on Practical Training", "Resource Materials Provided", "Certification upon Completion"].map((item, i) => (
-                  <li key={i} className="flex items-center gap-3 text-sm text-[#6c757d]">
-                    <CheckCircle2 size={18} className="text-[#009341]" /> {item}
-                  </li>
-                ))}
-              </ul>
+
+              {post.sections.map((section, index) => (
+                <div key={index} className="mb-12">
+                  <div className="flex items-center gap-4 mb-6">
+                    <div className="h-[2px] w-8 bg-[#009341]"></div>
+                    <h3 className="text-2xl font-serif font-bold text-[#283618] uppercase tracking-tight">
+                      {section.heading}
+                    </h3>
+                  </div>
+                  
+                  {section.content && (
+                    <p className="text-[#6c757d] leading-relaxed mb-6">{section.content}</p>
+                  )}
+
+                  {section.points && (
+                    <div className="grid grid-cols-1 gap-4">
+                      {section.points.map((point, pIdx) => (
+                        <div key={pIdx} className="flex items-start gap-4 bg-white p-5 rounded-2xl border border-[#e9edc9]/50 shadow-sm">
+                          <CheckCircle2 className="text-[#009341] mt-1 flex-shrink-0" size={20} />
+                          <span className="text-[#283618] font-medium">{point}</span>
+                        </div>
+                      ))}
+                    </div>
+                  )}
+                </div>
+              ))}
+
+              {/* Closing Card */}
+              <div className="bg-[#009341] p-10 rounded-[2.5rem] text-center text-white mt-16 shadow-xl relative overflow-hidden">
+                <Leaf className="absolute -top-6 -right-6 text-white/10" size={150} />
+                <p className="text-xl font-serif italic mb-6 relative z-10">
+                  {post.closing}
+                </p>
+                <div className="h-1 w-20 bg-[#7baf40] mx-auto rounded-full"></div>
+              </div>
             </div>
           </div>
 
-          <div className="lg:col-span-1">
-            <div className="bg-white p-8 rounded-2xl border border-[#e9edc9] sticky top-24 shadow-sm">
-              <h4 className="font-bold text-lg mb-6 border-b pb-4 text-[#009341]">Event Details</h4>
-              <div className="space-y-5">
-                <DetailItem icon={<Calendar size={18}/>} label="Date" value={workshop.date} />
-                <DetailItem icon={<Clock size={18}/>} label="Timing" value={workshop.time} />
-                <DetailItem icon={<MapPin size={18}/>} label="Location" value={workshop.location} />
-                <DetailItem icon={<User size={18}/>} label="Instructor" value={workshop.instructor} />
-              </div>
+          {/* Sidebar */}
+          <aside className="lg:col-span-4">
+            <div className="sticky top-28 space-y-8">
               
-              {!workshop.isCompleted && (
-                <button className="w-full bg-[#009341] hover:bg-[#7baf40] text-white font-bold py-4 rounded-xl mt-8 transition-all shadow-lg shadow-[#009341]/20 uppercase text-xs tracking-widest">
-                  Secure Your Spot
+              <div className="bg-white p-8 rounded-3xl border border-[#e9edc9] shadow-sm">
+                <h4 className="font-bold text-xs uppercase tracking-[0.2em] text-[#009341] mb-8 border-b pb-4">
+                  Session Log
+                </h4>
+                <div className="space-y-6">
+                  <MetaItem icon={<Calendar size={20}/>} label="Conducted On" value={post.date} />
+                  <MetaItem icon={<User size={20}/>} label="Lead Instructor" value={post.instructor} />
+                  <MetaItem icon={<MapPin size={20}/>} label="Venue" value={post.location || "Indoors Global Store"} />
+                </div>
+                
+                <button 
+                  onClick={() => {
+                    if (navigator.share) {
+                      navigator.share({ title: post.title, url: window.location.href });
+                    } else {
+                      alert("Link copied to clipboard!");
+                    }
+                  }}
+                  className="w-full mt-10 flex items-center justify-center gap-2 bg-[#f8f9f1] hover:bg-[#e9edc9] text-[#283618] font-bold py-4 rounded-2xl transition-all border border-[#e9edc9]"
+                >
+                  <Share2 size={18} /> Share Insight
                 </button>
-              )}
+              </div>
+
+              <div className="p-8 rounded-3xl bg-gradient-to-br from-[#283618] to-[#009341] text-white">
+                <h4 className="font-serif text-xl mb-4">Want to collaborate?</h4>
+                <p className="text-white/70 text-sm mb-6 leading-relaxed">
+                  We are always looking for creators and educators to share meaningful habits.
+                </p>
+                <Link href="/contact" className="text-white font-bold text-xs underline underline-offset-8 tracking-widest uppercase hover:text-[#7baf40] transition-colors">
+                  Contact Us
+                </Link>
+              </div>
+
             </div>
-          </div>
+          </aside>
         </div>
       </div>
     </div>
   );
 }
 
-// Reusable Detail Component
-const DetailItem = ({ icon, label, value }: { icon: React.ReactNode, label: string, value: string }) => (
-  <div className="flex items-center gap-3">
-    <div className="text-[#009341]">{icon}</div>
+// Helper Meta Component
+const MetaItem = ({ icon, label, value }: { icon: React.ReactNode, label: string, value: string }) => (
+  <div className="flex items-center gap-4">
+    <div className="bg-[#f8f9f1] p-3 rounded-xl text-[#009341]">
+      {icon}
+    </div>
     <div>
-      <p className="text-[9px] uppercase font-bold text-gray-400 tracking-wider leading-none mb-1">{label}</p>
-      <p className="text-sm font-medium text-[#283618]">{value}</p>
+      <p className="text-[10px] uppercase font-black text-gray-400 tracking-tighter mb-0.5">{label}</p>
+      <p className="text-sm font-bold text-[#283618]">{value}</p>
     </div>
   </div>
 );

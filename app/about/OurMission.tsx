@@ -22,7 +22,7 @@ export default function OurMission() {
         <div className="max-w-xl animate-fadeIn">
 
           {/* Main Heading */}
-          <h2 className="text-4xl md:text-5xl font-medium tracking-wider mb-10 leading-tight">
+          <h2 className="text-4xl md:text-5xl font-medium font-serif tracking-wider mb-10 leading-tight">
             Making Conscious Living Simple for Every Home
           </h2>
 

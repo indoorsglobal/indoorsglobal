@@ -141,14 +141,18 @@ const PortraitSlider = () => {
 
   return (
     // ✅ FIX 1: responsive horizontal padding
-    <div className="py-10 sm:py-16 px-4 sm:px-6 lg:px-10 bg-transparent">
+    <div className="py-10 sm:py-16 px-4 sm:px-6 lg:px-10  bg-gray-100">
 
       {/* ✅ FIX 2: responsive headline */}
       <div className="max-w-6xl mx-auto text-center mb-8 sm:mb-12">
-        <h2 className="text-2xl sm:text-3xl lg:text-5xl mb-6 font-medium tracking-tight font-serif">
-          Conscious Craft. Timeless Style.
-        </h2>
-      </div>
+  <h2 className="text-2xl sm:text-3xl lg:text-5xl mb-6 font-medium tracking-tight font-serif">
+    Conscious Craft. Timeless Style.
+  </h2>
+  <p className="max-w-2xl mx-auto text-base sm:text-lg text-gray-600 leading-relaxed">
+    Curating a collection where intentional design meets enduring elegance. 
+    Small-batch essentials for the thoughtful wardrobe.
+  </p>
+</div>
 
       {/* ✅ FIX 3: arrows use translate instead of negative px so they don't clip */}
       <div className="max-w-6xl mx-auto relative">

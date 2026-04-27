@@ -8,6 +8,8 @@ import bamboo_essentials6 from "@/public/products/Bamboo Essentials/bamboo-essen
 import bamboo_essentials7 from "@/public/products/Bamboo Essentials/bamboo-essentials7.jpeg"
 import bamboo_essentials8 from "@/public/products/Bamboo Essentials/bamboo-essentials8.jpeg"
 import bamboo_essentials9 from "@/public/products/Bamboo Essentials/bamboo-essentials9.jpeg"
+import bamboo_essentials10 from "@/public/products/Bamboo Essentials/bamboo-essentials10.jpeg"
+// Note: Ensure bamboo_essentials10 is imported if used
 import cane_baskets1 from "@/public/products/Cane Baskets/cane-baskets1.jpeg"
 import cane_baskets2 from "@/public/products/Cane Baskets/cane-baskets2.jpeg"
 import cane_baskets3 from "@/public/products/Cane Baskets/cane-baskets3.jpeg"
@@ -58,7 +60,7 @@ import kits25 from "@/public/Indoor Global Kit/bastar-artefacts7.jpeg"
 export const productsData = [
   // --- HOME AND LIVING ---
   { id: 21, name: "Canister", img: rice_husk3, category: "home-living" },
-  { id: 24, name: "Canister (Tall)", img: rice_husk6, category: "home-living" },
+  // { id: 24, name: "Canister (Tall)", img: rice_husk6, category: "home-living" },
   { id: 22, name: "Soup Bowl", img: rice_husk4, category: "home-living" },
   { id: 23, name: "Classic Mug", img: rice_husk5, category: "home-living" },
   { id: 25, name: "Snack plate", img: rice_husk7, category: "home-living" },
@@ -67,8 +69,6 @@ export const productsData = [
   { id: 29, name: "Retro Cup", img: rice_husk11, category: "home-living" },
   { id: 30, name: "Fusion Cup", img: rice_husk12, category: "home-living" },
   { id: 31, name: "Deco planter", img: rice_husk13, category: "home-living" },
-  
-  // Bastar Artifacts added to Home & Living
   { id: 50, name: "Bastar Artefact 1", img: kits19, category: "home-living" },
   { id: 51, name: "Bastar Artefact 2", img: kits20, category: "home-living" },
   { id: 52, name: "Bastar Artefact 3", img: kits21, category: "home-living" },
@@ -118,18 +118,70 @@ export const productsData = [
   { id: 104, name: "Plantable Stationery Kit1", img: kits8, category: "gifting-corporate" },
 
   // --- BULK & CUSTOM ---
-  { 
-    id: 201, 
-    name: "Customized Corporate Kit", 
-    img: kits7, 
-    category: "gifting-bulk-&-custom",
-    description: "Bulk orders with custom branding available."
-  },
+  { id: 201, name: "Customized Corporate Kit", img: kits7, category: "gifting-bulk-&-custom", description: "Bulk orders with custom branding available." },
   { id: 202, name: "Bulk Bamboo Bottles (Engraved)", img: bamboo_essentials1, category: "gifting-bulk-&-custom" },
   { id: 203, name: "Custom Stationery Bundles", img: kits8, category: "gifting-bulk-&-custom" },
   { id: 204, name: "Wholesale Cane Hamper Bags", img: cane_baskets6, category: "gifting-bulk-&-custom" },
   { id: 205, name: "Event Gifting: Toiletry Kit", img: kits1, category: "gifting-bulk-&-custom" },
   { id: 206, name: "Eco-Friendly Dinner Sets (Bulk)", img: kits12, category: "gifting-bulk-&-custom" },
   { id: 207, name: "Plantable Seed Pens/Pencils", img: kits9, category: "gifting-bulk-&-custom" },
-  { id: 208, name: "Custom Hand Towel Sets", img: kits5, category: "gifting-bulk-&-custom" }
+  { id: 208, name: "Custom Hand Towel Sets", img: kits5, category: "gifting-bulk-&-custom" },
+
+  // --- BAMBOO ESSENTIALS (New Category) ---
+  { id: 301, name: "Bamboo Bottle 450ml", img: bamboo_essentials1, category: "Bamboo Essentials" },
+  { id: 302, name: "Pocket Comb", img: bamboo_essentials2, category: "Bamboo Essentials" },
+  { id: 303, name: "Lice Comb", img: bamboo_essentials3, category: "Bamboo Essentials" },
+  { id: 304, name: "Bamboo Toothbrush", img: bamboo_essentials4, category: "Bamboo Essentials" },
+  { id: 305, name: "Bamboo Razor D", img: bamboo_essentials5, category: "Bamboo Essentials" },
+  { id: 306, name: "Beard Comb", img: bamboo_essentials6, category: "Bamboo Essentials" },
+  { id: 307, name: "Bamboo Cutlery Kit", img: bamboo_essentials7, category: "Bamboo Essentials" },
+  { id: 308, name: "Rice Husk Bottle", img: bamboo_essentials8, category: "Bamboo Essentials" },
+  { id: 309, name: "Bamboo Non-Terry Towel", img: bamboo_essentials9, category: "Bamboo Essentials" },
+  // Note: bamboo_essentials10 import needed if used
+  // { id: 310, name: "Bamboo Tongue Cleaner", img: "bamboo_essentials10", category: "Bamboo Essentials" },
+
+  // --- CANE BASKETS (New Category) ---
+  { id: 311, name: "Boat Bag", img: cane_baskets1, category: "Cane Baskets" },
+  { id: 312, name: "Storage Lid Box", img: cane_baskets2, category: "Cane Baskets" },
+  { id: 313, name: "Beach Bag", img: cane_baskets3, category: "Cane Baskets" },
+  { id: 314, name: "Shelf Basket", img: cane_baskets4, category: "Cane Baskets" },
+  { id: 315, name: "Fruit Basket", img: cane_baskets5, category: "Cane Baskets" },
+  { id: 316, name: "Hamper Bag", img: cane_baskets6, category: "Cane Baskets" },
+  { id: 317, name: "Tiffin Bag", img: cane_baskets7, category: "Cane Baskets" },
+  { id: 318, name: "Designer Jaali Bag", img: cane_baskets8, category: "Cane Baskets" },
+  { id: 319, name: "Designer Boat Bag", img: cane_baskets9, category: "Cane Baskets" },
+
+  // --- RICE HUSK (New Category) ---
+  { id: 320, name: "Riged guard Loofah", img: rice_husk1, category: "Rice Husk" },
+  { id: 321, name: "Bamboo Ear Swabs", img: rice_husk2, category: "Rice Husk" },
+  { id: 322, name: "Canister", img: rice_husk3, category: "Rice Husk" },
+  { id: 323, name: "Soup Bowl", img: rice_husk4, category: "Rice Husk" },
+  { id: 324, name: "Classic Mug", img: rice_husk5, category: "Rice Husk" },
+  { id: 325, name: "Canister (Tall)", img: rice_husk6, category: "Rice Husk" },
+  { id: 326, name: "Snack plate", img: rice_husk7, category: "Rice Husk" },
+  { id: 327, name: "Chai Cup", img: rice_husk8, category: "Rice Husk" },
+  { id: 328, name: "Dinner Set", img: rice_husk9, category: "Rice Husk" },
+  { id: 329, name: "Retro Cup", img: rice_husk11, category: "Rice Husk" },
+  { id: 330, name: "Fusion Cup", img: rice_husk12, category: "Rice Husk" },
+  { id: 331, name: "Deco planter", img: rice_husk13, category: "Rice Husk" },
+
+  // --- ECO-FRIENDLY KITS (New Category) ---
+  { id: 332, name: "Toiletry kit1", img: kits1, category: "Eco-Friendly Kits" },
+  { id: 333, name: "Toiletry kit3", img: kits2, category: "Eco-Friendly Kits" },
+  { id: 334, name: "Toiletry kit4", img: kits3, category: "Eco-Friendly Kits" },
+  { id: 335, name: "Toiletry kit2", img: kits4, category: "Eco-Friendly Kits" },
+  { id: 336, name: "Hand Towel Set1", img: kits5, category: "Eco-Friendly Kits" },
+  { id: 337, name: "Plantable Stationery kit2", img: kits6, category: "Eco-Friendly Kits" },
+  { id: 338, name: "Corporate kit1", img: kits7, category: "Eco-Friendly Kits" },
+  { id: 339, name: "Plantable Stationery kit1", img: kits8, category: "Eco-Friendly Kits" },
+  { id: 340, name: "Plantable Stationery kit3", img: kits9, category: "Eco-Friendly Kits" },
+  { id: 341, name: "Children's kit1", img: kits10, category: "Eco-Friendly Kits" },
+  { id: 342, name: "Ricehusk Dinner Set2", img: kits11, category: "Eco-Friendly Kits" },
+  { id: 343, name: "Ricehusk Dinner Set1", img: kits12, category: "Eco-Friendly Kits" },
+  { id: 344, name: "Children's kit3", img: kits13, category: "Eco-Friendly Kits" },
+  { id: 345, name: "Children's kit2", img: kits14, category: "Eco-Friendly Kits" },
+  { id: 346, name: "Hand Towel Set2", img: kits15, category: "Eco-Friendly Kits" },
+  { id: 347, name: "Hand Towel Set3", img: kits16, category: "Eco-Friendly Kits" },
+  { id: 348, name: "Hand Towel Set4", img: kits17, category: "Eco-Friendly Kits" },
+  { id: 349, name: "Hand Towel Set5", img: kits18, category: "Eco-Friendly Kits" }
 ];

@@ -3,6 +3,13 @@ import Link from "next/link";
 import logo from "@/public/navbar/logo2.png";
 import Image from "next/image";
 const Footer = () => {
+  const categoryLinks = [
+  { label: "Home & Living", path: "/categories/home-living" },
+  { label: "Personal Lifestyle", path: "/categories/personal-lifestyle" },
+  { label: "Storage & Utility", path: "/categories/storage-utility" },
+  { label: "Eco Bundle", path: "/categories/eco-bundle" },
+  { label: "Gifting", path: "/gifting/gifting-bulk-&-custom" },
+];
   return (
     <footer className="bg-white pt-16 pb-8 border-t border-gray-100 font-serif">
       <div className="max-w-7xl mx-auto px-8 grid grid-cols-1 md:grid-cols-4 gap-12 text-gray-700">
@@ -13,7 +20,7 @@ const Footer = () => {
           </h3> */}
           <ul className="space-y-3 text-[15px] leading-relaxed">
             <li className="flex flex-col gap-2">
-              <div className="w-30 h-30 max-lg:w-20 max-lg:h-20 mb-2">
+              <div className="w-34 h-20 max-lg:w-20 max-lg:h-20 mb-2">
                 <Image src={logo} alt="" />
               </div>
               Indoors Global was created to bridge the gap between sustainable
@@ -76,22 +83,16 @@ const Footer = () => {
             Categories
           </h3>
           <ul className="space-y-3 text-[15px]">
-            {[
-              "Home & Living",
-              "Personal Lifestyle",
-              "Storage & Utility",
-              "Eco Bundle",
-              "Gifting",
-            ].map((item) => (
+            {categoryLinks.map((item, index) => (
               <li
-                key={item}
+                key={index}
                 className="hover:translate-x-1 transition-transform cursor-pointer hover:text-black"
               >
                 <Link
                   // href={`categories/${item.toLowerCase().replace(" ", "-")}`}
-                  href={`/products`}
+                  href={item.path}
                 >
-                  {item}
+                  {item.label}
                 </Link>
               </li>
             ))}

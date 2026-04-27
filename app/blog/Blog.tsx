@@ -4,41 +4,23 @@ import React, { useState, useEffect, ReactNode } from 'react';
 import { 
   Calendar, 
   Search, 
-  ChevronsRight, 
   Leaf, 
   MapPin, 
   ArrowRight, 
   MessageCircle, 
   X, 
   Star, 
-  ShieldCheck, 
   Clock, 
-  Globe,
-  Share2,
-  Mail,
   User,
-  Info,
   CheckCircle2
 } from 'lucide-react';
 import Link from 'next/link';
-
-/**
- * BAMBOO WORKSHOP PORTAL
- * Colors: bg-[#009341] | hover:bg-[#7baf40]
- */
-
-const slugify = (text: string) => {
-  return text
-    .toLowerCase()
-    .trim()
-    .replace(/[^\w\s-]/g, '')
-    .replace(/[\s_-]+/g, '-')
-    .replace(/^-+|-+$/g, '');
-};
+import { WORKSHOP_CONTENT } from '@/data/blogData';
 
 // --- Interfaces ---
 interface Workshop {
   id: number;
+  slug: string;
   title: string;
   category: string;
   date: string;
@@ -56,75 +38,6 @@ interface SidebarProps {
   children: ReactNode;
 }
 
-// --- Mock Data ---
-const WORKSHOP_DATA: Workshop[] = [
-  {
-    id: 1,
-    title: "Vertical Gardening for Urban Spaces",
-    category: "Eco-Living",
-    date: "August 15, 2026",
-    time: "10:00 AM - 4:00 PM",
-    location: "Bangalore, India",
-    image: "https://images.unsplash.com/photo-1585320806297-9794b3e4eeae?auto=format&fit=crop&q=80&w=800",
-    excerpt: "Turn your small balcony into a lush green paradise with our hydro-stacking methods.",
-    isCompleted: false,
-    rating: 4.8,
-    instructor: "Dr. Arun Sharma"
-  },
-  {
-    id: 2,
-    title: "Advanced Bamboo Joinery & Structure",
-    category: "Architecture",
-    date: "September 02, 2026",
-    time: "09:00 AM - 5:00 PM",
-    location: "Guwahati, Assam",
-    image: "https://images.unsplash.com/photo-1542601906990-b4d3fb778b09?auto=format&fit=crop&q=80&w=800",
-    excerpt: "Professional level workshop on building earthquake-resistant bamboo gazebos.",
-    isCompleted: false,
-    rating: 4.9,
-    instructor: "Master Tenzing"
-  },
-  {
-    id: 3,
-    title: "Permaculture Design Course (PDC)",
-    category: "Sustainability",
-    date: "June 10, 2026",
-    time: "11:00 AM - 2:00 PM",
-    location: "Online (Global)",
-    image: "https://images.unsplash.com/photo-1500673922987-e212871fec22?auto=format&fit=crop&q=80&w=800",
-    excerpt: "A comprehensive guide to designing self-sustaining ecosystems in your backyard.",
-    isCompleted: false,
-    rating: 4.7,
-    instructor: "Sarah Jenkins"
-  },
-  {
-    id: 4,
-    title: "The Zero Waste Kitchen Journey",
-    category: "Lifestyle",
-    date: "January 20, 2026",
-    time: "Completed",
-    location: "Mumbai, India",
-    image: "https://images.unsplash.com/photo-1585320806297-9794b3e4eeae?auto=format&fit=crop&q=80&w=800",
-    excerpt: "Looking back at our successful session on composting and plastic-free storage.",
-    isCompleted: true,
-    rating: 5.0,
-    instructor: "Chef Megha"
-  },
-  {
-    id: 5,
-    title: "Solar DIY: Powering Your Workshop",
-    category: "Renewable Energy",
-    date: "February 14, 2026",
-    time: "Completed",
-    location: "Pune, India",
-    image: "https://images.unsplash.com/photo-1508514177221-188b1cf16e9d?auto=format&fit=crop&q=80&w=800",
-    excerpt: "Reviewing the technical blueprints for off-grid solar panel installations.",
-    isCompleted: true,
-    rating: 4.6,
-    instructor: "Eng. Rahul"
-  }
-];
-
 // --- Sub-Components ---
 const SidebarWrapper = ({ title, children }: SidebarProps) => (
   <div className="bg-white p-8 rounded-lg border border-[#e9edc9] mb-10 shadow-sm">
@@ -136,15 +49,16 @@ const SidebarWrapper = ({ title, children }: SidebarProps) => (
 );
 
 export default function WorkshopPortal() {
-  
   const [workshops, setWorkshops] = useState<Workshop[]>([]);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [activeWorkshop, setActiveWorkshop] = useState<Workshop | null>(null);
   const [formData, setFormData] = useState({ name: '', email: '', phone: '', message: '' });
 
   useEffect(() => {
-    // Sort logic: Upcoming workshops first (isCompleted === false)
-    const sorted = [...WORKSHOP_DATA].sort((a, b) => Number(a.isCompleted) - Number(b.isCompleted));
+    // Sorting: Upcoming first, then Completed
+    const sorted = [...WORKSHOP_CONTENT].sort((a, b) => 
+      Number(a.isCompleted) - Number(b.isCompleted)
+    );
     setWorkshops(sorted);
   }, []);
 
@@ -189,7 +103,7 @@ export default function WorkshopPortal() {
         {/* --- Header Section --- */}
         <div className="mb-20 text-center max-w-3xl mx-auto">
           <h2 className="text-[#009341] font-bold text-sm tracking-[0.3em] uppercase mb-4">Skill Development</h2>
-          <h1 className="text-5xl md:text-6xl font-serif font-bold text-[#283618] leading-tight mb-6">
+          <h1 className="text-5xl md:text-6xl font-serif font-bold leading-tight mb-6">
             Build a Sustainable Future Together
           </h1>
           <p className="text-lg text-[#a98467] italic">
@@ -202,97 +116,84 @@ export default function WorkshopPortal() {
           {/* --- Workshop List --- */}
           <main className="lg:col-span-8">
             <div className="space-y-12">
-            {workshops.map((ws) => {
-  // Title ko URL friendly banane ke liye logic
-  const slug = ws.title
-    .toLowerCase()
-    .trim()
-    .replace(/[^\w\s-]/g, '')
-    .replace(/[\s_-]+/g, '-')
-    .replace(/^-+|-+$/g, '');
+              {workshops.map((ws) => (
+                <div key={ws.id} className="group bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-500 border border-[#e9edc9]/60">
+                  <div className="grid grid-cols-1 md:grid-cols-1 h-full">
+                    {/* Image Section */}
+                    <div className="relative overflow-hidden h-64">
+                      <img 
+                        src={ws.image} 
+                        alt={ws.title} 
+                        className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-1000" 
+                      />
+                      <div className={`absolute top-4 left-4 px-3 py-1 text-[10px] font-bold uppercase tracking-widest text-white ${ws.isCompleted ? 'bg-gray-500' : 'bg-[#009341]'}`}>
+                        {ws.isCompleted ? 'Finished' : 'Upcoming'}
+                      </div>
+                    </div>
 
-  return (
-    <div key={ws.id} className="group bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-500 border border-[#e9edc9]/60">
-      <div className="grid grid-cols-1 md:grid-cols-1 h-full">
-        {/* Image Section */}
-        <div className="md:col-span-2 relative overflow-hidden h-64 md:h-full">
-          <img 
-            src={ws.image} 
-            alt={ws.title} 
-            className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-1000" 
-          />
-          <div className={`absolute top-4 left-4 px-3 py-1 text-[10px] font-bold uppercase tracking-widest text-white ${ws.isCompleted ? 'bg-gray-500' : 'bg-[#009341]'}`}>
-            {ws.isCompleted ? 'Finished' : 'Upcoming'}
-          </div>
-        </div>
+                    {/* Content Section */}
+                    <div className="p-8 flex flex-col">
+                      <div className="flex items-center gap-3 mb-4">
+                        <span className="bg-[#f8f9f1] text-[#009341] px-3 py-1 rounded-full text-[10px] font-bold uppercase border border-[#009341]/20">
+                          {ws.category}
+                        </span>
+                        <div className="flex text-yellow-500">
+                          {[...Array(5)].map((_, i) => (
+                            <Star key={i} size={12} fill={i < Math.floor(ws.rating) ? "currentColor" : "none"} stroke={i < Math.floor(ws.rating) ? "none" : "currentColor"} />
+                          ))}
+                        </div>
+                      </div>
 
-        {/* Content Section */}
-        <div className="md:col-span-3 p-8 flex flex-col justify-center">
-          <div className="flex items-center gap-3 mb-4">
-            <span className="bg-[#f8f9f1] text-[#009341] px-3 py-1 rounded-full text-[10px] font-bold uppercase border border-[#009341]/20">
-              {ws.category}
-            </span>
-            <div className="flex text-yellow-500">
-              {[...Array(5)].map((_, i) => (
-                <Star key={i} size={12} fill={i < Math.floor(ws.rating) ? "currentColor" : "none"} />
+                      <h3 className="text-2xl font-serif font-bold text-[#283618] mb-3 group-hover:text-[#009341] transition-colors leading-tight">
+                        {ws.isCompleted ? (
+                          <Link href={`/blog/${ws.slug}`}>
+                            {ws.title}
+                          </Link>
+                        ) : (
+                          <span>{ws.title}</span>
+                        )}
+                      </h3>
+
+                      <div className="grid grid-cols-2 gap-y-2 mb-6">
+                        <div className="flex items-center gap-2 text-xs text-[#a98467] font-medium">
+                          <Calendar size={14} className="text-[#009341]" /> {ws.date}
+                        </div>
+                        <div className="flex items-center gap-2 text-xs text-[#a98467] font-medium">
+                          <MapPin size={14} className="text-[#009341]" /> {ws.location}
+                        </div>
+                        <div className="flex items-center gap-2 text-xs text-[#a98467] font-medium">
+                          <Clock size={14} className="text-[#009341]" /> {ws.time}
+                        </div>
+                        <div className="flex items-center gap-2 text-xs text-[#a98467] font-medium">
+                          <User size={14} className="text-[#009341]" /> {ws.instructor}
+                        </div>
+                      </div>
+
+                      <p className="text-sm text-[#6c757d] mb-8 leading-relaxed">
+                        {ws.excerpt}
+                      </p>
+
+                      <div className="mt-auto pt-6 border-t border-[#f8f9f1]">
+                        {ws.isCompleted ? (
+                          <Link 
+                            href={`/blog/${ws.slug}`} 
+                            className="flex items-center gap-2 text-[#009341] font-bold text-xs uppercase tracking-widest hover:translate-x-2 transition-transform"
+                          >
+                            Read Full Summary <ArrowRight size={18} />
+                          </Link>
+                        ) : (
+                          <button 
+                            onClick={() => openEnquiry(ws)}
+                            className="w-full md:w-auto bg-[#009341] hover:bg-[#7baf40] text-white px-8 py-3 rounded-lg font-bold text-xs uppercase tracking-[0.15em] shadow-lg transition-all active:scale-95 flex items-center justify-center gap-2"
+                          >
+                            <MessageCircle size={18} /> Enquiry Now
+                          </button>
+                        )}
+                      </div>
+                    </div>
+                  </div>
+                </div>
               ))}
-            </div>
-          </div>
-
-          {/* Title: Link only if completed */}
-          <h3 className="text-2xl font-serif font-bold text-[#283618] mb-3 group-hover:text-[#009341] transition-colors leading-tight">
-            {ws.isCompleted ? (
-              <Link href={`/blog/${slug}`}>
-                {ws.title}
-              </Link>
-            ) : (
-              <span className="cursor-default">{ws.title}</span>
-            )}
-          </h3>
-
-          {/* Meta Info */}
-          <div className="grid grid-cols-2 gap-y-2 mb-6">
-            <div className="flex items-center gap-2 text-xs text-[#a98467] font-medium">
-              <Calendar size={14} className="text-[#009341]" /> {ws.date}
-            </div>
-            <div className="flex items-center gap-2 text-xs text-[#a98467] font-medium">
-              <MapPin size={14} className="text-[#009341]" /> {ws.location}
-            </div>
-            <div className="flex items-center gap-2 text-xs text-[#a98467] font-medium">
-              <Clock size={14} className="text-[#009341]" /> {ws.time}
-            </div>
-            <div className="flex items-center gap-2 text-xs text-[#a98467] font-medium">
-              <User size={14} className="text-[#009341]" /> {ws.instructor}
-            </div>
-          </div>
-
-          <p className="text-sm text-[#6c757d] mb-8 leading-relaxed">
-            {ws.excerpt}
-          </p>
-
-          {/* Bottom Action: Dynamic Button/Link */}
-          <div className="mt-auto pt-6 border-t border-[#f8f9f1]">
-            {ws.isCompleted ? (
-              <Link 
-                href={`/blog/${slug}`} 
-                className="flex items-center gap-2 text-[#009341] font-bold text-xs uppercase tracking-widest hover:translate-x-2 transition-transform"
-              >
-                Read Full Summary <ArrowRight size={18} />
-              </Link>
-            ) : (
-              <button 
-                onClick={() => openEnquiry(ws)}
-                className="w-full md:w-auto bg-[#009341] hover:bg-[#7baf40] text-white px-8 py-3 rounded-lg font-bold text-xs uppercase tracking-[0.15em] shadow-lg transition-all active:scale-95 flex items-center justify-center gap-2"
-              >
-                <MessageCircle size={18} /> Enquiry Now
-              </button>
-            )}
-          </div>
-        </div>
-      </div>
-    </div>
-  );
-})}
             </div>
           </main>
 
@@ -320,24 +221,10 @@ export default function WorkshopPortal() {
                 </div>
               </SidebarWrapper>
 
-              {/* <SidebarWrapper title="Trust & Safety">
-                <div className="space-y-4">
-                  <div className="flex items-start gap-3">
-                    <CheckCircle2 size={18} className="text-[#009341] mt-0.5" />
-                    <p className="text-xs text-[#6c757d]">Verified International Instructors</p>
-                  </div>
-                  <div className="flex items-start gap-3">
-                    <CheckCircle2 size={18} className="text-[#009341] mt-0.5" />
-                    <p className="text-xs text-[#6c757d]">Government Recognized Certification</p>
-                  </div>
-                </div>
-              </SidebarWrapper> */}
-
-                {/* Quote Widget */}
-            <div className="bg-[#009341] p-8 text-center text-[#f8f9f1]">
-                <p className="italic font-serif text-lg mb-4">The Sustainable products bend stronger than the oak that resists.</p>
-                <div className="text-[10px] tracking-[0.2em] font-bold uppercase">— indoors Global</div>
-            </div>
+              <div className="bg-[#009341] p-8 text-center text-[#f8f9f1] rounded-2xl">
+                <p className="italic font-serif text-lg mb-4">"Sustainable products bend stronger than the oak that resists."</p>
+                <div className="text-[10px] tracking-[0.2em] font-bold uppercase">— Indoors Global</div>
+              </div>
             </div>
           </aside>
         </div>
@@ -360,7 +247,7 @@ export default function WorkshopPortal() {
               <p className="text-sm text-[#a98467] mb-8">Please fill in your details and our coordinator will reach out to you within 24 hours.</p>
               
               <form onSubmit={handleFormSubmit} className="space-y-4">
-                <div className="grid grid-cols-2 gap-4">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                   <input required type="text" placeholder="Full Name" className="w-full border-b border-gray-200 py-3 text-sm outline-none focus:border-[#009341] transition-colors" value={formData.name} onChange={(e) => setFormData({...formData, name: e.target.value})} />
                   <input required type="email" placeholder="Email Address" className="w-full border-b border-gray-200 py-3 text-sm outline-none focus:border-[#009341] transition-colors" value={formData.email} onChange={(e) => setFormData({...formData, email: e.target.value})} />
                 </div>
@@ -374,8 +261,6 @@ export default function WorkshopPortal() {
           </div>
         </div>
       )}
-
-
     </div>
   );
 }

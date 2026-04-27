@@ -35,10 +35,10 @@ const Category = () => {
   };
 
   return (
-    <section className="max-w-7xl mx-auto px-4 md:px-6 py-12 font-serif relative">
+    <section className="max-w-7xl mx-auto px-4 md:px-6 py-12  relative">
       <div className="flex justify-between items-end mb-8">
         <div>
-          <h2 className="text-3xl text-gray-800 font-medium max-sm:text-2xl">
+          <h2 className="text-3xl text-gray-800 font-serif font-medium max-sm:text-2xl">
             Shop By Category
           </h2>
           <p className="text-gray-500 text-sm mt-1">Explore our sustainable collections</p>
@@ -84,7 +84,7 @@ const Category = () => {
             </div>
 
             <div className="space-y-1">
-              <h3 className="text-lg font-semibold text-gray-900 group-hover:text-green-700 transition-colors">
+              <h3 className="text-lg font-serif font-semibold text-gray-900 group-hover:text-green-700 transition-colors">
                 {category.name}
               </h3>
               <p className="text-sm text-gray-500 line-clamp-1">

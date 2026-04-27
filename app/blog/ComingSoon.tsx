@@ -97,7 +97,7 @@ export default function ComingSoon() {
             <span className="text-[#009341] font-bold text-[10px] uppercase tracking-widest">Coming Soon</span>
           </div>
           <h1 className="text-5xl md:text-6xl font-serif font-bold text-[#283618] leading-tight mb-6">
-            Our Learning Portal is <span className="text-[#009341]">Growing.</span>
+            Our Learning Portal is <span className="">Growing.</span>
           </h1>
           <p className="text-lg text-[#a98467] italic">
             We are curating world-class workshops on sustainability, bamboo architecture, and eco-living. 

@@ -42,7 +42,7 @@ const Features = () => {
               Bamboo Essentials 
             </h2>
             <Link href={"/products"} className="bg-[#009341] text-white px-8 py-3 uppercase tracking-widest text-xs font-sans font-bold hover:bg-[#7cb140] transition-colors">
-              Shop Now
+              See More
             </Link>
           </div>
         </div>
@@ -68,7 +68,7 @@ const Features = () => {
                 Rice Husk
               </h3>
               <Link href={"/products"} className="bg-[#009341] text-white px-8 py-3 uppercase tracking-widest text-xs font-sans font-bold hover:bg-[#7cb140] transition-colors">
-              Shop Now
+              See More
             </Link>
             </div>
           </div>
@@ -92,7 +92,7 @@ const Features = () => {
                 Cane Baskets
               </h3>
                <Link href={"/products"} className="bg-[#009341] text-white px-8 py-3 uppercase tracking-widest text-xs font-sans font-bold hover:bg-[#7cb140] transition-colors">
-              Shop Now
+              See More
             </Link>
             </div>
           </div>

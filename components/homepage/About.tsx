@@ -40,10 +40,10 @@ const About = () => {
 
           <div className="flex flex-wrap gap-4">
             <Link
-              href={"/"}
+              href={"/products"}
               className="bg-[#5D4037] hover:bg-[#8e8e7e] text-white px-10 py-3 text-sm tracking-widest uppercase font-sans transition-colors"
             >
-              Shop
+              See More
             </Link>
             <Link
               href={"/about"}
