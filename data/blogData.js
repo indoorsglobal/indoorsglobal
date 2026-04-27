@@ -111,20 +111,20 @@ export const WORKSHOP_CONTENT = [
         ],
       },
       {
-  content: (
-    <div className="pt-10">
-      Join our Community on WhatsApp{" "}
-      <a 
-        href="https://chat.whatsapp.com/BXUKCKqTGCGIQG3Y2vPgXt?mode=gi_t" 
-        target="_blank" 
-        rel="noopener noreferrer"
-        className="text-green-600 underline font-bold"
-      >
-        Click here to join
-      </a>
-    </div>
-  ),
-},
+        content: (
+          <div className="pt-10">
+            Join our Community on WhatsApp{" "}
+            <a
+              href="https://chat.whatsapp.com/BXUKCKqTGCGIQG3Y2vPgXt?mode=gi_t"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-green-600 underline font-bold"
+            >
+              https://chat.whatsapp.com/BXUKCKqTGCGIQG3Y2vPgXt?mode=gi_t
+            </a>
+          </div>
+        ),
+      },
     ],
     closing:
       "Because change doesn’t start big — it starts with awareness, and sometimes, with a handful of soil. Have an idea? Let’s create something meaningful together. 🌿",
