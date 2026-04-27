@@ -31,7 +31,7 @@ interface Workshop {
   time: string;
   location: string;
   // Update this line to allow both URL strings and imported Image objects
-  image: string | StaticImageData; 
+  image: string | StaticImageData;
   excerpt: string;
   isCompleted: boolean;
   rating: number;
@@ -253,7 +253,27 @@ export default function WorkshopPortal() {
                   ))}
                 </div>
               </SidebarWrapper>
+            <div className="bg-white p-8 rounded-2xl mb-10 shadow-md border border-gray-100 max-w-md">
+  <div className="flex flex-col items-center text-center mb-6">
+    {/* Simple WhatsApp-style Icon Circle */}
+  
+    <h3 className="text-xl font-bold text-gray-900 mb-2">Get Workshop Updates</h3>
+   <p className="text-stone-600 text-sm leading-relaxed">
+        Get instant notifications for our upcoming <strong>composting workshops</strong>, community impact reports.
+      </p>
+  </div>
 
+  <a
+    href="https://chat.whatsapp.com/BXUKCKqTGCGIQG3Y2vPgXt?mode=gi_t"
+    target="_blank"
+    rel="noopener noreferrer"
+    className="block w-full text-center bg-[#008542] hover:bg-[#006b35] hover:shadow-lg text-white font-bold py-4 rounded-xl transition-all active:scale-[0.98]"
+  >
+    Join WhatsApp Group
+  </a>
+  
+
+</div>
               <div className="bg-[#009341] p-8 text-center text-[#f8f9f1] rounded-2xl">
                 <p className="italic font-serif text-lg mb-4">
                   "Sustainable products bend stronger than the oak that
