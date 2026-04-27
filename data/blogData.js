@@ -10,12 +10,12 @@ export const WORKSHOP_CONTENT = [
     subtitle: "",
     image: blog1,
     category: "Kids Activity",
-    date: "April 25, 2026",
+    date: "March 18, 2026",
     time: "11:00 AM - 12:30 PM",
     location: "Community Garden",
     instructor: "Pre-School Collab",
     rating: 4.8,
-    isCompleted: true,
+    isCompleted: false,
     excerpt:
       "At Indoors Global, we believe the best habits start early — and what better way than learning by doing?",
     intro:
