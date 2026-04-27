@@ -1,6 +1,6 @@
 // data/blogData.js
 import blog1 from "@/public/blog/blog1.jpeg";
-import blog2 from "@/public/blog/logo2.png";
+import blog2 from "@/public/blog/blog2.jpeg";
 
 export const WORKSHOP_CONTENT = [
   {
