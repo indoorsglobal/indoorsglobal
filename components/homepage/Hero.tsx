@@ -7,6 +7,7 @@ import { MoveLeft, MoveRight, ArrowRight } from "lucide-react";
 import Image from "next/image";
 import hero1 from "@/public/homepage/hero42.png";
 import hero2 from "@/public/homepage/hero41.png";
+import Link from "next/link";
 
 const SLIDES = [
   {
@@ -15,7 +16,7 @@ const SLIDES = [
     title: "Best Modern Bamboo Collection",
     description: "Discover the perfect blend of contemporary design and timeless craftsmanship for your living space.",
     image: hero1,
-    buttonText: "SHOP NOW",
+    buttonText: "SEE MORE",
   },
   {
     id: 2,
@@ -23,7 +24,7 @@ const SLIDES = [
     title: "Conscious Living, Beautifully Crafted",
     description: "From bamboo hydration to artisanal dinnerware, bring home ethically sourced pieces designed for a modern, eco-conscious home.",
     image: hero2,
-    buttonText: "HOME & LIVING ESSENTIALS",
+    buttonText: "SEE MORE",
   },
 ];
 
@@ -83,10 +84,10 @@ export default function Hero1() {
                     </p>
                     
                     <div className="flex justify-start">
-                      <button className="flex items-center gap-3 md:gap-4 bg-[#009341] hover:bg-[#1a261f] text-white px-6 py-3 md:px-8 md:py-4 text-[10px] md:text-xs uppercase tracking-[0.2em] transition-all duration-300 rounded-sm group shadow-xl">
+                      <Link href={"/products"} className="flex items-center gap-3 md:gap-4 bg-[#009341] hover:bg-[#1a261f] text-white px-6 py-3 md:px-8 md:py-4 text-[10px] md:text-xs uppercase tracking-[0.2em] transition-all duration-300 rounded-sm group shadow-xl">
                         {slide.buttonText}
                         <ArrowRight size={16} className="group-hover:translate-x-1 transition-transform" />
-                      </button>
+                      </Link>
                     </div>
                   </div>
                 </div>
