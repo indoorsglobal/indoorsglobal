@@ -2,35 +2,8 @@
 import React, { useRef } from 'react';
 import Image from 'next/image';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
-import blog1 from "@/public/homepage/blog1.jpg"
-
-const blogPosts = [
-  {
-    title: "Eco-Conscious Gifting Ideas for Sustainable Living",
-    image: blog1, 
-    link: "#"
-  },
-  {
-    title: "Eco-Friendly Decor Ideas: Celebrate Sustainably",
-    image: blog1,
-    link: "#"
-  },
-  {
-    title: "Minimalist Craft: Transforming Utilities into Art",
-    image: blog1,
-    link: "#"
-  },
-  {
-    title: "Handmade & Green: The Future of Interior Utilities",
-    image: blog1,
-    link: "#"
-  },
-  {
-    title: "Styling Your Home with Sustainable Decor Essentials",
-    image: blog1,
-    link: "#"
-  }
-];
+import Link from 'next/link'; // Use Next.js Link for better performance
+import { WORKSHOP_CONTENT } from "@/data/blogData"; // Importing your actual data
 
 const Blog = () => {
   const scrollRef = useRef<HTMLDivElement>(null);
@@ -62,12 +35,14 @@ const Blog = () => {
           <button 
             onClick={() => scroll('left')}
             className="p-3 rounded-full border border-gray-200 text-gray-400 hover:bg-gray-50 transition-all active:scale-90"
+            aria-label="Scroll Left"
           >
             <ChevronLeft size={24} strokeWidth={1.5} />
           </button>
           <button 
             onClick={() => scroll('right')}
             className="p-3 rounded-full border border-gray-200 text-gray-400 hover:bg-gray-50 transition-all active:scale-90"
+            aria-label="Scroll Right"
           >
             <ChevronRight size={24} strokeWidth={1.5} />
           </button>
@@ -80,31 +55,36 @@ const Blog = () => {
         className="flex gap-6 overflow-x-auto no-scrollbar scroll-smooth snap-x pb-4"
         style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
       >
-        {blogPosts.map((post, index) => (
+        {WORKSHOP_CONTENT.map((post) => (
           <div 
-            key={index} 
+            key={post.id} 
             className="flex-shrink-0 w-[300px] md:w-[350px] snap-start group cursor-pointer"
           >
-            {/* Image Container with Rounded Corners */}
-            <div className="relative aspect-[4/3] mb-6 overflow-hidden rounded-[2rem] bg-gray-100">
-              <Image
-                src={post.image}
-                alt={post.title}
-                fill
-                className="object-cover group-hover:scale-105 transition-transform duration-700 ease-out"
-              />
-            </div>
-            
-            {/* Blog Metadata */}
-            <h3 className="text-xl text-gray-800 leading-snug mb-4 line-clamp-2 hover:text-[#a3a895] transition-colors">
-              {post.title}
-            </h3>
-            <a 
-              href={post.link} 
-              className="text-sm font-sans font-bold uppercase tracking-widest  border-b border-[#009341] hover:border-[#7cb140] pb-1 text-[#009341] hover:text-[#7cb140] transition-all"
-            >
-              Read more
-            </a>
+            <Link href={`/blog/${post.slug}`}>
+              {/* Image Container */}
+              <div className="relative aspect-[4/3] mb-6 overflow-hidden rounded-[2rem] bg-gray-100">
+                <Image
+                  src={post.image}
+                  alt={post.title}
+                  fill
+                  className="object-cover group-hover:scale-105 transition-transform duration-700 ease-out"
+                />
+                {/* Category Tag */}
+                <div className="absolute top-4 left-6 bg-white/90 backdrop-blur-sm px-4 py-1 rounded-full text-xs font-sans font-bold text-gray-700">
+                  {post.category}
+                </div>
+              </div>
+              
+              {/* Blog Metadata */}
+              <p className="text-sm font-sans text-gray-400 mb-2">{post.date}</p>
+              <h3 className="text-xl text-gray-800 leading-snug mb-4 line-clamp-2 group-hover:text-[#009341] transition-colors">
+                {post.title}
+              </h3>
+              
+              <span className="text-sm font-sans font-bold uppercase tracking-widest border-b pb-1  transition-all">
+                Read more
+              </span>
+            </Link>
           </div>
         ))}
       </div>
