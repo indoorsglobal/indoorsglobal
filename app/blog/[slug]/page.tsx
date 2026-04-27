@@ -76,31 +76,32 @@ export default function WorkshopDetail() {
                 {post.intro}
               </p>
 
-              {post.sections.map((section, index) => (
-                <div key={index} className="mb-12">
-                  <div className="flex items-center gap-4 mb-6">
-                    <div className="h-[2px] w-8 bg-[#009341]"></div>
-                    <h3 className="text-2xl font-serif font-bold text-[#283618] uppercase tracking-tight">
-                      {section.heading}
-                    </h3>
-                  </div>
-                  
-                  {section.content && (
-                    <p className="text-[#6c757d] leading-relaxed mb-6">{section.content}</p>
-                  )}
+            {post.sections.map((section: any, index: number) => (
+  <div key={index} className="mb-12">
+    <div className="flex items-center gap-4 mb-6">
+      <div className="h-[2px] w-8 bg-[#009341]"></div>
+      <h3 className="text-2xl font-serif font-bold text-[#283618] uppercase tracking-tight">
+        {section.heading}
+      </h3>
+    </div>
+    
+    {section.content && (
+      <p className="text-[#6c757d] leading-relaxed mb-6">{section.content}</p>
+    )}
 
-                  {section.points && (
-                    <div className="grid grid-cols-1 gap-4">
-                      {section.points.map((point, pIdx) => (
-                        <div key={pIdx} className="flex items-start gap-4 bg-white p-5 rounded-2xl border border-[#e9edc9]/50 shadow-sm">
-                          <CheckCircle2 className="text-[#009341] mt-1 flex-shrink-0" size={20} />
-                          <span className="text-[#283618] font-medium">{point}</span>
-                        </div>
-                      ))}
-                    </div>
-                  )}
-                </div>
-              ))}
+    {/* Use optional chaining and ensure points is an array before mapping */}
+    {section.points && Array.isArray(section.points) && (
+      <div className="grid grid-cols-1 gap-4">
+        {section.points.map((point: string, pIdx: number) => (
+          <div key={pIdx} className="flex items-start gap-4 bg-white p-5 rounded-2xl border border-[#e9edc9]/50 shadow-sm">
+            <CheckCircle2 className="text-[#009341] mt-1 flex-shrink-0" size={20} />
+            <span className="text-[#283618] font-medium">{point}</span>
+          </div>
+        ))}
+      </div>
+    )}
+  </div>
+))}
 
               {/* Closing Card */}
               <div className="bg-[#009341] p-10 rounded-[2.5rem] text-center text-white mt-16 shadow-xl relative overflow-hidden">
