@@ -10,6 +10,13 @@ const Footer = () => {
   { label: "Eco Bundle", path: "/categories/eco-bundle" },
   { label: "Gifting", path: "/gifting/gifting-bulk-&-custom" },
 ];
+const navLinks = [
+  { name: "Home", href: "/" },
+  { name: "About", href: "/about" },
+  { name: "Products", href: "/products" },
+  { name: "Workshop", href: "/blog" }, // Workshop ka link yahan handle ho gaya
+  { name: "Contact", href: "/contact" },
+];
   return (
     <footer className="bg-white pt-16 pb-8 border-t border-gray-100 font-serif">
       <div className="max-w-7xl mx-auto px-8 grid grid-cols-1 md:grid-cols-4 gap-12 text-gray-700">
@@ -59,22 +66,18 @@ const Footer = () => {
           <h3 className="text-xl font-medium mb-6 text-black tracking-tight">
             Quick Links
           </h3>
-          <ul className="space-y-3 text-[15px]">
-            {["Home", "About", "Products", "Workshop", "Contact"].map((item) => (
-              <li
-                key={item}
-                className="hover:translate-x-1 transition-transform cursor-pointer hover:text-black"
-              >
-                <Link
-                  href={
-                    item === "Workshop" ? "/blog" : `/${item.toLowerCase()}`
-                  }
-                >
-                  {item}
-                </Link>
-              </li>
-            ))}
-          </ul>
+        <ul className="space-y-3 text-[15px]">
+  {navLinks.map((link) => (
+    <li
+      key={link.name}
+      className="hover:translate-x-1 transition-transform cursor-pointer hover:text-black"
+    >
+      <Link href={link.href}>
+        {link.name}
+      </Link>
+    </li>
+  ))}
+</ul>
         </div>
 
         {/* Your Account */}
