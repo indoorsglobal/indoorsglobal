@@ -1,12 +1,9 @@
 "use client";
 
-import React, { useRef, useState } from "react";
-import Slider from "react-slick";
+import React, { useCallback, useEffect, useRef, useState } from "react";
+import useEmblaCarousel from "embla-carousel-react";
 import { motion, AnimatePresence } from "framer-motion";
 import logo from "@/public/navbar/logo.png";
-
-import "slick-carousel/slick/slick.css";
-import "slick-carousel/slick/slick-theme.css";
 import Image from "next/image";
 
 const VideoCard = ({
@@ -19,12 +16,12 @@ const VideoCard = ({
   const [isLoading, setIsLoading] = useState(true);
 
   return (
-    // ✅ FIX 7: tighter horizontal padding on mobile
-    <div className="px-1.5 sm:px-3 outline-none">
+    <div className="pl-3 sm:pl-4 flex-none w-[72vw] sm:w-[42vw] md:w-[32vw] lg:w-[24vw] xl:w-[20vw]">
       <div
         className="relative aspect-[9/16] rounded-2xl sm:rounded-3xl overflow-hidden cursor-pointer group border border-white/10"
         onClick={() => onSelect(video)}
       >
+        {/* Loading skeleton */}
         <div
           className={`absolute inset-0 flex items-center justify-center z-0 bg-neutral-100 ${
             isLoading ? "block" : "hidden"
@@ -49,6 +46,7 @@ const VideoCard = ({
           </div>
         </div>
 
+        {/* Video */}
         <video
           className="absolute inset-0 w-full h-full object-cover z-10"
           muted
@@ -59,9 +57,13 @@ const VideoCard = ({
           <source src={video.url} type="video/mp4" />
         </video>
 
+        {/* Play button overlay */}
         <div className="absolute inset-0 flex items-center justify-center z-20 pointer-events-none">
           <div className="bg-white/90 text-black p-3 sm:p-4 rounded-full scale-90 group-hover:scale-110 transition-transform shadow-xl">
-            <svg className="w-5 h-5 sm:w-6 sm:h-6 fill-current" viewBox="0 0 24 24">
+            <svg
+              className="w-5 h-5 sm:w-6 sm:h-6 fill-current"
+              viewBox="0 0 24 24"
+            >
               <path d="M8 5v14l11-7z" />
             </svg>
           </div>
@@ -72,21 +74,44 @@ const VideoCard = ({
 };
 
 const PortraitSlider = () => {
-  const sliderRef = useRef<Slider>(null);
+  const [emblaRef, emblaApi] = useEmblaCarousel({
+    align: "start",
+    containScroll: "trimSnaps",
+    dragFree: true,
+  });
+
+  const [prevBtnEnabled, setPrevBtnEnabled] = useState(false);
+  const [nextBtnEnabled, setNextBtnEnabled] = useState(true);
   const [selectedVideo, setSelectedVideo] = useState<any>(null);
 
+  const scrollPrev = useCallback(() => emblaApi?.scrollPrev(), [emblaApi]);
+  const scrollNext = useCallback(() => emblaApi?.scrollNext(), [emblaApi]);
+
+  const onSelect = useCallback(() => {
+    if (!emblaApi) return;
+    setPrevBtnEnabled(emblaApi.canScrollPrev());
+    setNextBtnEnabled(emblaApi.canScrollNext());
+  }, [emblaApi]);
+
+  useEffect(() => {
+    if (!emblaApi) return;
+    onSelect();
+    emblaApi.on("select", onSelect);
+    emblaApi.on("reInit", onSelect);
+  }, [emblaApi, onSelect]);
+
   const cdnVideos = [
-     {
+    {
       id: 1,
       url: "https://res.cloudinary.com/dohvllowg/video/upload/q_auto/f_auto/v1776664330/InShot_20250912_135744159_hcnaws.mp4",
       title: "New Trends",
     },
-       {
+    {
       id: 2,
       url: "https://res.cloudinary.com/dohvllowg/video/upload/q_auto/f_auto/v1776664263/FINAL_REEL_INDOORS_GLOBAL_sfltqi.mp4",
       title: "Indoors Global",
     },
-      {
+    {
       id: 3,
       url: "https://res.cloudinary.com/dohvllowg/video/upload/q_auto/f_auto/v1776664288/Indoors_global_video_hgp9uu.mp4",
       title: "Modern Design",
@@ -111,74 +136,69 @@ const PortraitSlider = () => {
       url: "https://res.cloudinary.com/dohvllowg/video/upload/q_auto/f_auto/v1776664257/Indoors_global_hpijmt.mp4",
       title: "Highlight Reel",
     },
- 
- 
     {
       id: 8,
       url: "https://res.cloudinary.com/dohvllowg/video/upload/q_auto/f_auto/v1776664292/Bamboo_Flask-indoors_global_raipur-14.10.24_hdewmt.mp4",
       title: "Bamboo Collection",
     },
-   
   ];
 
-  const settings = {
-    dots: false,
-    infinite: false,
-    speed: 500,
-    slidesToShow: 4.5,
-    slidesToScroll: 1,
-    arrows: false,
-    swipeToSlide: true, // ✅ FIX: smoother touch swipe
-    responsive: [
-      { breakpoint: 1280, settings: { slidesToShow: 3.5 } },
-      { breakpoint: 1024, settings: { slidesToShow: 2.5 } },
-      { breakpoint: 640,  settings: { slidesToShow: 1.5 } }, 
-      { breakpoint: 400,  settings: { slidesToShow: 1.2 } }, 
-    ],
-  };
-
   return (
-    // ✅ FIX 1: responsive horizontal padding
-    <div className="py-10 sm:py-16 px-4 sm:px-6 lg:px-10  bg-gray-100">
+    <div className="py-10 sm:py-16 bg-gray-100 overflow-hidden">
+      {/* Header */}
+      <div className="max-w-6xl mx-auto text-center mb-8 sm:mb-12 px-4 sm:px-6 lg:px-10">
+        <h2 className="text-2xl sm:text-3xl lg:text-5xl mb-6 font-medium tracking-tight font-serif">
+          Conscious Craft. Timeless Style.
+        </h2>
+        <p className="max-w-2xl mx-auto text-base sm:text-lg text-gray-600 leading-relaxed">
+          Curating a collection where intentional design meets enduring
+          elegance. Small-batch essentials for the thoughtful wardrobe.
+        </p>
+      </div>
 
-      {/* ✅ FIX 2: responsive headline */}
-      <div className="max-w-6xl mx-auto text-center mb-8 sm:mb-12">
-  <h2 className="text-2xl sm:text-3xl lg:text-5xl mb-6 font-medium tracking-tight font-serif">
-    Conscious Craft. Timeless Style.
-  </h2>
-  <p className="max-w-2xl mx-auto text-base sm:text-lg text-gray-600 leading-relaxed">
-    Curating a collection where intentional design meets enduring elegance. 
-    Small-batch essentials for the thoughtful wardrobe.
-  </p>
-</div>
-
-      {/* ✅ FIX 3: arrows use translate instead of negative px so they don't clip */}
-      <div className="max-w-6xl mx-auto relative">
+      {/* Carousel wrapper */}
+      <div className="relative">
+        {/* Prev button — desktop only */}
         <button
-          onClick={() => sliderRef.current?.slickPrev()}
-          className="absolute left-0 -translate-x-full top-1/2 -translate-y-1/2 z-10 text-gray-400 hover:text-black transition-all hidden md:block"
+          onClick={scrollPrev}
+          disabled={!prevBtnEnabled}
+          className="hidden md:flex absolute left-4 lg:left-8 top-1/2 -translate-y-1/2 z-10
+            items-center justify-center w-10 h-10 rounded-full bg-white shadow-md
+            text-gray-400 hover:text-black disabled:opacity-30 transition-all"
         >
-          <svg className="w-10 h-10" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M15 19l-7-7 7-7" />
           </svg>
         </button>
+
+        {/* Next button — desktop only */}
         <button
-          onClick={() => sliderRef.current?.slickNext()}
-          className="absolute right-0 translate-x-full top-1/2 -translate-y-1/2 z-10 text-gray-400 hover:text-black transition-all hidden md:block"
+          onClick={scrollNext}
+          disabled={!nextBtnEnabled}
+          className="hidden md:flex absolute right-4 lg:right-8 top-1/2 -translate-y-1/2 z-10
+            items-center justify-center w-10 h-10 rounded-full bg-white shadow-md
+            text-gray-400 hover:text-black disabled:opacity-30 transition-all"
         >
-          <svg className="w-10 h-10" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 5l7 7-7 7" />
           </svg>
         </button>
 
-        <Slider ref={sliderRef} {...settings}>
-          {cdnVideos.map((video) => (
-            <VideoCard key={video.id} video={video} onSelect={setSelectedVideo} />
-          ))}
-        </Slider>
+        {/* Embla viewport */}
+        <div ref={emblaRef} className="overflow-hidden">
+          <div className="flex pl-4 sm:pl-6 lg:pl-10 pr-4">
+            {cdnVideos.map((video) => (
+              <VideoCard
+                key={video.id}
+                video={video}
+                onSelect={setSelectedVideo}
+              />
+            ))}
+          </div>
+        </div>
       </div>
 
-      {/* ✅ FIX 5 & 6: modal fully responsive with close button inside */}
+      {/* Video Modal */}
       <AnimatePresence>
         {selectedVideo && (
           <motion.div
@@ -195,7 +215,6 @@ const PortraitSlider = () => {
               className="relative flex flex-col max-h-[90vh] max-w-[95vw] w-auto"
               onClick={(e) => e.stopPropagation()}
             >
-              {/* ✅ FIX 6: close button inside modal, always reachable */}
               <button
                 onClick={() => setSelectedVideo(null)}
                 className="self-end mb-2 text-white bg-white/10 p-2 rounded-full hover:bg-white/20 transition"
