@@ -26,7 +26,7 @@ const Navbar1 = () => {
   const [activeDropdown, setActiveDropdown] = useState<string | null>(null);
   const [searchOpen, setSearchOpen] = useState(false);
   const [searchQuery, setSearchQuery] = useState("");
-  
+
   // 2. Fix: Define the ref type as HTMLInputElement
   const searchInputRef = useRef<HTMLInputElement>(null);
   const router = useRouter();
@@ -44,7 +44,10 @@ const Navbar1 = () => {
         { name: "HAND TOWEL SET", href: "/categories/towel-kit" },
         { name: "CORPORATE KIT", href: "/categories/corporate-kit" },
         { name: "RICE HUSK DINNER SET", href: "/categories/dinner-set" },
-        { name: "PLANTABLE STATIONERY KIT", href: "/categories/stationery-kit" },
+        {
+          name: "PLANTABLE STATIONERY KIT",
+          href: "/categories/stationery-kit",
+        },
       ],
     },
     {
@@ -90,11 +93,19 @@ const Navbar1 = () => {
     <>
       <nav className="fixed top-0 left-0 w-full z-50 bg-white border-b border-gray-200">
         <div className="max-w-[1440px] mx-auto flex items-center justify-between px-4 md:px-8">
-
           {/* Logo */}
-          <NextLink href={"/"} className="flex items-center flex-col gap-2 shrink-0">
-            <div className="w-12 h-12 md:w-32 md:h-24 relative">
-              <Image src={logo} alt="Logo" fill className="object-contain" priority />
+          <NextLink
+            href={"/"}
+            className="flex items-center flex-col gap-2 shrink-0"
+          >
+            <div className="w-20 h-20 md:w-32 md:h-24 relative">
+              <Image
+                src={logo}
+                alt="Logo"
+                fill
+                className="object-contain"
+                priority
+              />
             </div>
             {/* <p className="text-[10px] md:text-xs text-gray-500 font-light mt-[-4px]">simply, purely, green</p> */}
           </NextLink>
@@ -135,9 +146,13 @@ const Navbar1 = () => {
 
           {/* Right Actions */}
           <div className="flex items-center gap-2 md:gap-4">
-            <AnimatedButton/>
-           <NextLink
-              href={"https://wa.me/6268223779?text=Hello! I'm interested in your sustainable products."}
+            <div className="max-lg:hidden">
+              <AnimatedButton />
+            </div>
+            <NextLink
+              href={
+                "https://wa.me/6268223779?text=Hello! I'm interested in your sustainable products."
+              }
               className="text-[#009341] max-lg:hidden text-[24px] hover:scale-110 transition-transform p-2"
             >
               <FaWhatsapp />
@@ -151,7 +166,10 @@ const Navbar1 = () => {
               <Search size={22} />
             </button>
 
-            <button className="lg:hidden p-2 text-gray-700" onClick={() => setIsOpen(!isOpen)}>
+            <button
+              className="lg:hidden p-2 text-gray-700"
+              onClick={() => setIsOpen(!isOpen)}
+            >
               {isOpen ? <X size={28} /> : <Menu size={28} />}
             </button>
           </div>
@@ -169,10 +187,16 @@ const Navbar1 = () => {
               <div key={cat.name} className="border-b border-gray-50">
                 <div
                   className="flex justify-between items-center py-4 cursor-pointer"
-                  onClick={() => setActiveDropdown(activeDropdown === cat.name ? null : cat.name)}
+                  onClick={() =>
+                    setActiveDropdown(
+                      activeDropdown === cat.name ? null : cat.name,
+                    )
+                  }
                 >
                   {cat.subcategories ? (
-                    <span className="text-base font-semibold uppercase text-gray-800">{cat.name}</span>
+                    <span className="text-base font-semibold uppercase text-gray-800">
+                      {cat.name}
+                    </span>
                   ) : (
                     <NextLink
                       href={cat.href}
@@ -206,14 +230,19 @@ const Navbar1 = () => {
                 )}
               </div>
             ))}
-
+            <div onClick={() => setIsOpen(false)} className="">
+              <AnimatedButton />
+            </div>
             <div className="mt-8 p-5 bg-gray-50 rounded-xl">
               <div className="flex items-start gap-4">
                 <MapPin size={24} className="text-[#009341]" />
                 <div>
-                  <h4 className="text-[11px] uppercase font-black text-gray-900 mb-1">Visit Our Store</h4>
+                  <h4 className="text-[11px] uppercase font-black text-gray-900 mb-1">
+                    Visit Our Store
+                  </h4>
                   <p className="text-sm text-gray-600">
-                    V1st Floor Shop No. 1 & 2 Royal Arcade Building Near Khamardih Thana, Shankar Nagar Raipur
+                    V1st Floor Shop No. 1 & 2 Royal Arcade Building Near
+                    Khamardih Thana, Shankar Nagar Raipur
                   </p>
                 </div>
               </div>
@@ -226,13 +255,19 @@ const Navbar1 = () => {
       {searchOpen && (
         <div
           className="fixed inset-0 z-[100] bg-black/40 backdrop-blur-sm flex items-start justify-center pt-[80px] px-4"
-          onClick={() => { setSearchOpen(false); setSearchQuery(""); }}
+          onClick={() => {
+            setSearchOpen(false);
+            setSearchQuery("");
+          }}
         >
           <div
             className="w-full max-w-2xl bg-white rounded-2xl shadow-2xl overflow-hidden"
             onClick={(e) => e.stopPropagation()}
           >
-            <form onSubmit={handleSearchSubmit} className="flex items-center gap-3 px-5 py-4">
+            <form
+              onSubmit={handleSearchSubmit}
+              className="flex items-center gap-3 px-5 py-4"
+            >
               <Search size={22} className="text-[#009341] shrink-0" />
               <input
                 ref={searchInputRef}
@@ -259,8 +294,10 @@ const Navbar1 = () => {
               </button>
             </form>
             <div className="border-t border-gray-100 px-5 py-3 flex flex-wrap gap-2">
-              <span className="text-xs text-gray-400 mr-1 mt-0.5">Popular:</span>
-              {["Bamboo", "Rice Husk", "Cane Basket", ].map((tag) => (
+              <span className="text-xs text-gray-400 mr-1 mt-0.5">
+                Popular:
+              </span>
+              {["Bamboo", "Rice Husk", "Cane Basket"].map((tag) => (
                 <button
                   key={tag}
                   onClick={() => {
