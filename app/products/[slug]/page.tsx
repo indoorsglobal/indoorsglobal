@@ -76,12 +76,12 @@ const productsData = [
   { id: 22, name: "Soup Bowl", img: rice_husk4, category: "Home & Living", size: "250ml", colors: "Pink, Green, Offwhite, Blue" },
   { id: 23, name: "Classic Mug", img: rice_husk5, category: "Home & Living", size: "300ml", colors: "Tortilla, Offwhite, Green, Blue, Pink" },
   { id: 24, name: "Canister (Tall)", img: rice_husk6, category: "Home & Living", size: "", colors: "" },
-  { id: 25, name: "Snack plate", img: rice_husk7, category: "Home & Living", size: '6", 8"', colors: "Pink, Green, Offwhite, Blue" },
+  { id: 25, name: "Snack plate", img: rice_husk7, category: "Home & Living", size: '8"', colors: "Pink, Green, Offwhite, Blue" },
   { id: 26, name: "Chai Cup", img: rice_husk8, category: "Home & Living", size: "100ml", colors: "Tortilla, Offwhite, Green, Blue, Pink" },
   { id: 27, name: "Dinner Set", img: rice_husk9, category: "Home & Living", size: "", colors: "" },
   { id: 29, name: "Retro Cup", img: rice_husk11, category: "Home & Living", size: "250ml", colors: "Tortilla, Offwhite, Green, Blue, Pink" },
   { id: 30, name: "Fusion Cup", img: rice_husk12, category: "Home & Living", size: "150ml", colors: "Green" },
-  { id: 31, name: "Deco planter", img: rice_husk13, category: "Home & Living", size: '7", 9"', colors: "Red & Offwhite" },
+  { id: 31, name: "Deco planter", img: rice_husk13, category: "Home & Living", size: '6"', colors: "Red & Offwhite" },
 
   // Bastar Artefacts (Part of Home & Living)
   { id: 50, name: "Bastar Artefact 1", img: kits19, category: "Home & Living", size: "", colors: "Antique Gold" },
