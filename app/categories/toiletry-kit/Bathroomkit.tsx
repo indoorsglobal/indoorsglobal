@@ -94,7 +94,7 @@ export default function ToiletryKit() {
 
           return (
             <Link 
-              href={`/categories/${categorySlug}/${slug}`} 
+              href={`/categories/toiletry-kit/${slug}`} 
               key={`${product.id}-${product.name}`}
               className={`group cursor-pointer transition-all duration-300 ${
                 viewMode === 'list' 
