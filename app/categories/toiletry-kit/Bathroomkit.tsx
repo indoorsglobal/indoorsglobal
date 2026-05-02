@@ -1,154 +1,92 @@
 "use client";
 
-import React, { useState } from 'react';
-import Link from 'next/link';
+import { useParams } from 'next/navigation';
 import Image from 'next/image';
-import { LayoutGrid, List, ChevronDown } from 'lucide-react';
+import Link from 'next/link';
+import { ArrowLeft, Heart, Sparkles, CheckCircle } from 'lucide-react';
 
-// --- DATA IMPORT FROM ECOBUNDLE ---
-import { CATEGORIES, ecoBundleProducts } from '@/data/ecoBundle';
+// --- IMAGE IMPORTS ---
+import kits1 from "@/public/Indoor Global Kit/Toiletry kit1.jpg"
+import kits2 from "@/public/Indoor Global Kit/Toiletry kit3.jpg"
+import kits3 from "@/public/Indoor Global Kit/Toiletry kit4.jpg"
+import kits4 from "@/public/Indoor Global Kit/Toiletry kit2.jpg"
 
-export default function ToiletryKit() {
-  // Local state for filtering and view mode
-  const [activeCategory, setActiveCategory] = useState("TOILETRY KIT");
-  const [viewMode, setViewMode] = useState<'grid' | 'list'>('grid');
+const productsData = [
+  { id: 32, name: "Toiletry kit1", description: "This kit is for the eco-conscious traveler. Featuring a hand-carved wooden comb, a bamboo toothbrush, and a classic metal razor, all tucked into a breathable jute drawstring bag. It’s everything you need for a zero-waste grooming routine, whether you're in a hotel or a hiking trail.", img: kits1, category: "Toiletry Kit" },
+  { id: 33, name: "Toiletry kit3", description: "Why go to a spa when the spa can come to you? This premium kit is housed in a luxury floral-accented wicker basket. It features natural cotton buds, a biodegradable loofah, a bamboo brush, and a safety razor. It’s the perfect gift for someone who deserves a bathroom upgrade that feels as good as it looks.", img: kits2, category: "Toiletry Kit" },
+  { id: 34, name: "Toiletry kit4", description: "Strip back the plastic and elevate your morning ritual. This set features a hand-carved wooden comb for a static-free hair day, a bamboo tongue cleaner, and a biodegradable toothbrush. Paired with a sleek safety razor and a textured jute pouch, it’s the ultimate kit for the modern man or woman who believes that style shouldn't cost the Earth.", img: kits3, category: "Toiletry Kit" },
+  { id: 35, name: "Toiletry kit2", description: "Transform your bathroom into a tranquil sanctuary. This comprehensive kit includes bamboo cotton buds, an exfoliating natural loofah, and a bamboo-handle razor. Presented in a hand-woven seagrass basket with a floral-printed base, it’s a beautiful reminder that self-care feels better when it’s sustainable.", img: kits4, category: "Toiletry Kit" }
+];
 
-  // Filter Logic
-  const filteredProducts = ecoBundleProducts.filter(
-    (product) => product.category === activeCategory
-  );
+export default function ToiletryDetail() {
+  const { slug } = useParams();
+
+  const product = productsData.find((p) => {
+    const generatedSlug = p.name
+      .toLowerCase()
+      .replace(/[^\w\s-]/g, '') 
+      .trim()
+      .replace(/\s+/g, '-')
+      .replace(/-+/g, '-');
+    return generatedSlug === slug;
+  });
+
+  if (!product) {
+    return (
+      <div className="flex flex-col items-center justify-center min-h-screen">
+        <h1 className="text-2xl font-bold">Kit Not Found</h1>
+        <Link href="/categories/toiletry-kit" className="text-[#a3a393] mt-4 underline font-medium">
+          Back to Toiletry Kits
+        </Link>
+      </div>
+    );
+  }
 
   return (
-    <div className="max-w-7xl mx-auto px-4 py-12 bg-white font-sans">
-      
-      {/* Header Section */}
-      <header className="mb-10">
-        <h1 className="text-3xl md:text-4xl font-serif font-bold text-gray-900 mb-2 uppercase tracking-tight">
-          {activeCategory}
-        </h1>
-        <p className="text-gray-500 italic ">
-          Curated Personal Care - Sustainable & Organic
-        </p>
-      </header>
+    <div className="max-w-7xl mx-auto px-4 py-16 pt-24 font-sans text-[#444]">
+      <Link href="/categories/toiletry-kit" className="flex items-center gap-2 text-sm text-gray-500 mb-8 hover:text-black transition-colors w-fit">
+        <ArrowLeft size={16} /> Back to Collection
+      </Link>
 
-      {/* Toolbar: Filter & View Switcher */}
-      <div className="flex flex-col md:flex-row md:items-center justify-between border-t border-b border-gray-100 py-6 mb-10 gap-6">
-        
-        <div className="flex items-center gap-4">
-          <div className="flex bg-gray-100 p-1 rounded-lg">
-            <button 
-              onClick={() => setViewMode('grid')}
-              className={`p-2 rounded-md transition-all ${viewMode === 'grid' ? "bg-white shadow text-[#009341]" : "text-gray-400"}`}
-            >
-              <LayoutGrid size={20} />
-            </button>
-            <button 
-              onClick={() => setViewMode('list')}
-              className={`p-2 rounded-md transition-all ${viewMode === 'list' ? "bg-white shadow text-[#009341]" : "text-gray-400"}`}
-            >
-              <List size={20} />
-            </button>
-          </div>
-          <span className="text-sm font-medium text-gray-400">
-            {filteredProducts.length} items found
-          </span>
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-start">
+        <div className="relative aspect-square bg-gray-50 rounded-lg overflow-hidden border border-gray-100">
+          <Image src={product.img} alt={product.name} fill priority className="object-cover" />
         </div>
 
-        {/* Dropdown Filter */}
-        <div className="relative w-full md:w-80">
-          <label className="text-[10px] uppercase font-bold text-[#009341] absolute -top-2.5 left-3 bg-white px-1 z-10">
-            Select Category
-          </label>
-          <div className="relative">
-            <select
-              value={activeCategory}
-              onChange={(e) => setActiveCategory(e.target.value)}
-              className="w-full appearance-none bg-white border border-gray-200 rounded-xl px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-[#009341] cursor-pointer shadow-sm font-bold text-gray-700"
-            >
-              {CATEGORIES.map((cat) => (
-                <option key={cat} value={cat}>
-                  {cat}
-                </option>
-              ))}
-            </select>
-            <ChevronDown className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 pointer-events-none" size={18} />
+        <div className="flex flex-col">
+          <p className="text-[#a3a393] uppercase tracking-[0.2em] text-xs font-bold mb-3">{product.category}</p>
+          <h1 className="text-3xl md:text-4xl font-medium text-gray-900 mb-6">{product.name}</h1>
+          
+          <div className="flex items-center gap-2 text-[#a3a393] mb-6 font-medium italic">
+            <Sparkles size={18} /> Travel-friendly & Plastic-free
           </div>
-        </div>
-      </div>
 
-      {/* Product Display */}
-      <div className={
-        viewMode === 'grid' 
-          ? "grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-x-8 gap-y-12" 
-          : "flex flex-col gap-6"
-      }>
-        {filteredProducts.map((product) => {
-          const slug = product.name
-            .toLowerCase()
-            .replace(/[^\w\s-]/g, '')
-            .trim()
-            .replace(/\s+/g, '-')
-            .replace(/-+/g, '-');
+          <div className="border-t border-b border-gray-100 py-8 mb-8 text-gray-600 leading-relaxed">
+            <p>{product.description}</p>
+            <p className="mt-4">
+              Our {product.name.toLowerCase()} is curated for those who dont want to compromise on their sustainability values while traveling. Every item is plastic-free, compostable, and made from premium bamboo or jute.
+            </p>
+          </div>
 
-          const categorySlug = product.category.toLowerCase().replace(/\s+/g, '-');
-
-          return (
-            <Link 
-              href={`/categories/toiletry-kit/${slug}`} 
-              key={`${product.id}-${product.name}`}
-              className={`group cursor-pointer transition-all duration-300 ${
-                viewMode === 'list' 
-                ? "flex flex-row items-center gap-8 border border-gray-100 p-4 rounded-2xl hover:shadow-md" 
-                : "block"
-              }`}
-            >
-              {/* Image Container */}
-              <div className={`relative overflow-hidden rounded-xl bg-gray-50 shrink-0 ${
-                viewMode === 'list' ? "h-32 w-32 md:h-44 md:w-44" : "aspect-square mb-4 border border-gray-100"
-              }`}>
-                <Image
-                  src={product.image}
-                  alt={product.name}
-                  fill
-                  className="object-cover transition-transform duration-500 group-hover:scale-105"
-                />
-              </div>
-              
-              {/* Content */}
-              <div className="flex-grow">
-                {/* <span className="text-[10px] font-bold text-[#009341] uppercase tracking-widest bg-green-50 px-2 py-0.5 rounded">
-                  {product.category}
-                </span> */}
-                <h3 className={`font-bold text-gray-900 mt-2 transition-colors ${
-                  viewMode === 'list' ? "text-xl md:text-2xl" : "text-lg"
-                }`}>
-                  {product.name}
-                </h3>
-                
-                {viewMode === 'list' && (
-                  <p className="text-gray-500 mt-2 text-sm line-clamp-2 max-w-xl">
-                    {product.description}
-                  </p>
-                )}
-
-                <button className="text-xs font-bold text-gray-400 mt-4 uppercase tracking-widest flex items-center gap-1 group-hover:text-[#009341] transition-all">
-                  View details 
-                  {/* <span className="opacity-0 group-hover:opacity-100 transition-all -translate-x-2 group-hover:translate-x-0">
-                    →
-                  </span> */}
-                </button>
-              </div>
+          <div className="flex flex-wrap gap-4">
+            <Link href="/contact" className="flex-1 bg-[#009341] hover:bg-[#7cb140] text-white px-8 py-4 rounded  transition-all flex items-center justify-center gap-2 font-medium">
+              Inquire for Bulk Orders
             </Link>
-          );
-        })}
-      </div>
+            <button className="p-4 border border-gray-200 rounded hover:bg-gray-50 transition-colors">
+              <Heart size={20} className="text-gray-400" />
+            </button>
+          </div>
 
-      {/* Empty Result */}
-      {filteredProducts.length === 0 && (
-        <div className="text-center py-24 border-2 border-dashed border-gray-100 rounded-3xl">
-          <p className="text-gray-400 font-medium">No products found in "{activeCategory}".</p>
+          <div className="mt-10 grid grid-cols-2 gap-4 border-t border-gray-50 pt-6">
+             <div className="flex items-center gap-2 text-xs text-gray-500 uppercase font-bold">
+                <CheckCircle size={16} className="text-green-600" /> 100% Organic
+             </div>
+             <div className="flex items-center gap-2 text-xs text-gray-500 uppercase font-bold">
+                <CheckCircle size={16} className="text-green-600" /> Travel Approved
+             </div>
+          </div>
         </div>
-      )}
+      </div>
     </div>
   );
 }
