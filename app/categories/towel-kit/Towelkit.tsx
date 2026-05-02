@@ -97,7 +97,7 @@ export default function Towelkit() {
 
           return (
             <Link 
-              href={`/categories/${categorySlug}/${slug}`} 
+              href={`/categories/towel-kit/${slug}`} 
               key={`${product.id}-${product.name}`} 
               className={`group cursor-pointer transition-all duration-300 ${
                 viewMode === 'list' 
