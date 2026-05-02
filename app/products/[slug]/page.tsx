@@ -78,7 +78,7 @@ const productsData = [
   { id: 24, name: "Canister (Tall)", img: rice_husk6, category: "Home & Living", size: "", colors: "" },
   { id: 25, name: "Snack plate", img: rice_husk7, category: "Home & Living", size: '8"', colors: "Pink, Green, Offwhite, Blue" },
   { id: 26, name: "Chai Cup", img: rice_husk8, category: "Home & Living", size: "100ml", colors: "Tortilla, Offwhite, Green, Blue, Pink" },
-  { id: 27, name: "Dinner Set", img: rice_husk9, category: "Home & Living", size: "", colors: "" },
+  { id: 27, name: "Dinner Set", img: kits12, category: "Home & Living", size: "", colors: "" },
   { id: 29, name: "Retro Cup", img: rice_husk11, category: "Home & Living", size: "250ml", colors: "Tortilla, Offwhite, Green, Blue, Pink" },
   { id: 30, name: "Fusion Cup", img: rice_husk12, category: "Home & Living", size: "150ml", colors: "Green" },
   { id: 31, name: "Deco planter", img: rice_husk13, category: "Home & Living", size: '6"', colors: "Red & Offwhite" },
