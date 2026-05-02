@@ -65,7 +65,7 @@ export const productsData = [
   { id: 23, name: "Classic Mug", img: rice_husk5, category: "home-living" },
   { id: 25, name: "Snack plate", img: rice_husk7, category: "home-living" },
   { id: 26, name: "Chai Cup", img: rice_husk8, category: "home-living" },
-  { id: 27, name: "Dinner Set", img: rice_husk9, category: "home-living" },
+  { id: 27, name: "Dinner Set", img: kits12, category: "home-living" },
   { id: 29, name: "Retro Cup", img: rice_husk11, category: "home-living" },
   { id: 30, name: "Fusion Cup", img: rice_husk12, category: "home-living" },
   { id: 31, name: "Deco planter", img: rice_husk13, category: "home-living" },
