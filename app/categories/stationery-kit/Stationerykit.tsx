@@ -94,7 +94,7 @@ export default function Stationerykit() {
 
           return (
             <Link 
-              href={`/categories/${categorySlug}/${slug}`} 
+              href={`/categories/stationery-kit/${slug}`} 
               key={product.id} 
               className={`group cursor-pointer transition-all duration-300 ${
                 viewMode === 'list' 
